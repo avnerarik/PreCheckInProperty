@@ -320,6 +320,21 @@ namespace BookingConfirm.Controllers
                     ViewBag.ArrvHours = FormHelper.GetArrivalHours();
                     ViewBag.Genders = FormHelper.GetGenderList();
                     ViewBag.Salutation = FormHelper.RequestSalutation(model.property);
+                    ViewBag.PayMethods = FormHelper.RequestPaymentMethod(model.property, data.stay.paym);
+
+                    ViewBag.cardNumber = "";
+                    if (data.stay.card != null)
+                    {
+                        int length = data.stay.card.numb.Length;
+                        int tohide = length - 8;
+                        string aux = data.stay.card.numb.Substring(0, 4);
+                        for (int i = 0; i < tohide; i++)
+                        {
+                            aux += "*";
+                        }
+                        aux += data.stay.card.numb.Substring(length - 4, 4);
+                        ViewBag.cardNumber = aux;
+                    }
 
                     ViewBag.noCountry = false;
                     string country = data.guest.addr.cnty;

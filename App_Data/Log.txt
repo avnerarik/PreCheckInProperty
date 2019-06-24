@@ -170,3 +170,5 @@ Date: 21/06/2018 16:08:06, Property: mije, Name: Avner Leon, Reservation: 2250;
 -------------------
 Date: 21/06/2018 16:14:52, Property: mije, Name: Avner Leon, Reservation: 2250;
 -------------------
+Reservation no longer available for desired daysReservation no longer available for desired daysReservation no longer available for desired daysDate: 6/24/2019 2:44:49 PM, Property: chrtshot, Name: Lilivett Na Ja, Reservation: 4046;
+-------------------
