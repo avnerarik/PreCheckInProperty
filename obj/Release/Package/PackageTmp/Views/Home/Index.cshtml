@@ -1,0 +1,33 @@
+﻿@using BookingConfirm.Models
+@model ClientViewModel
+
+<div id="top" class="row" style="height:100vh;background:url(@ViewBag.pict);background-size:cover;background-repeat:no-repeat;">
+    
+    <div class="container">
+        <div class="white backdiv col-md-3" style="margin:25px 25px;padding:10px;">
+            <h5 style="margin:10px">Welcome</h5>
+            @*<form id="entry" name="entry" method="post" action="http://localhost:51492/Home/Index" class="form" role="form">*@
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form", role = "form" }))
+            {
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.lname, new { @Value = ViewBag.lName, @class = "form-control", @placeholder = "Please enter your last name", @required = "required" })
+                </div>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.reservNumber, new { @Value = ViewBag.bNumber, @class = "form-control", @placeholder = "Please enter the Reservation Number", @required = "required" })
+                </div>
+
+                <div>
+                    @Html.HiddenFor(m => m.propCode, new { @Value = ViewBag.pCode })
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Check Reservation"/>
+                </div>
+            }
+            @*</form>*@
+        </div>
+    </div>
+
+</div>
+<!--<hr />-->

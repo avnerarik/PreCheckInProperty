@@ -1,0 +1,235 @@
+﻿@model BookingConfirm.Models.BookingViewModel
+
+<div id="top" class="row" style="background:url(../../images/big-photo1.jpg);background-size:cover;background-repeat:no-repeat;">
+    
+    <div class="container">
+        <div class="white opacity row" style="margin:25px 25px;padding:10px;">
+            <h3 style="text-align:center">Reservation Details</h3>
+            @using (Html.BeginForm("BookingConfirm", "Client", FormMethod.Post, new { @class = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4>Personal Information</h4>
+                    
+                @Html.HiddenFor(m=>m.property, new { @Value = ViewBag.pcode })
+                @Html.HiddenFor(m=>m.index, new { @Value = ViewBag.indx })
+                <div class="row">
+                    <div class="col-xs-6 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.bookingNumber, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.bookingNumber, new { @Value = ViewBag.lbkg, @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-2 col col-md-2">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.salutation, new { @class = "control-label" })
+                            @Html.TextBoxFor(m =>m.salutation, new { @Value = ViewBag.salu , @class = "form-control"})
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.firstName, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.firstName, new { @Value = ViewBag.fname , @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.lastName, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.lastName, new { @Value = ViewBag.lname , @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <hr style="border:1px solid grey" />
+                
+                <h4>Contac Detail</h4>
+                
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.email, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.email, new { @Value = ViewBag.email, @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.phonenumber, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.phonenumber, new { @Value = ViewBag.phon , @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.cellnumber, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.cellnumber, new { @Value = ViewBag.cell, @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.company, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.company, new { @Value = ViewBag.comp, @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.address1, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.address1, new { @Value = ViewBag.adr1, @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.address2, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.address2, new { @Value = ViewBag.adr2, @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.postcode, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.postcode, new { @Value = ViewBag.posc, @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.city, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.city, new { @Value = ViewBag.city, @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.country, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.country, new { @Value = ViewBag.cnty, @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.state, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.state, new { @Value = ViewBag.stat, @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <hr style="border:1px solid grey" />
+
+                <h4>Booking Details</h4>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.arrivalDate, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.arrivalDate, new { @Value = ViewBag.darrival, @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.departureDate, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.departureDate, new { @Value = ViewBag.ddeparture, @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.roomType, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.roomType, new { @Value = ViewBag.rtype, @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.adults, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.adults, new { @Value = ViewBag.adlt, @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.childs, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.childs, new { @Value = ViewBag.chld, @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <hr style="border:1px solid grey" />
+
+                <h4>Payment Details</h4>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.cardType, new { @class = "control-label" })
+                            <span>
+                                <img src="~/images/amex.png" width="32" style="margin:0px 1px"/>
+                                <img src="~/images/mastercard.png"  width="32" style="margin:0px 1px" />
+                                <img src="~/images/visa.png" width="32" style="margin:0px 1px"/>
+                            </span>
+                            @Html.DropDownList(
+                           "cardType",
+                                new List<SelectListItem>
+                                {
+                                    new SelectListItem { Text = "American Express", Value = "American Express" },
+                                    new SelectListItem { Text = "MasterCard",  Value = "MasterCard" },
+                                    new SelectListItem { Text = "Visa",  Value = "Visa" }
+                                },
+                                new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.cardHolder, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.cardHolder, new { @Value = ViewBag.auth, @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.cardNumber, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.cardNumber, new { @Value = ViewBag.cardnumb, @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.cardEndDate, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.cardEndDate, new { @Value = ViewBag.cardexp, @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="submit" value="Confirm Reservation" class="btn btn-success"/>
+                    </div>
+                </div>
+               
+            }
+        </div>
+    </div>
+
+</div>
+
+<hr />
+
+<div id="middle" class="row" style="background-color:grey">
+
+    <div class="container" style="color:white">
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,8 @@
+Date: 12/6/2015 1:15:23 PM, Property: VINTAGE, Name: Mustafa Abid, Reservation: 84720;
+-------------------
+Date: 12/6/2015 1:15:39 PM, Property: VINTAGE, Name: Mustafa Abid, Reservation: 84720;
+-------------------
+Date: 12/7/2015 10:35:43 AM, Property: CHRTSHOT, Name: Avner Leon, Reservation: 2300;
+-------------------
+Date: 12/7/2015 2:22:02 PM, Property: VINTAGE, Name: Mustafa Abid, Reservation: 84720;
+-------------------

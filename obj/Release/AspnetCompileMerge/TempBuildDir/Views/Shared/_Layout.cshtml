@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - BookingConfirm Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+
+<body>
+    <!--Top Menu-->
+    <header>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Booking Confirm", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+
+                <nav>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>
+                        <!--Html.Partial("_LoginPartial")-->
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!--Top Menu-->
+    <!--Main Content-->
+     <div class="body-content">
+         <article>
+             @RenderBody()           <!--Here is the body-->
+         </article>
+    </div>
+    <!--Main Content-->
+    <hr />
+    <!--Footer-->
+    <footer>
+        <div class="container footer center">
+            <div class="row">
+                <div class="col-md-4"><p>Charts Property Management System</p></div>
+                <div class="col-md-4"><p> - Booking Confirm Application - </p></div>
+                <div class="col-md-4"><p>Copyright © @DateTime.Now.Year Charts PMS</p></div>
+            </div>
+        </div>        
+    </footer>    
+    <!--Footer-->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

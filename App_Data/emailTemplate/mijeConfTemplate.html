@@ -1,0 +1,390 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>cancellation</title>
+<meta name="cancellation" content="cancellation email template.">
+<link rel="stylesheet" href="main.css">
+    
+  
+<style>
+
+p, li {
+	font-size:14px;
+    text-align: justify;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #808080;
+    font-size: 14px;
+}
+table {
+	table-layout:fixed;
+    padding: 10px;
+    max-width: 600px;
+    min-width: 200px;
+	font-size:14px!important;
+	margin:auto;
+}
+td.chapter {
+    background: #eaeaea;
+}    
+td.center {
+    text-align: center;
+}
+tr.infos {
+    background: #e8e8e8;
+}
+.infos td {
+    background: #e8e8e8;
+    padding: 5px 5px;
+}
+table.smaller {
+    font-size: 14px;
+}
+h2 {
+	text-align: center;
+	margin:0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+h3 {
+    text-decoration: underline;
+}
+span {
+	font-size: 10px;
+}
+</style>
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+</style>
+
+</head>
+<body>
+<!---SET_INTERPRET_ON >
+	<if {o29} = "France">
+<!---SET_INTERPRET_OFF --->
+<table>
+	<tbody>
+		<tr>
+			<td colspan="2"><img src="http://hostel.mije.com/assets/Logo-60ans-MIJE_400x400px.png" alt="" width="85" height="51" /></td>
+		</tr>
+		<tr>
+			<td colspan="2" style="padding-bottom: 10px;">
+			<!---SET_INTERPRET_ON >
+				<if {o106} = "">
+			<!---SET_INTERPRET_OFF --->
+				<img src="http://hostel.mije.com/assets/FOURCY&copy;Alikaphoto-MIJE.jpg" width="100%" style="width:100%;height:auto;"/>
+			<!---SET_INTERPRET_ON >
+				<end_if>
+				<if {o106} = "FOURC">
+			<!---SET_INTERPRET_OFF --->
+				<img src="http://hostel.mije.com/assets/FOURCY&copy;Alikaphoto-MIJE.jpg" width="100%" style="width:100%;height:auto;"/>
+			<!---SET_INTERPRET_ON >
+				<end_if>
+				<if {o106} = "MAUBU">
+			<!---SET_INTERPRET_OFF --->
+				<img src="http://hostel.mije.com/assets/MAUBUISSON&copy;Alikaphoto-MIJE.jpg" width="100%" style="width:100%;height:auto;"/>
+			<!---SET_INTERPRET_ON >
+				<end_if>
+				<if {o106} = "FAUCO">
+			<!---SET_INTERPRET_OFF --->
+				<img src="http://hostel.mije.com/assets/FAUCONNIER&reg;Alikaphoto-MIJE.png" width="100%" style="width:100%;height:auto;"/>
+			<!---SET_INTERPRET_ON >
+				<end_if>
+			<!---SET_INTERPRET_OFF --->
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="padding-bottom: 30px;">
+				<strong>Bonjour  
+				<!---SET_INTERPRET_ON >
+				{o18} " " {o17} " " {o16}","
+				<!---SET_INTERPRET_OFF --->
+				</strong>
+				
+				<!---SET_INTERPRET_ON >
+				<if {o65} = "WEEKEND">
+				<!---SET_INTERPRET_OFF --->
+					<p style="margin-bottom:0;">Vous avez choisi de séjourner dans nos auberges en optant pour une réservation ferme qui ne peut faire l’objet d’aucune annulation ou modification.</p>
+					<p style="">Le montant prépayé lors de la réservation est dû en intégralité et ne peut faire l’objet d’aucun remboursement, conformément à nos <a href="https://hostel.mije.com/fr/terms-conditions/" target="blank">Conditions Générales de Vente</a>.</p>
+				<!---SET_INTERPRET_ON >
+				<else>
+					<calc {n[99]} = {20[{o33}]} - {20[{3}]}>
+					<if {n[99]} > 3>
+				<!---SET_INTERPRET_OFF --->
+					<p style="margin-bottom:0;">Nous vous confirmons l’annulation du séjour réservé dans nos auberges de jeunesse.</p>
+					<p>Conformément à nos <a href="https://hostel.mije.com/fr/terms-conditions/" target="blank">Conditions Générales de Vente</a> et aux conditions d’annulation des réservations au tarif flexible, 
+					nous vous confirmons que votre réservation est annulée sans aucun frais.</p>
+					<p>Au plaisir de vous accueillir lors de votre prochain séjour à Paris.</p>
+				<!---SET_INTERPRET_ON >
+					<else>
+				<!---SET_INTERPRET_OFF --->
+					<p style="margin-bottom:0;">Nous vous confirmons l’annulation du séjour réservé dans nos auberges de jeunesse.</p>
+					<p>Conformément à nos <a href="https://hostel.mije.com/fr/terms-conditions/" target="blank">Conditions Générales de Vente</a> et aux conditions d’annulation applicable pour toute annulation effectuée moins de 3 jours avant la date d’arrivée, 
+					le montant de la première nuit réservée sera prélevé à titre d’indemnité forfaitaire sur la carte bancaire donnée à titre de garantie lors de la réservation.</p>
+					<p>Au plaisir de vous accueillir lors de votre prochain séjour à Paris.</p>
+				<!---SET_INTERPRET_ON >
+					<end_if>
+				<end_if>
+				<!---SET_INTERPRET_OFF --->
+				
+				<p>Cordialement,</p>
+				<p>Service Clients Association MIJE</p>
+			</td>
+		</tr>
+		<tr class="infos">
+			<td colspan="2"><strong>Numéro de réservation</strong>: 
+				<!---SET_INTERPRET_ON >
+				{o124}
+				<!---SET_INTERPRET_OFF --->
+			</td>
+		</tr>
+		<tr class="infos">
+			<td colspan="2"><strong>Numéro d'annulation</strong>: 
+				<!---SET_INTERPRET_ON >
+				{o15}
+				<!---SET_INTERPRET_OFF --->
+			</td>
+		</tr>
+		<tr class="infos">
+			<td><strong>Prénom</strong>: 
+				<!---SET_INTERPRET_ON >
+				{o17}
+				<!---SET_INTERPRET_OFF --->
+			</td>
+			<td><strong>Nom</strong>: 
+				<!---SET_INTERPRET_ON >
+				{o16}
+				<!---SET_INTERPRET_OFF --->
+			</td>
+		</tr>
+		<tr class="infos">
+			<td><strong>Date d'arrivée</strong>:
+				<!---SET_INTERPRET_ON >
+				{o33}
+				<!---SET_INTERPRET_OFF --->
+			</td>
+			<td><strong>Date de départ</strong>:
+				<!---SET_INTERPRET_ON >
+				{o34}
+				<!---SET_INTERPRET_OFF --->
+			</td>
+		</tr>
+		<tr class="infos">
+			<td colspan="2"><strong>Nombre de lit(s)</strong>:
+				<!---SET_INTERPRET_ON >
+				<gosub 13>
+				<!---SET_INTERPRET_OFF --->
+			</td>
+		</tr>
+		<tr class="infos">
+			<td colspan="2"><strong>Nombre de personne(s)</strong>: 
+				<!---SET_INTERPRET_ON >
+				<gosub 15>
+				<!---SET_INTERPRET_OFF --->
+			</td>
+		</tr>
+		<tr class="infos">
+			<td colspan="2"><strong>Type de chambre</strong>: 
+				<!---SET_INTERPRET_ON >
+				<gosub 14>
+				<!---SET_INTERPRET_OFF --->
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="padding-bottom: 30px;">
+			</td>
+		</tr>
+		<tr>
+			<td class= "center" style="text-align:center;" colspan="2">
+				<h4>SUIVEZ-NOUS</h4>
+			</td>
+		</tr>
+		<tr>
+			<td class= "center" colspan="2" style="padding-bottom: 10px;text-align:center;">
+				<a href="https://www.facebook.com/MIJE.association" target="_blank" rel="noopener"><img src="http://hostel.mije.com/assets/MIJE-picto-2018-picto-reseaux-spciaux_OK-facebook.png" alt="" width="30px" /></a>
+				<a href="https://www.instagram.com/explore/locations/1003679907/auberges-de-jeunesse-mije-voyages-scolaires-educatifs/" target="_blank" rel="noopener"><img src="http://hostel.mije.com/assets/MIJE-picto-2018-picto-Instagram.png" alt="" width="30px" /></a> 
+				<a href="https://twitter.com/Mije_Voyages" target="_blank" rel="noopener"><img src="http://hostel.mije.com/assets/MIJE-picto-2018-picto-reseaux-spciaux_OK-twitter.png" alt="" width="30px" /></a> 
+				<a href="https://plus.google.com/+Mije-voyagesscolaires-aubergesdejeunesseParis" target="_blank" rel="noopener"><img src="http://hostel.mije.com/assets/MIJE-picto-2018-picto-reseaux-spciaux_OK-google+.png" alt="" width="30px" /></a> 
+				<a href="https://www.linkedin.com/company/mije/" target="_blank" rel="noopener"><img src="http://hostel.mije.com/assets/MIJE-picto-2018-picto-reseaux-spciaux_OK-linkedin.png" alt="" width="30px" /></a>
+				<a href="https://www.youtube.com/watch?v=t2EMcwYefNE&feature=youtu.be" target="blank" rel="noopener"><img src="http://hostel.mije.com/assets/MIJE-picto-2018-picto-reseaux-spciaux_OK-YT.png" alt="" width="30px" /></a>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<p>Ce message vous a été envoyé car vous êtes client ou abonné de notre société et vous avez expressément indiqué que vous aimeriez recevoir nos actualités et promotions. Notre société ne vous enverra jamais d'e-mails ou d'e-mails non sollicités avec des objectifs différents de ceux indiqués. Notre société respecte les règles de la lutte active contre le spam. Vous pouvez exercer vos droits de rectification ou d'annulation de vos données conformément à la réglementation en vigueur ou signaler tout abus ou réception de cet e-mail provenant d'autres sources.</p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"></td>
+		</tr>
+	</tbody>
+</table>
+<!---SET_INTERPRET_ON >
+	<else>
+<!---SET_INTERPRET_OFF --->
+<table>
+	<tbody>
+		<tr>
+			<td colspan="2"><img src="http://hostel.mije.com/assets/Logo-60ans-MIJE_400x400px.png" alt="" width="85" height="51" /></td>
+		</tr>
+		<tr>
+			<td colspan="2" style="padding-bottom: 10px;">
+			<!---SET_INTERPRET_ON >
+				<if {o106} = "">
+			<!---SET_INTERPRET_OFF --->
+				<img src="http://hostel.mije.com/assets/FOURCY&copy;Alikaphoto-MIJE.jpg" width="100%" style="width:100%;height:auto;"/>
+			<!---SET_INTERPRET_ON >
+				<end_if>
+				<if {o106} = "FOURC">
+			<!---SET_INTERPRET_OFF --->
+				<img src="http://hostel.mije.com/assets/FOURCY&copy;Alikaphoto-MIJE.jpg" width="100%" style="width:100%;height:auto;"/>
+			<!---SET_INTERPRET_ON >
+				<end_if>
+				<if {o106} = "MAUBU">
+			<!---SET_INTERPRET_OFF --->
+				<img src="http://hostel.mije.com/assets/MAUBUISSON&copy;Alikaphoto-MIJE.jpg" width="100%" style="width:100%;height:auto;"/>
+			<!---SET_INTERPRET_ON >
+				<end_if>
+				<if {o106} = "FAUCO">
+			<!---SET_INTERPRET_OFF --->
+				<img src="http://hostel.mije.com/assets/FAUCONNIER&reg;Alikaphoto-MIJE.png" width="100%" style="width:100%;height:auto;"/>
+			<!---SET_INTERPRET_ON >
+				<end_if>
+			<!---SET_INTERPRET_OFF --->
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="padding-bottom: 30px;">
+				<strong>Dear 
+				<!---SET_INTERPRET_ON >
+				{o18} " " {o17} " " {o16}","
+				<!---SET_INTERPRET_OFF --->
+				</strong>
+				<!---SET_INTERPRET_ON >
+				<if {o65} = "WEEKEND">
+				<!---SET_INTERPRET_OFF --->
+					<p style="margin-bottom:0;">You chose to stay in our hostels by opting for a firm reservation which cannot be the object of  cancellation or modification.</p>
+					<p style="">The amount prepaid during the reservation is entirely due and cannot be refunded, according to our <a href="https://hostel.mije.com/terms-conditions/" target="blank">General Terms and Conditions</a> of sale.</p>
+				<!---SET_INTERPRET_ON >
+				<else>
+					<calc {n[99]} = {20[{o33}]} - {20[{3}]}>
+					<if {n[99]} > 3>
+				<!---SET_INTERPRET_OFF --->
+					<p style="margin-bottom:0;">We confirm your cancellation of the stay reserved in our hostels.</p>
+					<p>According to our <a href="https://hostel.mije.com/terms-conditions/" target="blank">General Terms and Conditions</a> of sale and the conditions of cancellation of the reservations at a flexible rate, we confirm you your reservation is cancelled without any fees.</p>
+					<p>We look forward to welcoming you during your next stay in Paris.</p>
+				<!---SET_INTERPRET_ON >
+					<else>
+				<!---SET_INTERPRET_OFF --->
+					<p style="margin-bottom:0;">We confirm the cancellation of the stay reserved in our hostels.</p>
+					<p>According to our <a href="https://hostel.mije.com/terms-conditions/" target="blank">General Terms and Conditions</a> of sale and the conditions of cancellation of your reservation, 
+					any cancellation made from 3 days before the date of arrival and up to the date of arrival, 
+					the amount of the first night of the stay will be charged to the credit card given as guarantee during the reservation.</p>
+					<p>We look forward to welcoming you during your next stay in Paris.</p>
+				<!---SET_INTERPRET_ON >
+					<end_if>
+				<end_if>
+				<!---SET_INTERPRET_OFF --->
+				<p>Kind regards,</p>
+				<p>MIJE Customer Service</p>
+			</td>
+		</tr>
+		<tr class="infos">
+			<td colspan="2"><strong>Reservation Number</strong>: 
+				<!---SET_INTERPRET_ON >
+				{o124}
+				<!---SET_INTERPRET_OFF --->
+			</td>
+		</tr>
+		<tr class="infos">
+			<td colspan="2"><strong>Cancellation number</strong>: 
+				<!---SET_INTERPRET_ON >
+				{o15}
+				<!---SET_INTERPRET_OFF --->
+			</td>
+		</tr>
+		<tr class="infos">
+			<td><strong>First Name</strong>: 
+				<!---SET_INTERPRET_ON >
+				{o17}
+				<!---SET_INTERPRET_OFF --->
+			</td>
+			<td><strong>Last Name</strong>: 
+				<!---SET_INTERPRET_ON >
+				{o16}
+				<!---SET_INTERPRET_OFF --->
+			</td>
+		</tr>
+		<tr class="infos">
+			<td><strong>Arrival date</strong>:
+				<!---SET_INTERPRET_ON >
+				{o33}
+				<!---SET_INTERPRET_OFF --->
+			</td>
+			<td><strong>Departure date</strong>:
+				<!---SET_INTERPRET_ON >
+				{o34}
+				<!---SET_INTERPRET_OFF --->
+			</td>
+		</tr>
+		<tr class="infos">
+			<td colspan="2"><strong>Number of Bed(s)</strong>:
+				<!---SET_INTERPRET_ON >
+				<gosub 13>
+				<!---SET_INTERPRET_OFF --->
+			</td>
+		</tr>
+		<tr class="infos">
+			<td colspan="2"><strong>Number of Person(s)</strong>: 
+				<!---SET_INTERPRET_ON >
+				<gosub 15>
+				<!---SET_INTERPRET_OFF --->
+			</td>
+		</tr>
+		<tr class="infos">
+			<td colspan="2"><strong>Room Type</strong>: 
+				<!---SET_INTERPRET_ON >
+				<gosub 14>
+				<!---SET_INTERPRET_OFF --->
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="padding-bottom: 30px;">
+			</td>
+		</tr>
+		<tr>
+			<td class= "center" style="text-align:center;" colspan="2">
+				<h4>Follow us</h4>
+			</td>
+		</tr>
+		<tr>
+			<td class= "center" colspan="2" style="padding-bottom: 10px;text-align:center;">
+				<a href="https://www.facebook.com/MIJE.association" target="_blank" rel="noopener"><img src="http://hostel.mije.com/assets/MIJE-picto-2018-picto-reseaux-spciaux_OK-facebook.png" alt="" width="30px" /></a>
+				<a href="https://www.instagram.com/explore/locations/1003679907/auberges-de-jeunesse-mije-voyages-scolaires-educatifs/" target="_blank" rel="noopener"><img src="http://hostel.mije.com/assets/MIJE-picto-2018-picto-Instagram.png" alt="" width="30px" /></a> 
+				<a href="https://twitter.com/Mije_Voyages" target="_blank" rel="noopener"><img src="http://hostel.mije.com/assets/MIJE-picto-2018-picto-reseaux-spciaux_OK-twitter.png" alt="" width="30px" /></a> 
+				<a href="https://plus.google.com/+Mije-voyagesscolaires-aubergesdejeunesseParis" target="_blank" rel="noopener"><img src="http://hostel.mije.com/assets/MIJE-picto-2018-picto-reseaux-spciaux_OK-google+.png" alt="" width="30px" /></a> 
+				<a href="https://www.linkedin.com/company/mije/" target="_blank" rel="noopener"><img src="http://hostel.mije.com/assets/MIJE-picto-2018-picto-reseaux-spciaux_OK-linkedin.png" alt="" width="30px" /></a>
+				<a href="https://www.youtube.com/watch?v=t2EMcwYefNE&feature=youtu.be" target="blank" rel="noopener"><img src="http://hostel.mije.com/assets/MIJE-picto-2018-picto-reseaux-spciaux_OK-YT.png" alt="" width="30px" /></a>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<p>This message was sent to you because you are a customer or subscriber of our company and you have expressly indicated that you would like to receive our news and promotions. Our company will never send you unrequested emails or emails with different purposes than indicated. Our company abides by the rules for the active fight against spam. You can exercise your rights to rectify or cancel your data in accordance with current regulations or report any abuse or receipt of this email from other sources.</p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"></td>
+		</tr>
+	</tbody>
+</table>
+<!---SET_INTERPRET_ON >
+	<end_if>
+<!---SET_INTERPRET_OFF --->
+</body>
+</html>

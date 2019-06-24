@@ -1,0 +1,60 @@
+﻿@using BookingConfirm.Models
+@model ClientViewModel
+
+<div id="top" class="row" style="height:600px;background:url(../../images/big-photo1.jpg);background-size:cover;background-repeat:no-repeat;">
+    
+    <div class="container">
+        <div class="white opacity col-md-3" style="margin:25px 25px;padding:10px;">
+            <h5 style="margin:10px">Welcome @ViewBag.fName</h5>
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.lname, new { @Value = ViewBag.lName , @class = "form-control", @placeholder = "Please enter your last name", @required = "required" })
+                </div>
+                
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.reservNumber, new { @Value = ViewBag.bNumber , @class = "form-control", @placeholder = "Please enter the Reservation Number" })
+                </div>
+
+                <div>
+                    @Html.HiddenFor(m => m.fname, new { @Value = ViewBag.fName })
+                    @Html.HiddenFor(m => m.propCode, new { @Value = ViewBag.pCode })
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Check Reservation" />
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
+
+<hr />
+
+<div id="middle" class="row" style="background-color:grey">
+    
+    <div class="container" style="color:white">
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,172 @@
+Date: 12/7/2015 2:46:37 PM, Property: CHRTSHOT, Name: Avner Leon, Reservation: 2300;
+-------------------
+Date: 12/7/2015 5:11:45 PM, Property: VINTAGE, Name: zoe ali, Reservation: 84490;
+-------------------
+Date: 12/17/2015 10:47:42 AM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/17/2015 10:55:35 AM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/17/2015 10:59:48 AM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/17/2015 11:11:18 AM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/17/2015 11:14:54 AM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/17/2015 11:21:14 AM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/17/2015 11:23:06 AM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/17/2015 11:24:31 AM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/17/2015 11:26:42 AM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/17/2015 11:56:06 AM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/17/2015 12:00:04 PM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/17/2015 12:05:22 PM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/17/2015 1:29:52 PM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/17/2015 3:11:44 PM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/17/2015 3:13:30 PM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/17/2015 3:14:21 PM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/28/2015 11:25:14 AM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 12/28/2015 11:27:31 AM, Property: CHRTSHOT, Name: Samuel Adams, Reservation: 2391;
+-------------------
+Date: 1/14/2016 2:41:36 PM, Property: VINTAGE, Name: David Ahern, Reservation: 85290;
+-------------------
+Date: 1/14/2016 2:43:17 PM, Property: VINTAGE, Name: David Ahern, Reservation: 85290;
+-------------------
+Date: 1/14/2016 2:45:49 PM, Property: VINTAGE, Name: David Ahern, Reservation: 85290;
+-------------------
+Date: 1/14/2016 2:53:34 PM, Property: VINTAGE, Name: David Ahern, Reservation: 85290;
+-------------------
+Date: 1/14/2016 3:21:29 PM, Property: VINTAGE, Name: David Ahern, Reservation: 85290;
+-------------------
+Date: 1/14/2016 3:24:25 PM, Property: VINTAGE, Name: David Ahern, Reservation: 85290;
+-------------------
+Date: 1/14/2016 3:33:31 PM, Property: VINTAGE, Name: David Ahern, Reservation: 85290;
+-------------------
+Date: 1/14/2016 3:55:53 PM, Property: VINTAGE, Name: David Ahern, Reservation: 85290;
+-------------------
+Date: 1/14/2016 4:07:24 PM, Property: VINTAGE, Name: David Ahern, Reservation: 85290;
+-------------------
+Date: 1/14/2016 4:09:44 PM, Property: VINTAGE, Name: David Ahern, Reservation: 85290;
+-------------------
+Date: 1/14/2016 4:11:07 PM, Property: VINTAGE, Name: David Ahern, Reservation: 85290;
+-------------------
+Date: 1/14/2016 4:12:35 PM, Property: VINTAGE, Name: David Ahern, Reservation: 85290;
+-------------------
+Date: 1/14/2016 5:25:35 PM, Property: VINTAGE, Name: David Ahern, Reservation: 85290;
+-------------------
+Date: 1/14/2016 5:40:03 PM, Property: VINTAGE, Name: David Ahern, Reservation: 85290;
+-------------------
+Date: 1/17/2016 5:11:56 PM, Property: CHRTSHOT, Name: Million Dollar Baby, Reservation: 2445;
+-------------------
+Date: 1/17/2016 5:12:59 PM, Property: CHRTSHOT, Name: Million Dollar Baby, Reservation: 2445;
+-------------------
+Date: 1/17/2016 5:15:23 PM, Property: CHRTSHOT, Name: Million Dollar Baby, Reservation: 2445;
+-------------------
+Date: 1/17/2016 5:15:54 PM, Property: CHRTSHOT, Name: Million Dollar Baby, Reservation: 2445;
+-------------------
+Date: 1/17/2016 5:19:03 PM, Property: CHRTSHOT, Name: Million Dollar Baby, Reservation: 2445;
+-------------------
+Date: 1/17/2016 5:19:50 PM, Property: CHRTSHOT, Name: Million Dollar Baby, Reservation: 2445;
+-------------------
+Date: 1/17/2016 5:20:08 PM, Property: CHRTSHOT, Name: Million Dollar Baby, Reservation: 2445;
+-------------------
+Date: 1/17/2016 5:20:34 PM, Property: CHRTSHOT, Name: Million Dollar Baby, Reservation: 2445;
+-------------------
+Date: 1/17/2016 5:20:51 PM, Property: CHRTSHOT, Name: Million Dollar Baby, Reservation: 2445;
+-------------------
+Date: 1/18/2016 5:34:19 PM, Property: CHRTSHOT, Name: Tony Bennett, Reservation: 2489;
+-------------------
+Date: 1/18/2016 5:38:29 PM, Property: chrtshot, Name: Tony Bennett, Reservation: 2489;
+-------------------
+Date: 1/20/2016 12:28:28 PM, Property: chrtshot, Name: Tony Bennett, Reservation: 2489;
+-------------------
+Date: 1/20/2016 3:25:47 PM, Property: chrtshot, Name: Tony Bennett, Reservation: 2489;
+-------------------
+Date: 1/20/2016 3:59:58 PM, Property: chrtshot, Name: Tony Bennett, Reservation: 2489;
+-------------------
+Date: 1/26/2017 4:34:24 PM, Property: vintage, Name: Mark Grossmith 4pe, Reservation: 94778;
+-------------------
+Date: 1/26/2017 4:36:46 PM, Property: vintage, Name: Mark Grossmith 4pe, Reservation: 94778;
+-------------------
+Date: 1/26/2017 4:38:44 PM, Property: hhmontcl, Name: Thalia Alvin, Reservation: 102074;
+-------------------
+Date: 2/26/2017 3:09:44 PM, Property: chrtshot, Name: Last Guy, Reservation: 3040;
+-------------------
+Date: 2/26/2017 3:18:01 PM, Property: chrtshot, Name: Last Guy, Reservation: 3040;
+-------------------
+Date: 2/26/2017 3:19:38 PM, Property: chrtshot, Name: Last Guy, Reservation: 3040;
+-------------------
+Date: 4/3/2017 5:10:05 PM, Property: chrtshot, Name: Julian Brown, Reservation: 3160;
+-------------------
+Date: 4/3/2017 5:47:56 PM, Property: chrtshot, Name: Julian Brown, Reservation: 3160;
+-------------------
+Date: 4/4/2017 9:22:05 AM, Property: vintage, Name: NAO ABE, Reservation: 105519;
+-------------------
+Date: 4/4/2017 9:35:46 AM, Property: leregent, Name: Scottland Adkins, Reservation: 128840;
+-------------------
+Date: 4/4/2017 9:36:26 AM, Property: leregent, Name: Scottland Adkins, Reservation: 128840;
+-------------------
+Date: 4/4/2017 9:42:33 AM, Property: leregent, Name: Scottland Adkins, Reservation: 128840;
+-------------------
+Date: 4/4/2017 9:50:55 AM, Property: leregent, Name: Scottland Adkins, Reservation: 128840;
+-------------------
+Date: 4/4/2017 9:57:42 AM, Property: leregent, Name: Scottland Adkins, Reservation: 128840;
+-------------------
+Date: 10/17/2017 1:27:01 PM, Property: leregent, Name: Nathael Dreymann, Reservation: 138318;
+-------------------
+Date: 10/17/2017 1:28:30 PM, Property: leregent, Name: Nathael Dreymann, Reservation: 138318;
+-------------------
+Date: 10/17/2017 1:30:52 PM, Property: leregent, Name: Nathael Dreymann, Reservation: 138318;
+-------------------
+Date: 11/21/2017 10:55:28 AM, Property: leregent, Name: semmana abdelkerim, Reservation: 137794;
+-------------------
+Date: 11/21/2017 11:02:18 AM, Property: leregent, Name: semmana abdelkerim, Reservation: 137794;
+-------------------
+Date: 2/18/2018 12:00:20 PM, Property: vintage, Name: Josefine Aalestrup, Reservation: 119194;
+-------------------
+Date: 5/2/2018 12:32:48 PM, Property: vintage, Name: Hannah Lenhardt, Reservation: 124194;
+-------------------
+Date: 5/2/2018 12:34:39 PM, Property: vintage, Name: Hannah Lenhardt, Reservation: 124194;
+-------------------
+Date: 5/2/2018 12:37:10 PM, Property: vintage, Name: Hannah Lenhardt, Reservation: 124194;
+-------------------
+Date: 5/2/2018 12:38:42 PM, Property: vintage, Name: Hannah Lenhardt, Reservation: 124194;
+-------------------
+Date: 6/17/2018 1:30:16 PM, Property: mije, Name:  ACKER, Reservation: 1662;
+-------------------
+Date: 6/17/2018 1:35:45 PM, Property: mije, Name:  ACKER, Reservation: 1662;
+-------------------
+Date: 6/19/2018 1:11:57 PM, Property: mije, Name: Avner Leon, Reservation: 2250;
+-------------------
+Date: 6/19/2018 1:14:35 PM, Property: mije, Name: Avner Leon, Reservation: 2250;
+-------------------
+Date: 6/19/2018 1:40:18 PM, Property: mije, Name: Avner Leon, Reservation: 2250;
+-------------------
+Date: 6/19/2018 2:35:09 PM, Property: mije, Name: Avner Leon, Reservation: 2250;
+-------------------
+Date: 6/19/2018 4:18:10 PM, Property: mije, Name: Avner Leon, Reservation: 2250;
+-------------------
+Date: 6/19/2018 4:22:54 PM, Property: mije, Name: Avner Leon, Reservation: 2250;
+-------------------
+Date: 6/19/2018 6:26:34 PM, Property: mije, Name: Avner Leon, Reservation: 2250;
+-------------------
+Date: 6/19/2018 6:26:53 PM, Property: mije, Name: Avner Leon, Reservation: 2250;
+-------------------
+Date: 21/06/2018 12:42:09, Property: mije, Name: Avner Leon, Reservation: 2250;
+-------------------
+Date: 21/06/2018 13:21:36, Property: mije, Name: Avner Leon, Reservation: 2250;
+-------------------
+Date: 21/06/2018 16:08:06, Property: mije, Name: Avner Leon, Reservation: 2250;
+-------------------
+Date: 21/06/2018 16:14:52, Property: mije, Name: Avner Leon, Reservation: 2250;
+-------------------

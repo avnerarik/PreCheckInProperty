@@ -1,0 +1,178 @@
+﻿@using BookingConfirm.Models
+@model BookingViewModel
+<div id="top" class="row" style="background:url(@ViewBag.pict);background-size:cover;background-repeat:no-repeat;">
+
+    <div class="container">
+        <div class="white opacity row" style="margin:25px 25px;padding:10px;">
+            <h3 style="text-align:center">Reservation Details</h3>
+            <form id="data" name="data" method="post" action="http://localhost:51492/Client/BookingData" class="form" role="form">
+                @*@using (Html.BeginForm("BookingData", "Client", FormMethod.Post, new { @class = "form" }))*@
+                @*{*@
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <h4>Personal Information</h4>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            @ViewBag.lbkg
+                        </div>
+                    </div>
+                    <div class="col-xs-5 col-sm-2 col col-md-1" style="margin:0px 4%">
+                        <div class="form-group">
+                            @ViewBag.salu
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col col-md-4">
+                        <div class="form-group">
+                            @ViewBag.fname
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col col-md-4">
+                        <div class="form-group">
+                            @ViewBag.lname
+                        </div>
+                    </div>
+                </div>
+                <hr style="border:1px solid grey" />
+                <h4>Contac Detail</h4>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @ViewBag.email
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @ViewBag.phon
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @ViewBag.cell
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @ViewBag.comp
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @ViewBag.adr1
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @ViewBag.adr2
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @ViewBag.posc
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @ViewBag.city
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @ViewBag.cnty
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @ViewBag.stat
+                        </div>
+                    </div>
+                </div>
+                <hr style="border:1px solid grey" />
+                <h4>Booking Details</h4>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @ViewBag.darrival
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @ViewBag.ddeparture
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="form-group">
+                            @ViewBag.rtype
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-4">
+                        <div class="form-group">
+                            @ViewBag.adlt
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-4">
+                        <div class="form-group">
+                            ViewBag.chld
+                        </div>
+                    </div>
+                </div>
+                <hr style="border:1px solid grey" />
+                <h4>Payment Details</h4>
+                <div class="row">
+                    @if (ViewBag.paym != "CSH")
+                    {
+                        <div class="col-xs-12 col-sm-6 col-md-4">
+                            <div class="form-group">
+                                <span>
+                                    <img src="~/images/amex.png" width="32" style="margin:0px 1px" />
+                                    <img src="~/images/mastercard.png" width="32" style="margin:0px 1px" />
+                                    <img src="~/images/visa.png" width="32" style="margin:0px 1px" />
+                                </span>
+                                @Html.DropDownList(
+                               "cardType",
+                             new List<SelectListItem>
+                             {
+                                    new SelectListItem { Text = "American Express", Value = "American Express" },
+                                    new SelectListItem { Text = "MasterCard",  Value = "MasterCard" },
+                                    new SelectListItem { Text = "Visa",  Value = "Visa" }
+                             },
+                             new { @class = "form-control" })
+                            </div>
+                        </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group">
+                                    @ViewBag.auth
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group">
+                                    @ViewBag.cardnumb
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group">
+                                    @ViewBag.cardexp
+                                </div>
+                            </div>
+                    }
+                    else
+                    {
+                        <div class="col-xs-12 col-sm-6 col-md-4">
+                            <div class="form-group">
+                                "Cash"
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                @*}*@
+            </form>
+        </div>
+    </div>
+</div>
+<!--<hr />-->
