@@ -123,75 +123,35 @@ namespace BookingConfirm.Controllers
 
             try
             {
-                #region Json Fetch
-                jsonResponseModel response = TempData["jsonResponse"] as jsonResponseModel;
+                var bookingDetails = JsonRequestsHelper.RequestBookingDetails(pcode, indx);
 
-                var webAddr = "https://chartswebintf-fra.chartspms.com.au/json/execute?un=charteuhh&pw=hh246eu";
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
-                httpWebRequest.ContentType = "text/json";
-                httpWebRequest.Method = "POST";
-
-                JavaScriptSerializer js = new JavaScriptSerializer();
-
-                login logdetails = new login();
-                logdetails.user = "MGR";
-                logdetails.pasw = "";
-
-                propIdent property = new propIdent();
-                property.mesg = "ResvFetch";
-                property.propcode = pcode;
-                property.login = logdetails;
-
-                Fetch jsonfetch = new Fetch();
-                jsonfetch.ident = property;
-                jsonfetch.indx = indx;
-
-                Fetch[] sendarray = { jsonfetch };
-
-                jsonFetchModel array = new jsonFetchModel();
-                array.requests = sendarray;
-
-                string json = JsonConvert.SerializeObject(array);
-
-                using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                {
-                    streamWriter.Write(json);
-                    streamWriter.Flush();
-                }
-                HttpWebResponse httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream());
-
-                string result = streamReader.ReadToEnd(); //in result is the end data.
-                jsonFecthResponseModel fetchresponse = JsonConvert.DeserializeObject<jsonFecthResponseModel>(result);
-
-                var data = fetchresponse.responses[0];
-                #endregion
+                TempData["bookingDetails"] = bookingDetails;
 
                 #region Viewbag data
                 ViewBag.indx = indx;
-                ViewBag.data = data;
+                ViewBag.data = bookingDetails;
                 ViewBag.pcode = pcode;
                 ViewBag.Genders = FormHelper.GetGenderList();
                 ViewBag.DocTypes = FormHelper.GetDocTypesList();
                 ViewBag.ArrvHours = FormHelper.GetArrivalHours();
                 ViewBag.Salutation = FormHelper.RequestSalutation(pcode);
-                ViewBag.PayMethods = FormHelper.RequestPaymentMethod(pcode, data.stay.paym);
+                ViewBag.PayMethods = FormHelper.RequestPaymentMethod(pcode, bookingDetails.stay.paym);
 
                 ViewBag.cardNumber = "";
-                if (data.stay.card != null) {
-                    int length = data.stay.card.numb.Length;
+                if (bookingDetails.stay.card != null) {
+                    int length = bookingDetails.stay.card.numb.Length;
                     int tohide = length - 8;
-                    string aux = data.stay.card.numb.Substring(0, 4);
+                    string aux = bookingDetails.stay.card.numb.Substring(0, 4);
                     for (int i = 0; i < tohide; i++)
                     {
                         aux += "*";
                     }
-                    aux += data.stay.card.numb.Substring(length - 4, 4);
+                    aux += bookingDetails.stay.card.numb.Substring(length - 4, 4);
                     ViewBag.cardNumber = aux;
                 }
 
                 ViewBag.noCountry = false;
-                string country = data.guest.addr.cnty;
+                string country = bookingDetails.guest.addr.cnty;
                 List<DocumentTypeModel> Countries = FormHelper.RequestCountry(pcode);
                 if (Countries.Find(i => i.value.ToUpper() == country.ToUpper()) == null)
                 {
@@ -200,9 +160,9 @@ namespace BookingConfirm.Controllers
                 ViewBag.country = country;
                 ViewBag.Countries = Countries;
 
-                if (data.stay.exflds.Length > 0)
+                if (bookingDetails.stay.exflds.Length > 0)
                 {
-                    foreach (var item in data.stay.exflds)
+                    foreach (var item in bookingDetails.stay.exflds)
                     {
                         if (item.numb == 65)
                         {
@@ -258,86 +218,36 @@ namespace BookingConfirm.Controllers
 
             try
             {
-                /*
-                if (!Request.IsLocal && !Request.IsSecureConnection)
-                {
-                    string redirectUrl = Request.Url.ToString().Replace("http:", "https:");
-                    Response.Redirect(redirectUrl, false);
-                    HttpContext.ApplicationInstance.CompleteRequest();
-                }
-                */
-
                 if (!ModelState.IsValid)
                 {
-                    #region Json Fetch
-                    var webAddr = "https://chartswebintf-fra.chartspms.com.au/json/execute?un=charteuhh&pw=hh246eu";
-                    var httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
-                    httpWebRequest.ContentType = "text/json";
-                    httpWebRequest.Method = "POST";
-
-                    JavaScriptSerializer js = new JavaScriptSerializer();
-
-                    login logdetails = new login();
-                    logdetails.user = "MGR";
-                    logdetails.pasw = "";
-
-                    propIdent property = new propIdent();
-                    property.mesg = "ResvFetch";
-                    property.propcode = model.property;
-                    property.login = logdetails;
-
-                    Fetch jsonfetch = new Fetch();
-                    jsonfetch.ident = property;
-                    jsonfetch.indx = model.index;
-
-                    Fetch[] sendarray = { jsonfetch };
-
-                    jsonFetchModel array = new jsonFetchModel();
-                    array.requests = sendarray;
-
-                    string json = JsonConvert.SerializeObject(array);
-
-                    using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                    {
-                        streamWriter.Write(json);
-                        streamWriter.Flush();
-                    }
-
-                    HttpWebResponse httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                    StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream());
-
-                    string result = streamReader.ReadToEnd(); //in result is the end data.
-                    jsonFecthResponseModel fetchresponse = JsonConvert.DeserializeObject<jsonFecthResponseModel>(result);
-
-                    var data = fetchresponse.responses[0];
-                    #endregion
+                    var bookingDetails = JsonRequestsHelper.RequestBookingDetails(model.property, model.index);
 
                     #region Viewbag data
                     ViewBag.indx = model.index;
                     ViewBag.pcode = model.property;
-                    ViewBag.data = data;
+                    ViewBag.data = bookingDetails;
                     ViewBag.DocTypes = FormHelper.GetDocTypesList();
                     ViewBag.ArrvHours = FormHelper.GetArrivalHours();
                     ViewBag.Genders = FormHelper.GetGenderList();
                     ViewBag.Salutation = FormHelper.RequestSalutation(model.property);
-                    ViewBag.PayMethods = FormHelper.RequestPaymentMethod(model.property, data.stay.paym);
+                    ViewBag.PayMethods = FormHelper.RequestPaymentMethod(model.property, bookingDetails.stay.paym);
 
                     ViewBag.cardNumber = "";
-                    if (data.stay.card != null)
+                    if (bookingDetails.stay.card != null)
                     {
-                        int length = data.stay.card.numb.Length;
+                        int length = bookingDetails.stay.card.numb.Length;
                         int tohide = length - 8;
-                        string aux = data.stay.card.numb.Substring(0, 4);
+                        string aux = bookingDetails.stay.card.numb.Substring(0, 4);
                         for (int i = 0; i < tohide; i++)
                         {
                             aux += "*";
                         }
-                        aux += data.stay.card.numb.Substring(length - 4, 4);
+                        aux += bookingDetails.stay.card.numb.Substring(length - 4, 4);
                         ViewBag.cardNumber = aux;
                     }
 
                     ViewBag.noCountry = false;
-                    string country = data.guest.addr.cnty;
+                    string country = bookingDetails.guest.addr.cnty;
                     List<DocumentTypeModel> Countries = FormHelper.RequestCountry(model.property);
                     if (Countries.Find(i => i.value == country) == null)
                     {
@@ -348,9 +258,9 @@ namespace BookingConfirm.Controllers
 
                     //if (model.property.ToUpper() == "MIJE")
                     //{
-                    if (data.stay.exflds.Length > 0)
+                    if (bookingDetails.stay.exflds.Length > 0)
                     {
-                        foreach (var item in data.stay.exflds)
+                        foreach (var item in bookingDetails.stay.exflds)
                         {
                             if (item.numb == 77)
                             {
@@ -381,7 +291,7 @@ namespace BookingConfirm.Controllers
                 else
                 {
                     TempData["Model"] = model;
-                    return RedirectToAction("BookingConfirm", "Client");
+                    return RedirectToAction("BookingConfirm", "Client", new { property = model.property, index = model.index });
                 }
 
             }
@@ -393,118 +303,25 @@ namespace BookingConfirm.Controllers
             }
         }
 
-        public ActionResult BookingConfirm()
+        public ActionResult BookingConfirm(string property, string index)
         {
             BookingViewModel model = TempData["Model"] as BookingViewModel;
+            
+            ViewBag.indx = index;
+            ViewBag.pcode = property;
+            ViewBag.allowPayment = false;
+
+            if (model == null) {
+                return View();
+            }
+
             try
             {
                 //ViewBag.pict = _repository.getImageByProp(model.property).url;
 
-                #region Json Update
-                var webAddr = "https://chartswebintf-fra.chartspms.com.au/json/execute?un=charteuhh&pw=hh246eu";
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
-                httpWebRequest.ContentType = "text/json";
-                httpWebRequest.Method = "POST";
-
-                JavaScriptSerializer js = new JavaScriptSerializer();
-
-                login logdetails = new login();
-                logdetails.user = "MGR";
-                logdetails.pasw = "";
-
-                propIdent requestdata = new propIdent();
-                requestdata.mesg = "ResvUpdate";
-                requestdata.propcode = model.property;
-                requestdata.login = logdetails;
-
-                Update jsonupdate = new Update();
-
-                guest g = new guest();
-                g.naml = model.lastName;
-                g.namf = model.firstName;
-                g.comp = model.company;
-                g.emai = model.email;
-                g.cell = model.cellnumber;
-                g.phon = model.phonenumber;
-                g.secu = model.secu;
-
-                addr a = new addr();
-                a.line1 = model.address1;
-                a.line2 = model.address2;
-                a.city = model.city;
-                a.posc = model.postcode;
-                a.stat = model.state;
-                a.cnty = model.country;
-                g.addr = a;
-
-                stay s = new stay();
-                s.arrt = model.timearrival;
-
-                List<exflds> ext = new List<exflds>();
-
-                if (model.gender != null)
-                {
-                    exflds e = new exflds();
-                    e.numb = 65;
-                    e.value = model.gender;
-                    ext.Add(e);
-                }
-
-                if (ext.Count > 0)
-                {
-                    s.exflds = ext.ToArray();
-                }
-
-                //if (false) {
-                //    List<exflds> ext = new List<exflds>();
-
-                //    if (model.idnumber != null)
-                //    {
-                //        exflds e = new exflds();
-                //        e.numb = 77;
-                //        e.value = model.document + "," + model.idnumber + "," + model.expdate;
-                //        ext.Add(e);
-                //    }
-
-                //    if (model.nationality != null)
-                //    {
-                //        exflds n = new exflds();
-                //        n.numb = 83;
-                //        n.value = model.nationality;
-                //        ext.Add(n);
-                //    }
-
-                //    if (ext.Count > 0) {
-                //        s.exflds = ext.ToArray();
-                //    }
-                //}
-
-                jsonupdate.ident = requestdata;
-                jsonupdate.indx = model.index;
-                jsonupdate.guest = g;
-                jsonupdate.stay = s;
-
-                Update[] sendarray = { jsonupdate };
-
-                jsonUpdateModel array = new jsonUpdateModel();
-                array.requests = sendarray;
-
-                string json = JsonConvert.SerializeObject(array);
-
-                using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                {
-                    streamWriter.Write(json);
-                    streamWriter.Flush();
-                }
-
-                HttpWebResponse httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream());
-
-                string result = streamReader.ReadToEnd(); //in result is the end data.
-                jsonUpdateResponseModel response = JsonConvert.DeserializeObject<jsonUpdateResponseModel>(result);
-                #endregion
-
-                if (response.responses[0].status.error.code == 0)
+                UpdateResponse response = JsonRequestsHelper.UpdateBookingDetails(model.property, model);
+                
+                if (response.status.error.code == 0)
                 {
                     #region LogFile
                     //DATE,TIME,PROPERTY,NAME,RESNUMBER
@@ -518,29 +335,111 @@ namespace BookingConfirm.Controllers
                     logdata(loginfo);
                     #endregion
 
+                    TempData["Model"] = model;
+
                     #region eMail
-                    TempData["model"] = model;
                     sendMail();
                     #endregion
+
+                    if (model.cardNumber!=null && model.cardNumber!="" && (Convert.ToInt16(model.total)) > 0) { 
+                        ViewBag.allowPayment = true;
+                    }
 
                     return View();
                 }
                 else
                 {
-                    logdata(response.responses[0].status.error.shorttext);
-                    ClientViewModel m = TempData["model"] as ClientViewModel;
-                    TempData["model"] = m;
+                    logdata(response.status.error.shorttext);
+                    ClientViewModel m = TempData["Model"] as ClientViewModel;
+                    TempData["Model"] = m;
                     return RedirectToAction("BookingData", "Client", new { pcode = model.property, indx = model.index });
                 }
             }
             catch (WebException wex)
             {
                 logdata(wex.InnerException.Message);
-                ClientViewModel m = TempData["model"] as ClientViewModel;
-                TempData["model"] = m;
+                ClientViewModel m = TempData["Model"] as ClientViewModel;
+                TempData["Model"] = m;
                 return RedirectToAction("BookingData", "Client", new { pcode = model.property, indx = model.index });
             }
         }
+
+
+        public ActionResult PaymentData(string pcode, string indx)
+        {
+            //ViewBag.pict = _repository.getImageByProp(propcode).url;
+
+            try
+            {
+                var bookingDetails = JsonRequestsHelper.RequestBookingDetails(pcode, indx);
+                TempData["bookingDetails"] = bookingDetails;
+                //FetchResponse bookingDetails = TempData["bookingDetails"] as FetchResponse;
+                
+                ViewBag.indx = indx;
+                ViewBag.pcode = pcode;
+
+                ViewBag.Payed = false;
+                ViewBag.Error = false;
+
+                ViewBag.data = bookingDetails;
+                ViewBag.PayMethods = FormHelper.RequestPaymentMethod(pcode, bookingDetails.stay.paym);
+
+                ViewBag.cardNumber = "";
+                if (bookingDetails.stay.card != null)
+                {
+                    int length = bookingDetails.stay.card.numb.Length;
+                    int tohide = length - 8;
+                    string aux = bookingDetails.stay.card.numb.Substring(0, 4);
+                    for (int i = 0; i < tohide; i++)
+                    {
+                        aux += "*";
+                    }
+                    aux += bookingDetails.stay.card.numb.Substring(length - 4, 4);
+                    ViewBag.cardNumber = aux;
+                }
+
+                return View();
+            }
+            catch (WebException ex)
+            {
+                ClientViewModel model = TempData["model"] as ClientViewModel;
+                TempData["Model"] = model;
+                return RedirectToAction("Index", "Home", new { prop = pcode });
+            }
+        }
+
+        [HttpPost]
+        public ActionResult PaymentData(PaymentViewModel model)
+        {
+            ViewBag.Payed = false;
+            ViewBag.Error = false;
+            ViewBag.Message = "";
+
+            string loginId = System.Configuration.ConfigurationManager.AppSettings["loginId"];
+            string transKey = System.Configuration.ConfigurationManager.AppSettings["transKey"];
+
+            FetchResponse bookingDetails = TempData["bookingDetails"] as FetchResponse;
+            Array result = ANetHelper.PostPay(loginId, transKey, bookingDetails, bookingDetails.stay.totl);
+            
+            ViewBag.PayMethods = FormHelper.RequestPaymentMethod(model.property, bookingDetails.stay.paym);
+            ViewBag.data = bookingDetails;
+
+            if (result.GetValue(0).ToString() == "1")
+            {
+                ViewBag.Payed = true;
+                ViewBag.Message = result.GetValue(2);
+                ViewBag.TransId = result.GetValue(4);
+            }
+            else
+            {
+                ViewBag.Error = true;
+                ViewBag.Message = result.GetValue(2);
+                ViewBag.TransId = result.GetValue(4);
+            }
+            
+            return View();
+        }
+
 
         public void logdata(string loginfo)
         {

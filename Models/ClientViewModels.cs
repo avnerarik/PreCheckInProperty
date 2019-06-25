@@ -23,7 +23,6 @@ namespace BookingConfirm.Models
 
     public class BookingViewModel
     {
-
         public string property { get; set; }
         public string index { get; set; }
 
@@ -139,8 +138,83 @@ namespace BookingConfirm.Models
 
         [Display(Name = "cardEndDate", ResourceType = typeof(Resources.Resources))]
         public string cardEndDate { get; set; }
+
+        [Display(Name ="cardCode",ResourceType = typeof(Resources.Resources))]
+        public string cardCode { get; set; }
     }
 
+
+    public class PaymentViewModel
+    {
+        public string property { get; set; }
+        public string index { get; set; }
+        
+        [Display(Name = "bookingNumber", ResourceType = typeof(Resources.Resources))]
+        public string bookingNumber { get; set; }
+        
+        [Display(Name = "firstName", ResourceType = typeof(Resources.Resources))]
+        public string firstName { get; set; }
+
+        [Required]
+        [Display(Name = "lastName", ResourceType = typeof(Resources.Resources))]
+        public string lastName { get; set; }
+
+        [Display(Name = "secu", ResourceType = typeof(Resources.Resources))]
+        public string secu { get; set; }
+
+        [Display(Name = "gender", ResourceType = typeof(Resources.Resources))]
+        public string gender { get; set; }
+        
+        [Display(Name = "email", ResourceType = typeof(Resources.Resources))]
+        public string email { get; set; }
+        
+        [Display(Name = "phonenumber", ResourceType = typeof(Resources.Resources))]
+        //[RegularExpression(@"([0-9]+)", ErrorMessage = "Phone number must be a number.")]
+        public string phonenumber { get; set; }
+
+        [Display(Name = "company", ResourceType = typeof(Resources.Resources))]
+        public string company { get; set; }
+
+        [Display(Name = "postcode", ResourceType = typeof(Resources.Resources))]
+        public string postcode { get; set; }
+
+        [Display(Name = "state", ResourceType = typeof(Resources.Resources))]
+        public string state { get; set; }
+
+        [Display(Name = "address1", ResourceType = typeof(Resources.Resources))]
+        public string address1 { get; set; }
+
+        [Display(Name = "address2", ResourceType = typeof(Resources.Resources))]
+        public string address2 { get; set; }
+
+        [Display(Name = "city", ResourceType = typeof(Resources.Resources))]
+        public string city { get; set; }
+        
+        [Display(Name = "country", ResourceType = typeof(Resources.Resources))]
+        public string country { get; set; }
+
+        [Display(Name = "paym", ResourceType = typeof(Resources.Resources))]
+        public string paym { get; set; }
+
+        [Display(Name = "total", ResourceType = typeof(Resources.Resources))]
+        public string total { get; set; }
+
+        [Display(Name = "cardType", ResourceType = typeof(Resources.Resources))]
+        public string cardType { get; set; }
+
+        [Display(Name = "cardHolder", ResourceType = typeof(Resources.Resources))]
+        public string cardHolder { get; set; }
+
+        [Display(Name = "cardNumber", ResourceType = typeof(Resources.Resources))]
+        public string cardNumber { get; set; }
+
+        [Display(Name = "cardEndDate", ResourceType = typeof(Resources.Resources))]
+        public string cardEndDate { get; set; }
+
+        [Display(Name = "cardCode", ResourceType = typeof(Resources.Resources))]
+        public string cardCode { get; set; }
+    }
+    
     public class DocumentTypeModel {
         public string value { get; set; }
         public string text { get; set; }

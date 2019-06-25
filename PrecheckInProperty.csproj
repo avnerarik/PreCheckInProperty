@@ -42,6 +42,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AuthorizeNet, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\AuthorizeNet.2.0.1\lib\AuthorizeNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -173,8 +177,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ANetHelper.cs" />
     <Compile Include="Helpers\FormHelper.cs" />
     <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\JsonRequestsHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClientViewModels.cs" />
     <Compile Include="Models\EmailFormModel.cs" />
@@ -256,6 +262,7 @@
     <Content Include="Views\Client\BookingData.cshtml" />
     <Content Include="Views\Client\BookingConfirm.cshtml" />
     <Content Include="Views\Client\BookingReciept.cshtml" />
+    <Content Include="Views\Client\PaymentData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logs\" />

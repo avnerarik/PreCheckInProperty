@@ -7,6 +7,24 @@
         <div class="white backdiv col-md-3" style="margin:25px 25px;padding:10px;">
             <h4 style="margin:10px;text-align:center">@Resources.Resources.resvconfirmed</h4>
             <h5 style="margin:10px;text-align:center">@Resources.Resources.endthanks</h5>
+
+            @if (ViewBag.allowPayment)
+            {
+                <div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
+                    <div class="form-group" style="margin-top:25px;">
+                        <input type="button" value="@Resources.Resources.processPayment" onclick="openWindow(this)" class="btn btn-info"/>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </div>
+
+<script>
+
+    function openWindow(obj) {
+        //obj.style.display = 'none';
+        window.open("/Client/PaymentData?pcode=@ViewBag.pcode&indx=@ViewBag.indx", "", "width=500,height=550");
+    }
+
+</script>

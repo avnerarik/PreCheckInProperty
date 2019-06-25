@@ -1,0 +1,142 @@
+﻿@using BookingConfirm.Models
+@model PaymentViewModel
+<div id="top" class="row" style="background:url(@ViewBag.pict);background-size:cover;background-repeat:no-repeat;">
+
+    <div class="container">
+        <div class="white backdiv row" style="margin:25px 25px;padding:10px;">
+            <h3 style="text-align:center">@Resources.Resources.paymentdetails</h3>
+
+            @if (ViewBag.Error)
+            {
+                <div class="validation-summary-errors text-danger" data-valmsg-summary="true">
+                    <ul>
+                        <li>@ViewBag.Message</li>
+                        <li>Transaction number:@ViewBag.TransId</li>
+                    </ul>
+                </div>
+            }
+            else if (ViewBag.Payed)
+            {
+                <div class="white backdiv col-md-3" style="margin:25px 25px;padding:10px;">
+                    <h5 style="margin:10px;text-align:left">@ViewBag.Message</h5>
+                    <h5 style="margin:10px;text-align:left">Transaction number:@ViewBag.TransId</h5>
+                </div>
+            }
+            else
+            {
+                <form id="paydata" name="data" method="post" action="/Client/PaymentData" class="form" role="form">
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                    @Html.HiddenFor(m => m.property, new { @Value = ViewBag.pcode })
+                    @Html.HiddenFor(m => m.index, new { @Value = ViewBag.indx })
+
+                    @Html.HiddenFor(m => m.firstName, new { @Value = ViewBag.data.guest.namf })
+                    @Html.HiddenFor(m => m.lastName, new { @Value = ViewBag.data.guest.naml })
+                    @Html.HiddenFor(m => m.email, new { @Value = ViewBag.data.guest.emai })
+                    @Html.HiddenFor(m => m.address1, new { @Value = ViewBag.data.guest.addr.line1 })
+                    @Html.HiddenFor(m => m.city, new { @Value = ViewBag.data.guest.addr.city })
+                    @Html.HiddenFor(m => m.state, new { @Value = ViewBag.data.guest.addr.stat })
+                    @Html.HiddenFor(m => m.country, new { @Value = ViewBag.country })
+                    @Html.HiddenFor(m => m.phonenumber, new { @Value = ViewBag.data.guest.phon })
+                    @Html.HiddenFor(m => m.postcode, new { @Value = ViewBag.data.guest.addr.posc })
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.cardType, new { @class = "control-label" })
+                                @Html.DropDownListFor(m => m.cardType, new SelectList(ViewBag.PayMethods, "value", "text"), new { @Value = ViewBag.data.stay.paym, @class = "form-control", @required = "required", @readonly = "readonly" })
+                                @*@Html.TextBoxFor(m => m.cardType, new { @Value = ViewBag.data.stay.paym, @class = "form-control", @required = "required", @readonly = "readonly" })*@
+                                @*@Html.TextBoxFor(m => m.paym, new { @Value = ViewBag.data.stay.paym, @class = "form-control", @readonly = "readonly" })*@
+                                <span>
+                                    <img src="~/images/amex.png" width="32" style="margin:0px 1px" />
+                                    <img src="~/images/mastercard.png" width="32" style="margin:0px 1px" />
+                                    <img src="~/images/visa.png" width="32" style="margin:0px 1px" />
+                                    <img src="~/images/cartebleue.png" width="32" style="margin:0px 1px" />
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.cardHolder, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px">&#42;</span>
+                                @Html.TextBoxFor(m => m.cardHolder, new { @Value = ViewBag.data.guest.namf + " " + ViewBag.data.guest.naml, @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.cardNumber, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px">&#42;</span>
+                                @Html.TextBoxFor(m => m.cardNumber, new { @Value = ViewBag.cardNumber, @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-4 col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.cardEndDate, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px">&#42;</span>
+                                @Html.TextBoxFor(m => m.cardEndDate, new { @Value = ViewBag.data.stay.card.expy, @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.cardCode, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px">&#42;</span>
+                                @Html.TextBoxFor(m => m.cardCode, new { @Value = ViewBag.data.stay.card.auth, @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.total, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px">&#42;</span>
+                                @Html.TextBoxFor(m => m.total, new { @Value = ViewBag.data.stay.totl, @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-4 col-md-6">
+                            <input type="button" value="Send Payment" onclick="processPayment(this); this.disabled = true;" class="btn btn-success" />
+                        </div>
+                        <div class="col-xs-6 col-sm-4 col-md-6" style="text-align:right;">
+                            <div class="form-group">
+                                <input type="button" value="@Resources.Resources.close" onclick="closeWindow();" class="btn btn-danger" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            }
+
+            @if (ViewBag.Payed || ViewBag.Error) {
+                <div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
+                    <div class="form-group">
+                        <input type="button" value="@Resources.Resources.close" onclick="closeWindow()" class="btn btn-info"/>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
+
+<!--<hr />-->
+
+<script type="text/javascript">
+    var fnf = document.getElementById("formattedNumberField");
+    fnf.addEventListener('keyup', function (evt) {
+        if (this.value.length == 2) {
+            this.value += '/';
+        }
+    }, false);
+
+    function processPayment(obj) {
+        var form = document.getElementById("paydata");
+        form.submit();
+    }
+
+    function openWindow() {
+        window.open("/Client/BookingData?pcode=" + ViewBag.pcode + "&indx=" + ViewBag.indx, "", "width=500,height=750");
+    }
+
+    function closeWindow() {
+        window.close();
+    }
+
+</script>

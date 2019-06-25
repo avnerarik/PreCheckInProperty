@@ -172,3 +172,89 @@ Date: 21/06/2018 16:14:52, Property: mije, Name: Avner Leon, Reservation: 2250;
 -------------------
 Reservation no longer available for desired daysReservation no longer available for desired daysReservation no longer available for desired daysDate: 6/24/2019 2:44:49 PM, Property: chrtshot, Name: Lilivett Na Ja, Reservation: 4046;
 -------------------
+Date: 6/25/2019 9:52:54 AM, Property: chrtshot, Name: Lilivett Na Ja, Reservation: 4046;
+-------------------
+Date: 6/25/2019 9:57:07 AM, Property: chrtshot, Name: Lilivett Na Ja, Reservation: 4046;
+-------------------
+Date: 6/25/2019 9:58:26 AM, Property: chrtshot, Name: Lilivett Na Ja, Reservation: 4046;
+-------------------
+Date: 6/25/2019 10:01:17 AM, Property: chrtshot, Name: Lilivett Na Ja, Reservation: 4046;
+-------------------
+Date: 6/25/2019 10:02:13 AM, Property: chrtshot, Name: Lilivett Na Ja, Reservation: 4046;
+-------------------
+Date: 6/25/2019 10:08:13 AM, Property: chrtshot, Name: Lilivett Na Ja, Reservation: 4046;
+-------------------
+Date: 6/25/2019 10:11:24 AM, Property: chrtshot, Name: Lilivett Na Ja, Reservation: 4046;
+-------------------
+Date: 6/25/2019 10:13:47 AM, Property: chrtshot, Name: Lilivett Na Ja, Reservation: 4046;
+-------------------
+Date: 6/25/2019 10:29:05 AM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 10:52:05 AM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 11:00:05 AM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 11:04:22 AM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 11:10:28 AM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 11:20:57 AM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 11:23:46 AM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 11:31:14 AM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 11:37:02 AM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 11:38:51 AM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 11:47:19 AM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 11:49:08 AM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 11:55:37 AM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 12:01:02 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 12:01:43 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 12:11:29 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 1:20:55 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 25/06/2019 13:30:02, Property: chrtshot, Name: Avner Leon, Reservation: 4185;
+-------------------
+Date: 6/25/2019 1:33:47 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 1:38:11 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 1:40:32 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 1:45:18 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 1:49:41 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 1:50:35 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 1:52:34 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 1:53:51 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 1:56:30 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 2:00:01 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 2:01:45 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 2:16:24 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 2:21:08 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 2:45:12 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 2:48:13 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 3:03:07 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------
+Date: 6/25/2019 3:44:32 PM, Property: chrtshot, Name: Lilivett Ovalle, Reservation: 4184;
+-------------------

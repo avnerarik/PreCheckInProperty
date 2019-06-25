@@ -175,6 +175,7 @@ namespace BookingConfirm.Models
     {
         public string naml;
         public string namf;
+        public string salu;
         public addr addr;
         public string comp;
         public string comm;
