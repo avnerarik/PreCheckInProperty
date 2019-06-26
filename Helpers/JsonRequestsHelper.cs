@@ -80,7 +80,7 @@ namespace BookingConfirm.Helpers
             Update jsonupdate = new Update();
 
             guest g = new guest();
-            g.salu = model.salutation;
+            g.salu = model.salu;
             g.naml = model.lastName;
             g.namf = model.firstName;
             g.comp = model.company;

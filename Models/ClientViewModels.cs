@@ -23,13 +23,9 @@ namespace BookingConfirm.Models
 
     public class BookingViewModel
     {
-        public string property { get; set; }
         public string index { get; set; }
-
-        [Required]
-        [Display(Name = "salutation", ResourceType = typeof(Resources.Resources))]
-        public string salutation { get; set; }
-
+        public string property { get; set; }
+        
         [Required]
         [Display(Name = "bookingNumber", ResourceType = typeof(Resources.Resources))]
         public string bookingNumber { get; set; }
@@ -41,6 +37,9 @@ namespace BookingConfirm.Models
         [Required]
         [Display(Name = "lastName", ResourceType = typeof(Resources.Resources))]
         public string lastName { get; set; }
+
+        [Display(Name = "salu", ResourceType = typeof(Resources.Resources))]
+        public string salu { get; set; }
 
         [Display(Name = "secu", ResourceType = typeof(Resources.Resources))]
         public string secu { get; set; }

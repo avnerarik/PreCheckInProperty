@@ -15,9 +15,15 @@ namespace BookingConfirm.Helpers
     {
         public static Array PostPay(string AuthorizeLoginID, string AuthorizeTransactionKey, FetchResponse bookingDetails, decimal AmountToBeCharged = 0)
         {
-            Console.WriteLine("Charge Credit Card Sample");
-
-            ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.SANDBOX;
+            string env = System.Configuration.ConfigurationManager.AppSettings["enviroment"].ToString();
+            if (env == "production")
+            {
+                ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.PRODUCTION;
+            }
+            else
+            {
+                ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.SANDBOX;
+            }
 
             // define the merchant information (authentication / transaction id)
             ApiOperationBase<ANetApiRequest, ANetApiResponse>.MerchantAuthentication = new merchantAuthenticationType()
@@ -26,9 +32,7 @@ namespace BookingConfirm.Helpers
                 ItemElementName = ItemChoiceType.transactionKey,
                 Item = AuthorizeTransactionKey,
             };
-
             
-
             var orderType = new orderType
             {
                 invoiceNumber = bookingDetails.lbkg.ToString(),
@@ -75,7 +79,7 @@ namespace BookingConfirm.Helpers
             // Add line Items
             var lineItems = new lineItemType[1];
             lineItems[0] = new lineItemType { itemId = "1", name = "PreCheckIn of booking " + bookingDetails.lbkg.ToString(), quantity = 1, unitPrice = bookingDetails.stay.totl, totalAmount = bookingDetails.stay.totl };
-
+            
             var transactionRequest = new transactionRequestType
             {
                 transactionType = transactionTypeEnum.authCaptureTransaction.ToString(),// charge the card
@@ -178,10 +182,16 @@ namespace BookingConfirm.Helpers
 
         public static Array Void(string AuthorizeLoginID, string AuthorizeTransactionKey, FetchResponse bookingDetails, string TransactionID)
         {
-            Console.WriteLine("Void Transaction");
-
-            ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.SANDBOX;
-
+            string env = System.Configuration.ConfigurationManager.AppSettings["enviroment"].ToString();
+            if (env == "production")
+            {
+                ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.PRODUCTION;
+            }
+            else
+            {
+                ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.SANDBOX;
+            }
+            
             // define the merchant information (authentication / transaction id)
             ApiOperationBase<ANetApiRequest, ANetApiResponse>.MerchantAuthentication = new merchantAuthenticationType()
             {
@@ -286,9 +296,15 @@ namespace BookingConfirm.Helpers
 
         public static Array Refund(string AuthorizeLoginID, string AuthorizeTransactionKey, FetchResponse bookingDetails, decimal AmountToBeCharged, string TransactionID)
         {
-            Console.WriteLine("Refund Transaction");
-
-            ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.SANDBOX;
+            string env = System.Configuration.ConfigurationManager.AppSettings["enviroment"].ToString();
+            if (env == "production")
+            {
+                ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.PRODUCTION;
+            }
+            else
+            {
+                ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.SANDBOX;
+            }
 
             // define the merchant information (authentication / transaction id)
             ApiOperationBase<ANetApiRequest, ANetApiResponse>.MerchantAuthentication = new merchantAuthenticationType()

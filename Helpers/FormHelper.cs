@@ -96,7 +96,7 @@ namespace BookingConfirm.Helpers
             return data;
         }
 
-        public static List<DocumentTypeModel> RequestSalutation(string propCode)
+        public static List<string> RequestSalutation(string propCode)
         {
             try
             {
@@ -138,13 +138,17 @@ namespace BookingConfirm.Helpers
                 string result = streamReader.ReadToEnd(); //in result is the end data.
                 fieldListResponse fetchresponse = JsonConvert.DeserializeObject<fieldListResponse>(result);
 
-                List<DocumentTypeModel> data = new List<DocumentTypeModel>();
+                List<string> data = new List<string>();
                 foreach (var item in fetchresponse.responses[0].fldvalues)
                 {
-                    DocumentTypeModel temp = new DocumentTypeModel();
-                    temp.value = item;
-                    temp.text = item;
+                    string temp = "";
+                    temp = item;
                     data.Add(temp);
+
+                    //DocumentTypeModel temp = new DocumentTypeModel();
+                    //temp.value = item;
+                    //temp.text = item;
+                    //data.Add(temp);
                 }
 
                 return data;
@@ -152,7 +156,7 @@ namespace BookingConfirm.Helpers
             catch (Exception ex)
             {
                 string temp = ex.Message;
-                List<DocumentTypeModel> data = new List<DocumentTypeModel>();
+                List<string> data = new List<string>();
                 return data;
             }
         }

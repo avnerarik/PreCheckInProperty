@@ -129,8 +129,8 @@ namespace BookingConfirm.Controllers
 
                 #region Viewbag data
                 ViewBag.indx = indx;
-                ViewBag.data = bookingDetails;
                 ViewBag.pcode = pcode;
+                ViewBag.data = bookingDetails;
                 ViewBag.Genders = FormHelper.GetGenderList();
                 ViewBag.DocTypes = FormHelper.GetDocTypesList();
                 ViewBag.ArrvHours = FormHelper.GetArrivalHours();
@@ -138,16 +138,9 @@ namespace BookingConfirm.Controllers
                 ViewBag.PayMethods = FormHelper.RequestPaymentMethod(pcode, bookingDetails.stay.paym);
 
                 ViewBag.cardNumber = "";
-                if (bookingDetails.stay.card != null) {
-                    int length = bookingDetails.stay.card.numb.Length;
-                    int tohide = length - 8;
-                    string aux = bookingDetails.stay.card.numb.Substring(0, 4);
-                    for (int i = 0; i < tohide; i++)
-                    {
-                        aux += "*";
-                    }
-                    aux += bookingDetails.stay.card.numb.Substring(length - 4, 4);
-                    ViewBag.cardNumber = aux;
+                if (bookingDetails.stay.card != null)
+                {
+                    ViewBag.cardNumber = processCardNumbers(bookingDetails.stay.card.numb);
                 }
 
                 ViewBag.noCountry = false;
@@ -235,15 +228,7 @@ namespace BookingConfirm.Controllers
                     ViewBag.cardNumber = "";
                     if (bookingDetails.stay.card != null)
                     {
-                        int length = bookingDetails.stay.card.numb.Length;
-                        int tohide = length - 8;
-                        string aux = bookingDetails.stay.card.numb.Substring(0, 4);
-                        for (int i = 0; i < tohide; i++)
-                        {
-                            aux += "*";
-                        }
-                        aux += bookingDetails.stay.card.numb.Substring(length - 4, 4);
-                        ViewBag.cardNumber = aux;
+                        ViewBag.cardNumber = processCardNumbers(bookingDetails.stay.card.numb);
                     }
 
                     ViewBag.noCountry = false;
@@ -363,8 +348,7 @@ namespace BookingConfirm.Controllers
                 return RedirectToAction("BookingData", "Client", new { pcode = model.property, indx = model.index });
             }
         }
-
-
+        
         public ActionResult PaymentData(string pcode, string indx)
         {
             //ViewBag.pict = _repository.getImageByProp(propcode).url;
@@ -387,15 +371,7 @@ namespace BookingConfirm.Controllers
                 ViewBag.cardNumber = "";
                 if (bookingDetails.stay.card != null)
                 {
-                    int length = bookingDetails.stay.card.numb.Length;
-                    int tohide = length - 8;
-                    string aux = bookingDetails.stay.card.numb.Substring(0, 4);
-                    for (int i = 0; i < tohide; i++)
-                    {
-                        aux += "*";
-                    }
-                    aux += bookingDetails.stay.card.numb.Substring(length - 4, 4);
-                    ViewBag.cardNumber = aux;
+                    ViewBag.cardNumber = processCardNumbers(bookingDetails.stay.card.numb);
                 }
 
                 return View();
@@ -440,6 +416,21 @@ namespace BookingConfirm.Controllers
             return View();
         }
 
+
+        public string processCardNumbers(string cardnumbers)
+        {
+            string cardnums = cardnumbers.Replace(" ", "");
+            int length = cardnums.Length;
+            int tohide = length - 8;
+            string aux = cardnums.Substring(0, 4);
+            for (int i = 0; i < tohide; i++)
+            {
+                aux += "*";
+            }
+            aux += cardnums.Substring(length - 4, 4);
+            
+            return aux;
+        }
 
         public void logdata(string loginfo)
         {
