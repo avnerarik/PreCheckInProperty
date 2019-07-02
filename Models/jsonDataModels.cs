@@ -4,14 +4,50 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BookingConfirm.Models
 {
+    #region Common
+    public class propIdent
+    {
+        public string mesg { get; set; }
+        public string propcode { get; set; }
+        public login login { get; set; }
+    }
 
-    #region json Request
+    public class login
+    {
+        public string user { get; set; }
+        public string pasw { set; get; }
+    }
 
+    public class Status
+    {
+        public DateTime timestamp;
+        public double timeexec;
+        public bool success;
+        public Error error;
+    }
+
+    public class Error
+    {
+        public int code;
+        public string shorttext;
+    }
+
+    public class rStatus
+    {
+        public bool success;
+        public Error error;
+        public string mesg;
+        public string propcode;
+        public string dllrevn;
+    }
+    #endregion
+
+    #region ResvSummRequest
     public class jsonRequestModel
     {
         public Requests[] requests;
     }
-
+    
     public class Requests
     {
         public propIdent ident = new propIdent();
@@ -31,21 +67,9 @@ namespace BookingConfirm.Models
         public string srch2 { get; set; }
 
     }
-
-    public class propIdent
-    {
-        public string mesg { get; set; }
-        public string propcode { get; set; }
-        public login login { get; set; }
-    }
-
-    public class login {
-        public string user { get; set; }
-        public string pasw { set; get; }
-    }
     #endregion;
 
-    #region json Fetch
+    #region ResvFetchRequest
     public class jsonFetchModel
     {
         public Fetch[] requests;
@@ -53,9 +77,10 @@ namespace BookingConfirm.Models
 
     public class Fetch
     {
-        public propIdent ident = new propIdent();
+        public propIdent ident { get; set; }
         public string indx { get; set; }
     }
+    #endregion
 
     #region ResvFetch Response
     public class jsonFecthResponseModel
@@ -154,10 +179,8 @@ namespace BookingConfirm.Models
     }
 
     #endregion
-    #endregion
-
-    #region json Update
-
+    
+    #region ResvUpdate Request
     public class jsonUpdateModel
     {
         public Update[] requests;
@@ -215,29 +238,13 @@ namespace BookingConfirm.Models
     {
         public rStatus status;
     }
-    
     #endregion
 
-    #region json Response
-
+    #region ResvUpdateResponse
     public class jsonResponseModel
     {
         public Status status;
         public Responses[] responses;
-    }
-
-    public class Status
-    {
-        public DateTime timestamp;
-        public double timeexec;
-        public bool success;
-        public Error error;
-    }
-
-    public class Error
-    {
-        public int code;
-        public string shorttext;
     }
 
     public class Responses
@@ -246,15 +253,6 @@ namespace BookingConfirm.Models
         public Resvs[] resvs;
         public string keyinfo;
         public string more;
-    }
-
-    public class rStatus
-    {
-        public bool success;
-        public Error error;
-        public string mesg;
-        public string propcode;
-        public string dllrevn;
     }
 
     public class Resvs
@@ -290,7 +288,7 @@ namespace BookingConfirm.Models
 
     #endregion
 
-    #region 
+    #region FieldList
     public class fieldListRequest
     {
         public fieldListFetch[] requests;
@@ -315,7 +313,7 @@ namespace BookingConfirm.Models
     }
     #endregion
 
-    #region
+    #region PaymentMethods
     public class paymFetchRequest
     {
         public paymFetch[] requests;
@@ -348,6 +346,79 @@ namespace BookingConfirm.Models
         public string payc { get; set; }
 
         public string name { get; set; }
+    }
+    #endregion
+
+    #region TranObjPost
+    public class TranObjPostRequest {
+        public TranObjPost[] requests { get; set; }
+    }
+
+    public class TranObjPost {
+        public propIdent ident { get; set; }
+
+        public string obj { get; set; }
+
+        public int indx { get; set; }
+
+        public decimal amntnd { get; set; }
+
+        public Trans tran { get; set; }
+    }
+
+    public class Trans {
+        public string comt { get; set; }
+        public string refr { get; set; }
+        public string paym { get; set; }
+        public string paytyp { get; set; }
+        public decimal amnt { get; set; }
+        public decimal comm { get; set; }
+        public string rpid { get; set; }
+    }
+
+    public class TranObjPostResponse {
+        public Status status;
+        public TransPostResponses[] responses;
+    }
+
+    public class TransPostResponses {
+        public rStatus status { get; set; }
+        public string obj { get; set; }
+        public int indx { get; set; }
+        public int[] tranx { get; set; }
+    }
+    #endregion
+
+    #region TranObjPrePost
+    public class TranObjPrePostRequest {
+        public TranObjPrePost[] requests { get; set; }
+    }
+
+    public class TranObjPrePost {
+        public propIdent ident { get; set; }
+        public string obj { get; set; }
+        public int indx { get; set; }
+        public decimal amntnd { get; set; }
+        public Trans tran { get; set; }
+    }
+
+    public class TranObjPrePostResponse {
+        public Status status;
+        public TransPrePostResponses[] responses;
+    }
+
+    public class TransPrePostResponses {
+        public rStatus status { get; set; }
+        public Paym paym { get; set; }
+    }
+
+    public class Paym
+    {
+        public decimal amntnd { get; set; }
+        public decimal change { get; set; }
+        public decimal amnt { get; set; }
+        public decimal round { get; set; }
+        public decimal comm { get; set; }
     }
     #endregion
 }

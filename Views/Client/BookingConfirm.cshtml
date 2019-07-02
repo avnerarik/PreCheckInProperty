@@ -11,8 +11,23 @@
             @if (ViewBag.allowPayment)
             {
                 <div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
+                    <form id="payment" name="payment" method="get" action="/Client/PaymentData" class="form" role="form">
+
+                        <input type="hidden" name="pcode" value="@ViewBag.pcode" />
+                        <input type="hidden" name="indx" value="@ViewBag.indx" />
+
+                        <div class="form-group" style="margin-top:25px;">
+                            <input type="submit" value="Proceed to payment" onclick="" class="btn btn-info" />
+                            @*<input type="button" value="@Resources.Resources.processPayment" onclick="openWindow(this)" class="btn btn-info" />*@
+                        </div>
+                    </form>
+                </div>
+            }
+            else
+            {
+                <div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
                     <div class="form-group" style="margin-top:25px;">
-                        <input type="button" value="@Resources.Resources.processPayment" onclick="openWindow(this)" class="btn btn-info"/>
+                        <a class="btn btn-info" href="/">@Resources.Resources.close</a>
                     </div>
                 </div>
             }
@@ -21,10 +36,7 @@
 </div>
 
 <script>
-
     function openWindow(obj) {
-        //obj.style.display = 'none';
         window.open("/Client/PaymentData?pcode=@ViewBag.pcode&indx=@ViewBag.indx", "", "width=500,height=550");
     }
-
 </script>

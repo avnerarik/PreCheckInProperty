@@ -55,7 +55,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/20/2019 10:23:52</publishTime>
     </File>
     <File Include="bin/BookingConfirm.dll">
-      <publishTime>06/26/2019 10:31:21</publishTime>
+      <publishTime>07/01/2019 10:19:09</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>08/08/2018 03:12:38</publishTime>
@@ -64,7 +64,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/08/2018 03:12:38</publishTime>
     </File>
     <File Include="bin/fr/Resources.resources.dll">
-      <publishTime>06/26/2019 10:31:20</publishTime>
+      <publishTime>07/01/2019 10:19:09</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>08/08/2018 03:12:38</publishTime>
@@ -115,7 +115,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/08/2018 03:12:38</publishTime>
     </File>
     <File Include="bin/Resources.dll">
-      <publishTime>06/26/2019 10:31:20</publishTime>
+      <publishTime>07/01/2019 10:19:09</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>10/14/2015 09:31:45</publishTime>
@@ -298,16 +298,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/20/2016 23:58:20</publishTime>
     </File>
     <File Include="Views/Client/BookingConfirm.cshtml">
-      <publishTime>06/25/2019 13:57:27</publishTime>
+      <publishTime>07/01/2019 10:17:25</publishTime>
     </File>
     <File Include="Views/Client/BookingData.cshtml">
-      <publishTime>06/25/2019 16:16:55</publishTime>
+      <publishTime>06/26/2019 12:34:15</publishTime>
     </File>
     <File Include="Views/Client/BookingReciept.cshtml">
       <publishTime>06/24/2019 11:27:12</publishTime>
     </File>
     <File Include="Views/Client/PaymentData.cshtml">
-      <publishTime>06/25/2019 14:49:03</publishTime>
+      <publishTime>07/01/2019 10:12:17</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>08/08/2018 03:12:38</publishTime>
@@ -316,7 +316,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/08/2018 03:12:38</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>06/24/2019 11:12:22</publishTime>
+      <publishTime>07/01/2019 10:19:01</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>01/20/2016 23:58:20</publishTime>
@@ -343,7 +343,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/08/2018 03:12:38</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>08/08/2018 03:12:38</publishTime>
+      <publishTime>06/30/2019 10:43:25</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>08/08/2018 03:12:38</publishTime>
@@ -355,7 +355,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/08/2018 03:12:38</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/26/2019 10:31:21</publishTime>
+      <publishTime>07/01/2019 10:19:09</publishTime>
     </File>
   </ItemGroup>
 </Project>

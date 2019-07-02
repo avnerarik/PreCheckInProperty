@@ -10,4 +10,3 @@ C:\Users\Avner\Documents\Visual Studio 2015\Projects\PrecheckInProperty\obj\Debu
 C:\Users\Avner\Documents\Visual Studio 2015\Projects\PrecheckInProperty\obj\Debug\BookingConfirm.pdb
 C:\Users\Avner\Documents\Visual Studio 2015\Projects\PrecheckInProperty\bin\AuthorizeNet.dll
 C:\Users\Avner\Documents\Visual Studio 2015\Projects\PrecheckInProperty\bin\AuthorizeNet.xml
-C:\Users\Avner\Documents\Visual Studio 2015\Projects\PrecheckInProperty\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml

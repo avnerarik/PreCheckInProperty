@@ -205,6 +205,8 @@
     <Content Include="App_Data\emailTemplate\rocroyConftemplate.html" />
     <Content Include="App_Data\emailTemplate\smartConftemplate.html" />
     <Content Include="App_Data\emailTemplate\vintageConftemplate.html" />
+    <Content Include="Scripts\creditcard.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="App_Data\PropMails.xml">
       <SubType>Designer</SubType>
     </Content>

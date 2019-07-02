@@ -13,7 +13,7 @@ namespace BookingConfirm.Helpers
 {
     public class ANetHelper
     {
-        public static Array PostPay(string AuthorizeLoginID, string AuthorizeTransactionKey, FetchResponse bookingDetails, decimal AmountToBeCharged = 0)
+        public static Array PostPay(string AuthorizeLoginID, string AuthorizeTransactionKey, FetchResponse bookingDetails, PaymentViewModel payDetails, decimal AmountToBeCharged = 0)
         {
             string env = System.Configuration.ConfigurationManager.AppSettings["enviroment"].ToString();
             if (env == "production")
@@ -47,10 +47,10 @@ namespace BookingConfirm.Helpers
             };
 
             var creditCard = new creditCardType
-            {
-                cardNumber = bookingDetails.stay.card.numb.Replace(" ",""),
-                expirationDate = bookingDetails.stay.card.expy.Replace("/", ""),
-                cardCode = bookingDetails.stay.card.auth
+            {   
+                cardNumber = payDetails.cardNumber.Replace(" ", ""), // bookingDetails.stay.card.numb.Replace(" ",""),
+                expirationDate = payDetails.cardEndDate.Replace(" ", ""), // bookingDetails.stay.card.expy.Replace("/", ""),
+                cardCode = payDetails.cardCode // bookingDetails.stay.card.auth
             };
 
             var billingAddress = new customerAddressType
@@ -78,7 +78,7 @@ namespace BookingConfirm.Helpers
 
             // Add line Items
             var lineItems = new lineItemType[1];
-            lineItems[0] = new lineItemType { itemId = "1", name = "PreCheckIn of booking " + bookingDetails.lbkg.ToString(), quantity = 1, unitPrice = bookingDetails.stay.totl, totalAmount = bookingDetails.stay.totl };
+            lineItems[0] = new lineItemType { itemId = "1", name = "PreCheckIn of booking " + bookingDetails.lbkg.ToString(), quantity = 1, unitPrice = bookingDetails.stay.totl, totalAmount = AmountToBeCharged };
             
             var transactionRequest = new transactionRequestType
             {

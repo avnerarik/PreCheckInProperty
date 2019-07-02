@@ -309,14 +309,10 @@ namespace BookingConfirm.Controllers
                 if (response.status.error.code == 0)
                 {
                     #region LogFile
-                    //DATE,TIME,PROPERTY,NAME,RESNUMBER
-
                     var dateAsString = System.DateTime.Now.ToString();
-
                     string loginfo = "Date: " + dateAsString + ", Property: " + model.property + ", Name: " + model.firstName + " "
                         + model.lastName + ", Reservation: " + model.bookingNumber + ";" + Environment.NewLine
                         + "-------------------" + Environment.NewLine;
-
                     logdata(loginfo);
                     #endregion
 
@@ -326,7 +322,7 @@ namespace BookingConfirm.Controllers
                     sendMail();
                     #endregion
 
-                    if (model.cardNumber!=null && model.cardNumber!="" && (Convert.ToInt16(model.total)) > 0) { 
+                    if (model.cardNumber!=null && model.cardNumber!="" && (Convert.ToDecimal(model.total)) > 0) { 
                         ViewBag.allowPayment = true;
                     }
 
@@ -334,7 +330,18 @@ namespace BookingConfirm.Controllers
                 }
                 else
                 {
-                    logdata(response.status.error.shorttext);
+                    #region LogFile
+                    var dateAsString = System.DateTime.Now.ToString();
+                    string loginfo = "Date: " + dateAsString +
+                        ", Property: " + model.property +
+                        ", Name: " + model.firstName + " " + model.lastName +
+                        ", Reservation: " + model.bookingNumber +
+                        ", Status: " + response.status.error.shorttext +
+                        ";" + Environment.NewLine
+                        + "-------------------" + Environment.NewLine;
+                    logdata(loginfo);
+                    #endregion
+
                     ClientViewModel m = TempData["Model"] as ClientViewModel;
                     TempData["Model"] = m;
                     return RedirectToAction("BookingData", "Client", new { pcode = model.property, indx = model.index });
@@ -342,7 +349,18 @@ namespace BookingConfirm.Controllers
             }
             catch (WebException wex)
             {
-                logdata(wex.InnerException.Message);
+                #region LogFile
+                var dateAsString = System.DateTime.Now.ToString();
+                string loginfo = "Date: " + dateAsString +
+                    ", Property: " + model.property +
+                    ", Name: " + model.firstName + " " + model.lastName +
+                    ", Reservation: " + model.bookingNumber +
+                    ", Status: " + wex.InnerException.Message +
+                    ";" + Environment.NewLine
+                    + "-------------------" + Environment.NewLine;
+                logdata(loginfo);
+                #endregion
+
                 ClientViewModel m = TempData["Model"] as ClientViewModel;
                 TempData["Model"] = m;
                 return RedirectToAction("BookingData", "Client", new { pcode = model.property, indx = model.index });
@@ -368,11 +386,13 @@ namespace BookingConfirm.Controllers
                 ViewBag.data = bookingDetails;
                 ViewBag.PayMethods = FormHelper.RequestPaymentMethod(pcode, bookingDetails.stay.paym);
 
-                ViewBag.cardNumber = "";
-                if (bookingDetails.stay.card != null)
-                {
-                    ViewBag.cardNumber = processCardNumbers(bookingDetails.stay.card.numb);
-                }
+                ViewBag.cardNumber = bookingDetails.stay.card.numb;
+
+                //ViewBag.cardNumber = "";
+                //if (bookingDetails.stay.card != null)
+                //{
+                //    ViewBag.cardNumber = processCardNumbers(bookingDetails.stay.card.numb);
+                //}
 
                 return View();
             }
@@ -391,28 +411,143 @@ namespace BookingConfirm.Controllers
             ViewBag.Error = false;
             ViewBag.Message = "";
 
+            //var cardtype = model.cardType;
+            //var holderName = model.cardHolder;
+            //var cardNumber = model.cardNumber;
+            //var cardExpiry = model.cardEndDate;
+            //var cardCode = model.cardCode;
+
+            //ViewBag.Error = true;
+            //ViewBag.Message = "Ok";
+            //ViewBag.TransId = 01;
+            //return View();
+
             string loginId = System.Configuration.ConfigurationManager.AppSettings["loginId"];
             string transKey = System.Configuration.ConfigurationManager.AppSettings["transKey"];
 
             FetchResponse bookingDetails = TempData["bookingDetails"] as FetchResponse;
-            Array result = ANetHelper.PostPay(loginId, transKey, bookingDetails, bookingDetails.stay.totl);
             
             ViewBag.PayMethods = FormHelper.RequestPaymentMethod(model.property, bookingDetails.stay.paym);
             ViewBag.data = bookingDetails;
 
-            if (result.GetValue(0).ToString() == "1")
+            var prepay = JsonRequestsHelper.PrePostTransactionDetails(model.property, bookingDetails);
+            if (prepay.status.error.code == 0)
             {
-                ViewBag.Payed = true;
-                ViewBag.Message = result.GetValue(2);
-                ViewBag.TransId = result.GetValue(4);
+                #region LogFile
+                var dateAsString = System.DateTime.Now.ToString();
+                string loginfo = "Date: " + dateAsString +
+                    ", Property: " + model.property +
+                    ", Name: " + model.firstName + " " + model.lastName +
+                    ", Reservation: " + model.bookingNumber +
+                    ", ChartsPrePost status: " + prepay.status.success +
+                    ", ChartsPrePost amount: " + prepay.paym.amnt +
+                    ", ChartsPrePost commision: " + prepay.paym.comm +
+                ";" + Environment.NewLine
+                + "-------------------" + Environment.NewLine;
+                logdata(loginfo);
+                #endregion
+
+                Array result = ANetHelper.PostPay(loginId, transKey, bookingDetails, model, prepay.paym.amntnd);
+                if (result.GetValue(0).ToString() == "1")
+                {
+                    #region LogFile
+                    dateAsString = System.DateTime.Now.ToString();
+                    loginfo = "Date: " + dateAsString +
+                        ", Property: " + model.property +
+                        ", Name: " + model.firstName + " " + model.lastName +
+                        ", Reservation: " + model.bookingNumber +
+                        ", AuthNetTrans transaction: " + result.GetValue(4).ToString() +
+                        ", AuthNetTrans status: " + result.GetValue(0).ToString() +
+                        ", AuthNetTrans message: " + result.GetValue(2).ToString() +
+                        ", AuthNetTrans amount: " + prepay.paym.amntnd +
+                    ";" + Environment.NewLine
+                    + "-------------------" + Environment.NewLine;
+                    logdata(loginfo);
+                    #endregion
+
+                    var pay = JsonRequestsHelper.PostTransactionDetails(model.property, bookingDetails, prepay);
+                    if (pay.status.error.code == 0)
+                    {
+                        ViewBag.Payed = true;
+                        ViewBag.Message = result.GetValue(2);
+                        ViewBag.TransId = result.GetValue(4);
+
+                        #region LogFile
+                        dateAsString = System.DateTime.Now.ToString();
+                        loginfo = "Date: " + dateAsString +
+                            ", Property: " + model.property +
+                            ", Name: " + model.firstName + " " + model.lastName +
+                            ", Reservation: " + model.bookingNumber +
+                            ", ChartsPostPay status: " + pay.status.success +
+                            ", ChartsPostPay amount: " + prepay.paym.amnt +
+                        ";" + Environment.NewLine
+                        + "-------------------" + Environment.NewLine;
+                        logdata(loginfo);
+                        #endregion
+                    }
+                    else
+                    {
+                        ViewBag.Error = true;
+                        ViewBag.Message = pay.status.error.shorttext;
+                        ViewBag.TransId = result.GetValue(4);
+                        Array voidResult = ANetHelper.Void(loginId, transKey, bookingDetails, result.GetValue(4).ToString());
+
+                        #region LogFile
+                        dateAsString = System.DateTime.Now.ToString();
+                        loginfo = "Date: " + dateAsString +
+                            ", Property: " + model.property +
+                            ", Name: " + model.firstName + " " + model.lastName +
+                            ", Reservation: " + model.bookingNumber +
+                            ", ChartsPostPay status: " + pay.status.error.shorttext +
+                            ", ChartsPostPay amount: " + prepay.paym.amnt +
+                            ", AuthNetTrans transaction: " + result.GetValue(4).ToString() +
+                            ", AuthNetTrans status: Voided" +
+                        ";" + Environment.NewLine
+                        + "-------------------" + Environment.NewLine;
+                        logdata(loginfo);
+                        #endregion
+                    }
+                }
+                else
+                {
+                    ViewBag.Error = true;
+                    ViewBag.Message = result.GetValue(2);
+                    ViewBag.TransId = result.GetValue(4);
+
+                    #region LogFile
+                    dateAsString = System.DateTime.Now.ToString();
+                    loginfo = "Date: " + dateAsString +
+                        ", Property: " + model.property +
+                        ", Name: " + model.firstName + " " + model.lastName +
+                        ", Reservation: " + model.bookingNumber +
+                        ", AuthNetTrans transaction: " + result.GetValue(4).ToString() +
+                        ", AuthNetTrans status: " + result.GetValue(0).ToString() +
+                        ", AuthNetTrans message: " + result.GetValue(2).ToString() +
+                    ";" + Environment.NewLine
+                    + "-------------------" + Environment.NewLine;
+                    logdata(loginfo);
+                    #endregion
+                }
             }
             else
             {
                 ViewBag.Error = true;
-                ViewBag.Message = result.GetValue(2);
-                ViewBag.TransId = result.GetValue(4);
+                ViewBag.Message = prepay.status.error.shorttext;
+                ViewBag.TransId = 0;
+
+                #region LogFile
+                var dateAsString = System.DateTime.Now.ToString();
+                string loginfo = "Date: " + dateAsString +
+                    ", Property: " + model.property +
+                    ", Name: " + model.firstName + " " + model.lastName +
+                    ", Reservation: " + model.bookingNumber +
+                    ", ChartsPrePost status: " + prepay.status.error.shorttext +
+                ";" + Environment.NewLine
+                + "-------------------" + Environment.NewLine;
+                logdata(loginfo);
+                #endregion
             }
-            
+
             return View();
         }
 

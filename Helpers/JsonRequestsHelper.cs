@@ -56,7 +56,6 @@ namespace BookingConfirm.Helpers
             FetchResponse data = fetchresponse.responses[0];
             
             return data;
-
         }
 
         public static UpdateResponse UpdateBookingDetails(string propCode, BookingViewModel model)
@@ -165,6 +164,120 @@ namespace BookingConfirm.Helpers
             jsonUpdateResponseModel response = JsonConvert.DeserializeObject<jsonUpdateResponseModel>(result);
             
             UpdateResponse data = response.responses[0];
+
+            return data;
+        }
+
+        public static TransPrePostResponses PrePostTransactionDetails(string propCode, FetchResponse model)
+        {
+            var webAddr = "https://chartswebintf-fra.chartspms.com.au/json/execute?un=charteuhh&pw=hh246eu";
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
+            httpWebRequest.ContentType = "text/json";
+            httpWebRequest.Method = "POST";
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+
+            login logdetails = new login();
+            logdetails.user = "MGR";
+            logdetails.pasw = "";
+
+            propIdent property = new propIdent();
+            property.mesg = "TranObjPrePost";
+            property.propcode = propCode;
+            property.login = logdetails;
+
+            Trans tran = new Trans();
+            tran.paytyp = "A";
+            tran.paym = model.stay.paym;
+            tran.comt = "PrePost AuthNet advance payment";
+            tran.amnt = model.stay.totl;
+            tran.comm = 0;
+            tran.rpid = "MGR";
+
+            TranObjPrePost jsonfetch = new TranObjPrePost();
+            jsonfetch.ident = property;
+            jsonfetch.indx = model.indx;
+            jsonfetch.obj = "RESV";
+            jsonfetch.amntnd = model.stay.totl;
+            jsonfetch.tran = tran;
+
+            TranObjPrePost[] sendarray = { jsonfetch };
+
+            TranObjPrePostRequest array = new TranObjPrePostRequest();
+            array.requests = sendarray;
+
+            string json = JsonConvert.SerializeObject(array);
+
+            using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                streamWriter.Write(json);
+                streamWriter.Flush();
+            }
+
+            HttpWebResponse httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream());
+
+            string result = streamReader.ReadToEnd(); //in result is the end data.
+            TranObjPrePostResponse fetchresponse = JsonConvert.DeserializeObject<TranObjPrePostResponse>(result);
+
+            TransPrePostResponses data = fetchresponse.responses[0];
+
+            return data;
+        }
+
+        public static TransPostResponses PostTransactionDetails(string propCode, FetchResponse bookingDetails ,TransPrePostResponses model)
+        {
+            var webAddr = "https://chartswebintf-fra.chartspms.com.au/json/execute?un=charteuhh&pw=hh246eu";
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
+            httpWebRequest.ContentType = "text/json";
+            httpWebRequest.Method = "POST";
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+
+            login logdetails = new login();
+            logdetails.user = "MGR";
+            logdetails.pasw = "";
+
+            propIdent property = new propIdent();
+            property.mesg = "TranObjPost";
+            property.propcode = propCode;
+            property.login = logdetails;
+
+            Trans tran = new Trans();
+            tran.paytyp = "A";
+            tran.paym = bookingDetails.stay.paym;
+            tran.comt = "Advance Payment of booking " + bookingDetails.lbkg;
+            tran.amnt = model.paym.amnt;
+            tran.comm = 0;// model.paym.comm;
+            tran.rpid = "MGR";
+
+            TranObjPost jsonfetch = new TranObjPost();
+            jsonfetch.ident = property;
+            jsonfetch.indx = bookingDetails.indx;
+            jsonfetch.obj = "RESV";
+            jsonfetch.amntnd = model.paym.amnt;
+            jsonfetch.tran = tran;
+            
+            TranObjPost[] sendarray = { jsonfetch };
+
+            TranObjPostRequest array = new TranObjPostRequest();
+            array.requests = sendarray;
+
+            string json = JsonConvert.SerializeObject(array);
+
+            using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                streamWriter.Write(json);
+                streamWriter.Flush();
+            }
+
+            HttpWebResponse httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream());
+
+            string result = streamReader.ReadToEnd(); //in result is the end data.
+            TranObjPostResponse fetchresponse = JsonConvert.DeserializeObject<TranObjPostResponse>(result);
+
+            TransPostResponses data = fetchresponse.responses[0];
 
             return data;
         }

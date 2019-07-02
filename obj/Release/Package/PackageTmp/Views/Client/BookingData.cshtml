@@ -1,262 +1,286 @@
 ﻿@using BookingConfirm.Models
 @model BookingViewModel
 <div id="top" class="row" style="background:url(@ViewBag.pict);background-size:cover;background-repeat:no-repeat;">
-    
+
     <div class="container">
         <div class="white backdiv row" style="margin:25px 25px;padding:10px;">
             <h3 style="text-align:center">@Resources.Resources.resvdetails</h3>
 
             <form id="data" name="data" method="post" action="/Client/BookingData" class="form" role="form">
-            @*@using (Html.BeginForm("BookingData", "Client", FormMethod.Post, new { @class = "form" }))
-            {*@
-                    @Html.ValidationSummary("", new { @class = "text-danger" })
-                    <h4>@Resources.Resources.personalinfo</h4>
+                @*@using (Html.BeginForm("BookingData", "Client", FormMethod.Post, new { @class = "form" }))*@
 
-                    @Html.HiddenFor(m => m.property, new { @Value = ViewBag.pcode })
-                    @Html.HiddenFor(m => m.index, new { @Value = ViewBag.indx })
-                    @Html.HiddenFor(m => m.bookingDate, new { @Value = ViewBag.bkgd })
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <h4>@Resources.Resources.personalinfo</h4>
 
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-2 col-md-2">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.bookingNumber, new { @class = "control-label disabled" })
-                                @Html.TextBoxFor(m => m.bookingNumber, new { @Value = ViewBag.data.lbkg, @class = "form-control", @readonly = "readonly" })
-                            </div>
-                        </div>
-                        <div class="col-xs-5 col-sm-2 col col-md-2">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.salutation, new { @class = "control-label disabled" })
-                                @Html.TextBoxFor(m => m.salutation, new { @Value = ViewBag.data.guest.salu, @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-4 col col-md-4">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.firstName, new { @class = "control-label disabled" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px">&#42;</span>
-                                @Html.TextBoxFor(m => m.firstName, new { @Value = ViewBag.data.guest.namf, @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-4 col col-md-4">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.lastName, new { @class = "control-label disabled" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px">&#42;</span>
-                                @Html.TextBoxFor(m => m.lastName, new { @Value = ViewBag.data.guest.naml, @class = "form-control", @readonly = "readonly" })
-                            </div>
+                @Html.HiddenFor(m => m.property, new { @Value = ViewBag.pcode })
+                @Html.HiddenFor(m => m.index, new { @Value = ViewBag.indx })
+                @Html.HiddenFor(m => m.bookingDate, new { @Value = ViewBag.bkgd })
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.bookingNumber, new { @class = "control-label disabled" })
+                            @Html.TextBoxFor(m => m.bookingNumber, new { @Value = ViewBag.data.lbkg, @class = "form-control", @readonly = "readonly" })
                         </div>
                     </div>
+                    <div class="col-xs-12 col-sm-2 col col-md-2">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.salu, new { @class = "control-label disabled" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
+                            @Html.DropDownListFor(m => m.salu, new SelectList(ViewBag.Salutation, ViewBag.data.guest.salu), new { @Value = ViewBag.data.guest.salu, @class = "form-control", @required = "required" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.firstName, new { @class = "control-label disabled" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
+                            @Html.TextBoxFor(m => m.firstName, new { @Value = ViewBag.data.guest.namf, @class = "form-control", @required = "required" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.lastName, new { @class = "control-label disabled" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
+                            @Html.TextBoxFor(m => m.lastName, new { @Value = ViewBag.data.guest.naml, @class = "form-control", @readonly = "readonly", @required = "required" })
+                        </div>
+                    </div>
+                </div>
 
-                    <hr style="border:1px solid grey" />
+                <hr style="border:1px solid grey" />
 
-                    <h4>@Resources.Resources.contactdetails</h4>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 col-md-4">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.email, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px">&#42;</span>
-                                @Html.TextBoxFor(m => m.email, new { @Value = ViewBag.data.guest.emai, @type="email", @class = "form-control" })
-                            </div>
+                <h4>@Resources.Resources.contactdetails</h4>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.email, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
+                            @Html.TextBoxFor(m => m.email, new { @Value = ViewBag.data.guest.emai, @type = "email", @class = "form-control", @required = "required" })
                         </div>
-                        <div class="col-xs-12 col-sm-4 col-md-4">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.phonenumber, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px">&#42;</span>
-                                @Html.TextBoxFor(m => m.phonenumber, new { @Value = ViewBag.data.guest.phon, @class = "form-control" })
-                            </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.phonenumber, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
+                            @Html.TextBoxFor(m => m.phonenumber, new { @Value = ViewBag.data.guest.phon, @class = "form-control", @required = "required" })
                         </div>
-                        <div class="col-xs-12 col-sm-4 col-md-4">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.cellnumber, new { @class = "control-label" })
-                                @Html.TextBoxFor(m => m.cellnumber, new { @Value = ViewBag.data.guest.cell, @class = "form-control" })
-                            </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.secu, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
+                            @Html.TextBoxFor(m => m.secu, new { @Value = ViewBag.data.guest.secu, @class = "form-control", @required = "required" })
                         </div>
-                        @*<div class="col-xs-12 col-sm-4 col-md-4">
+                    </div>
+                    @*<div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.cellnumber, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.cellnumber, new { @Value = ViewBag.data.guest.cell, @class = "form-control" })
+                        </div>
+                    </div>*@
+                    @*<div class="col-xs-12 col-sm-4 col-md-4">
                             <div class="form-group">
                                 @Html.LabelFor(m => m.company, new { @class = "control-label" })
                                 @Html.TextBoxFor(m => m.company, new { @Value = ViewBag.comp, @class = "form-control" })
                             </div>
                         </div>*@
-                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.address1, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.address1, new { @Value = ViewBag.data.guest.addr.line1, @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.address2, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.address2, new { @Value = ViewBag.data.guest.addr.line2, @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.postcode, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.postcode, new { @Value = ViewBag.data.guest.addr.posc, @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.city, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.city, new { @Value = ViewBag.data.guest.addr.city, @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.state, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.state, new { @Value = ViewBag.data.guest.addr.stat, @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.country, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
+                            @if (ViewBag.noCountry)
+                            {<span style="color:#b94a48;">@Resources.Resources.noCountry</span>}
+                            @Html.DropDownListFor(m => m.country, new SelectList(ViewBag.Countries, "value", "text"), @Resources.Resources.selectcountry, new { @Value = ViewBag.country, @class = "form-control", @required = "required" })
+                        </div>
+                    </div>
+                </div>
+
+                @if (ViewBag.pcode == "mije")
+                {
                     <div class="row">
                         <div class="col-xs-12 col-sm-4 col-md-4">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.address1, new { @class = "control-label" })
-                                @Html.TextBoxFor(m => m.address1, new { @Value = ViewBag.data.guest.addr.line1, @class = "form-control" })
+                                @Html.LabelFor(m => m.nationality, new { @class = "control-label" })
+                                @Html.DropDownListFor(m => m.nationality, new SelectList(ViewBag.Countries, "value", "text"), @Resources.Resources.selectnationality, new { @Value = ViewBag.nationality, @class = "form-control" })
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-4 col-md-4">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.address2, new { @class = "control-label" })
-                                @Html.TextBoxFor(m => m.address2, new { @Value = ViewBag.data.guest.addr.line2, @class = "form-control" })
+                                @Html.LabelFor(m => m.idnumber, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.idnumber, new { @Value = ViewBag.idnumber, @class = "form-control" })
                             </div>
                         </div>
-                        <div class="col-xs-6 col-sm-4 col-md-4">
+                        <div class="col-xs-6 col-sm-2 col-md-2">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.postcode, new { @class = "control-label" })
-                                @Html.TextBoxFor(m => m.postcode, new { @Value = ViewBag.data.guest.addr.posc, @class = "form-control" })
+                                @Html.LabelFor(m => m.document, new { @class = "control-label" })
+                                @Html.DropDownListFor(m => m.document, new SelectList(ViewBag.DocTypes, "value", "text"), new { @Value = ViewBag.document, @class = "form-control" })
                             </div>
                         </div>
+                        <div class="col-xs-6 col-sm-2 col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.expdate, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.expdate, new { @Value = ViewBag.expdate, @class = "form-control", @id = "formattedNumberField", @maxlength = "5", @placeholder = "MM/YY" })
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <hr style="border:1px solid grey" />
+
+                <h4>@Resources.Resources.bookingdetails</h4>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.arrivalDate, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
+                            @Html.TextBoxFor(m => m.arrivalDate, new { @Value = ViewBag.data.stay.arrd, @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.departureDate, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
+                            @Html.TextBoxFor(m => m.departureDate, new { @Value = ViewBag.data.stay.depd, @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.timearrival, new { @class = "control-label" })
+                            @Html.DropDownListFor(m => m.timearrival, new SelectList(ViewBag.ArrvHours, ViewBag.data.stay.arrt), new { @Value = ViewBag.data.stay.arrt, @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                @foreach (var rom in ViewBag.data.stay.rtypreq)
+                {
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-2 col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.roomType, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.roomType, new { @Value = rom.rtypc, @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col col-md-2">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.numberRoom, new { @class = "control-label disabled" })
+                                @Html.TextBoxFor(m => m.numberRoom, new { @Value = rom.rtypq, @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.adults, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.adults, new { @Value = rom.adlt, @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.childs, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.childs, new { @Value = rom.chld, @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <hr style="border:1px solid grey" />
+
+                @if (ViewBag.pcode != "mije")
+                {
+                    <h4>@Resources.Resources.paymentdetails</h4>
+                    <div class="row">
+                        @if (ViewBag.data.stay.paym != "CSH")
+                        {
+                            <div class="col-xs-12 col-sm-4 col-md-2">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.cardType, new { @class = "control-label" })
+                                    @Html.DropDownListFor(m => m.cardType, new SelectList(ViewBag.PayMethods, "value", "text"), new { @Value = ViewBag.data.stay.paym, @class = "form-control", @required = "required", @readonly = "readonly" })
+                                    @*@Html.TextBoxFor(m => m.paym, new { @Value = ViewBag.data.stay.paym, @class = "form-control", @readonly = "readonly" })*@
+                                    <span>
+                                        <img src="~/images/amex.png" width="32" style="margin:0px 1px" />
+                                        <img src="~/images/mastercard.png" width="32" style="margin:0px 1px" />
+                                        <img src="~/images/visa.png" width="32" style="margin:0px 1px" />
+                                        <img src="~/images/cartebleue.png" width="32" style="margin:0px 1px" />
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.cardHolder, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
+                                    @Html.TextBoxFor(m => m.cardHolder, new { @Value = ViewBag.data.guest.namf + " " + ViewBag.data.guest.naml, @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.cardNumber, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
+                                    @Html.TextBoxFor(m => m.cardNumber, new { @Value = ViewBag.cardNumber, @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-2">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.cardEndDate, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
+                                    @Html.TextBoxFor(m => m.cardEndDate, new { @Value = ViewBag.data.stay.card.expy, @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-2">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.cardCode, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
+                                    @Html.TextBoxFor(m => m.cardCode, new { @Value = ViewBag.data.stay.card.auth, @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.paym, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
+                                    @Html.DropDownListFor(m => m.paym, new SelectList(ViewBag.PayMethods, "value", "text"), new { @Value = ViewBag.data.stay.paym, @class = "form-control", @required = "required", @readonly = "readonly" })
+                                    @*@Html.TextBoxFor(m => m.paym, new { @Value = "Cash", @class = "form-control", @readonly = "readonly" })*@
+                                </div>
+                            </div>
+                        }
                     </div>
 
                     <div class="row">
-                        <div class="col-xs-12 col-sm-4 col-md-4">
+                        <div class="col-xs-12 col-sm-6 col-md-2">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.city, new { @class = "control-label" })
-                                @Html.TextBoxFor(m => m.city, new { @Value = ViewBag.data.guest.addr.city, @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-4 col-md-4">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.country, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px">&#42;</span>
-                                @if (ViewBag.noCountry){<span style="color:#b94a48;">@Resources.Resources.noCountry</span>}
-                                @Html.DropDownListFor(m => m.country, new SelectList(ViewBag.Countries, "value", "text"), @Resources.Resources.selectcountry, new { @Value = ViewBag.country, @class = "form-control", @required = "required" })
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-4 col-md-4">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.state, new { @class = "control-label" })
-                                @Html.TextBoxFor(m => m.state, new { @Value = ViewBag.data.guest.addr.stat, @class = "form-control" })
+                                @Html.LabelFor(m => m.total, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
+                                @Html.TextBoxFor(m => m.total, new { @Value = ViewBag.data.stay.totl, @class = "form-control", @readonly = "readonly" })
                             </div>
                         </div>
                     </div>
+                }
 
-                    @if (ViewBag.pcode == "mije")
-                    {
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-4 col-md-4">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.nationality, new { @class = "control-label" })
-                                    @Html.DropDownListFor(m => m.nationality, new SelectList(ViewBag.Countries, "value", "text"), @Resources.Resources.selectnationality, new { @Value = ViewBag.nationality, @class = "form-control" })
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-4 col-md-4">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.idnumber, new { @class = "control-label" })
-                                    @Html.TextBoxFor(m => m.idnumber, new { @Value = ViewBag.idnumber, @class = "form-control" })
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-2 col-md-2">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.document, new { @class = "control-label" })
-                                    @Html.DropDownListFor(m => m.document, new SelectList(ViewBag.DocTypes, "value", "text"), new { @Value = ViewBag.document, @class = "form-control" })
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-2 col-md-2">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.expdate, new { @class = "control-label" })
-                                    @Html.TextBoxFor(m => m.expdate, new { @Value = ViewBag.expdate, @class = "form-control", @id= "formattedNumberField", @maxlength = "5", @placeholder="MM/YY" })
-                                </div>
-                            </div>
-                        </div>
-                    }
-
-                    <hr style="border:1px solid grey" />
-
-                    <h4>@Resources.Resources.bookingdetails</h4>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 col-md-4">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.arrivalDate, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px">&#42;</span>
-                                @Html.TextBoxFor(m => m.arrivalDate, new { @Value = ViewBag.data.stay.arrd, @class = "form-control", @readonly = "readonly" })
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-md-4">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.departureDate, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px">&#42;</span>
-                                @Html.TextBoxFor(m => m.departureDate, new { @Value = ViewBag.data.stay.depd, @class = "form-control", @readonly = "readonly" })
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-md-4">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.timearrival, new { @class = "control-label" })
-                                @Html.DropDownListFor(m => m.timearrival, new SelectList(ViewBag.ArrvHours, ViewBag.data.stay.arrt), new { @Value = ViewBag.data.stay.arrt, @class = "form-control" })
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="submit" value="@Resources.Resources.confirmreservation" class="btn btn-success" />
                     </div>
+                </div>
 
-                    @foreach (var rom in ViewBag.data.stay.rtypreq)
-                    {
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-2 col-md-2">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.roomType, new { @class = "control-label" })
-                                    @Html.TextBoxFor(m => m.roomType, new { @Value = rom.rtypc, @class = "form-control", @readonly = "readonly" })
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-2 col col-md-2">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.numberRoom, new { @class = "control-label disabled" })
-                                    @Html.TextBoxFor(m => m.numberRoom, new { @Value = rom.rtypq, @class = "form-control", @readonly = "readonly" })
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-4">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.adults, new { @class = "control-label" })
-                                    @Html.TextBoxFor(m => m.adults, new { @Value = rom.adlt, @class = "form-control", @readonly = "readonly" })
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-4">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.childs, new { @class = "control-label" })
-                                    @Html.TextBoxFor(m => m.childs, new { @Value = rom.chld, @class = "form-control", @readonly = "readonly" })
-                                </div>
-                            </div>
-                        </div>
-                    }
-                
-                    <hr style="border:1px solid grey" />
-
-                    @if (ViewBag.pcode != "mije")
-                    {
-                        <h4>@Resources.Resources.paymentdetails</h4>
-                        <div class="row">
-                            @if (ViewBag.paym != "CSH")
-                            {
-                                <div class="col-xs-12 col-sm-6 col-md-4">
-                                    <div class="form-group">
-                                        @Html.LabelFor(m => m.cardType, new { @class = "control-label" })
-                                        <span>
-                                            <img src="~/images/amex.png" width="32" style="margin:0px 1px" />
-                                            <img src="~/images/mastercard.png" width="32" style="margin:0px 1px" />
-                                            <img src="~/images/visa.png" width="32" style="margin:0px 1px" />
-                                            <img src="~/images/cartebleue.png" width="32" style="margin:0px 1px" />
-                                        </span>
-                                        @Html.TextBoxFor(m => m.paym, new { @Value = ViewBag.data.stay.paym, @class = "form-control", @readonly = "readonly" })
-                                    </div>
-                                </div>
-                                @*<div class="col-xs-12 col-sm-6 col-md-4">
-                                        <div class="form-group">
-                                            @Html.LabelFor(m => m.cardHolder, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px">&#42;</span>
-                                            @Html.TextBoxFor(m => m.cardHolder, new { @Value = ViewBag.auth, @class = "form-control", @readonly = "readonly" })
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-4">
-                                        <div class="form-group">
-                                            @Html.LabelFor(m => m.cardNumber, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px">&#42;</span>
-                                            @Html.TextBoxFor(m => m.cardNumber, new { @Value = ViewBag.cardnumb, @class = "form-control", @readonly = "readonly" })
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 col-md-4">
-                                        <div class="form-group">
-                                            @Html.LabelFor(m => m.cardEndDate, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px">&#42;</span>
-                                            @Html.TextBoxFor(m => m.cardEndDate, new { @Value = ViewBag.cardexp, @class = "form-control", @readonly = "readonly" })
-                                        </div>
-                                    </div>*@
-                            }
-                            else
-                            {
-                                <div class="col-xs-12 col-sm-6 col-md-4">
-                                    <div class="form-group">
-                                        @Html.LabelFor(m => m.paym, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px">&#42;</span>
-                                        @Html.TextBoxFor(m => m.paym, new { @Value = "Cash", @class = "form-control", @readonly = "readonly" })
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    }
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="submit" value="@Resources.Resources.confirmreservation" class="btn btn-success" />
-                        </div>
-                    </div>
-                @*}*@
             </form>
         </div>
     </div>
@@ -265,37 +289,11 @@
 
 <!--<hr />-->
 
-<div id="middle" class="row" style="background-color:grey;display:none">
-
-    <div class="container" style="color:white">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </div>
-    </div>
-
-</div>
-
 <script type="text/javascript">
-    var fnf = document.getElementById("formattedNumberField");
-    fnf.addEventListener('keyup', function (evt) {
-        if (this.value.length == 2) {
-            this.value += '/';
-        }
-    }, false);
+    //var fnf = document.getElementById("formattedNumberField");
+    //fnf.addEventListener('keyup', function (evt) {
+    //    if (this.value.length == 2) {
+    //        this.value += '/';
+    //    }
+    //}, false);
 </script>
