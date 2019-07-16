@@ -4,7 +4,10 @@
 
     <div class="container">
         <div class="white backdiv row" style="margin:25px 25px;padding:10px;">
-            <h3 style="text-align:center">@Resources.Resources.paymentdetails</h3>
+            @if (ViewBag.allowPayment)
+            {
+                <h3 style="text-align:center">@Resources.Resources.paymentdetails</h3>
+            }
 
             @if (ViewBag.Error)
             {
@@ -18,92 +21,126 @@
             else if (ViewBag.Payed)
             {
                 <div class="white backdiv col-xs-12 col-sm-12 col-md-12" style="margin:25px 0px;padding:10px;">
+                    <h4 style="margin:10px;text-align:left">@Resources.Resources.resvconfirmed</h4>
                     <h5 style="margin:10px;text-align:left">@ViewBag.Message</h5>
                     <h5 style="margin:10px;text-align:left">Transaction number: @ViewBag.TransId</h5>
+                    <h5 style="margin:10px;text-align:left">Thank you for your Payment. Please proceed directly to the reception to get the keys.</h5>
+                    <h5 style="margin:10px;text-align:left">@Resources.Resources.endthanks</h5>
+                    <br />
+                    <h5 style="margin:10px;text-align:left">Regards</h5>
+                    <h5 style="margin:10px;text-align:left">Polynesian Hostel Beach Club</h5>
                 </div>
             }
             else
             {
-                <form id="paydata" name="data" method="post" action="/Client/PaymentData" class="form" role="form">
-                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                if (ViewBag.allowPayment)
+                {
+                    <form id="paydata" name="data" method="post" action="/Client/PaymentData" onsubmit="disableSubmit()" class="form" role="form">
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
 
-                    @Html.HiddenFor(m => m.index, new { @Value = ViewBag.indx })
-                    @Html.HiddenFor(m => m.property, new { @Value = ViewBag.pcode })
+                        @Html.HiddenFor(m => m.index, new { @Value = ViewBag.indx })
+                        @Html.HiddenFor(m => m.property, new { @Value = ViewBag.pcode })
 
-                    @Html.HiddenFor(m => m.country, new { @Value = ViewBag.country })
-                    @Html.HiddenFor(m => m.email, new { @Value = ViewBag.data.guest.emai })
-                    @Html.HiddenFor(m => m.bookingNumber, new { @Value = ViewBag.data.lbkg })
-                    @Html.HiddenFor(m => m.lastName, new { @Value = ViewBag.data.guest.naml })
-                    @Html.HiddenFor(m => m.city, new { @Value = ViewBag.data.guest.addr.city })
-                    @Html.HiddenFor(m => m.firstName, new { @Value = ViewBag.data.guest.namf })
-                    @Html.HiddenFor(m => m.state, new { @Value = ViewBag.data.guest.addr.stat })
-                    @Html.HiddenFor(m => m.phonenumber, new { @Value = ViewBag.data.guest.phon })
-                    @Html.HiddenFor(m => m.postcode, new { @Value = ViewBag.data.guest.addr.posc })
-                    @Html.HiddenFor(m => m.address1, new { @Value = ViewBag.data.guest.addr.line1 })
+                        @Html.HiddenFor(m => m.country, new { @Value = ViewBag.country })
+                        @Html.HiddenFor(m => m.email, new { @Value = ViewBag.data.guest.emai })
+                        @Html.HiddenFor(m => m.bookingNumber, new { @Value = ViewBag.data.lbkg })
+                        @Html.HiddenFor(m => m.lastName, new { @Value = ViewBag.data.guest.naml })
+                        @Html.HiddenFor(m => m.city, new { @Value = ViewBag.data.guest.addr.city })
+                        @Html.HiddenFor(m => m.firstName, new { @Value = ViewBag.data.guest.namf })
+                        @Html.HiddenFor(m => m.state, new { @Value = ViewBag.data.guest.addr.stat })
+                        @Html.HiddenFor(m => m.phonenumber, new { @Value = ViewBag.data.guest.phon })
+                        @Html.HiddenFor(m => m.postcode, new { @Value = ViewBag.data.guest.addr.posc })
+                        @Html.HiddenFor(m => m.address1, new { @Value = ViewBag.data.guest.addr.line1 })
 
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-2">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.cardType, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
-                                @Html.DropDownListFor(m => m.cardType, new SelectList(ViewBag.PayMethods, "value", "text"), new { @Value = ViewBag.data.stay.paym, @class = "form-control", @required = "required", @readonly = "readonly" })
-                                @*@Html.TextBoxFor(m => m.cardType, new { @Value = ViewBag.data.stay.paym, @class = "form-control", @required = "required", @readonly = "readonly" })*@
-                                @*@Html.TextBoxFor(m => m.paym, new { @Value = ViewBag.data.stay.paym, @class = "form-control", @readonly = "readonly" })*@
-                                <span>
-                                    <img src="~/images/amex.png" width="32" style="margin:0px 1px" />
-                                    <img src="~/images/mastercard.png" width="32" style="margin:0px 1px" />
-                                    <img src="~/images/visa.png" width="32" style="margin:0px 1px" />
-                                    <img src="~/images/cartebleue.png" width="32" style="margin:0px 1px" />
-                                </span>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-2 hide">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.cardType, new { @class = "control-label" })<span class="required">&#42;</span>
+                                    @Html.DropDownListFor(m => m.cardType, new SelectList(ViewBag.PayMethods, "value", "text"), new { @Value = ViewBag.data.stay.paym, @class = "form-control", @required = "required" })
+                                    @*@Html.TextBoxFor(m => m.cardType, new { @Value = ViewBag.data.stay.paym, @class = "form-control", @required = "required", @readonly = "readonly" })*@
+                                    @*@Html.TextBoxFor(m => m.paym, new { @Value = ViewBag.data.stay.paym, @class = "form-control", @readonly = "readonly" })*@
+                                    <span>
+                                        <img src="~/images/amex.png" width="32" style="margin:0px 1px" />
+                                        <img src="~/images/mastercard.png" width="32" style="margin:0px 1px" />
+                                        <img src="~/images/visa.png" width="32" style="margin:0px 1px" />
+                                        <img src="~/images/cartebleue.png" width="32" style="margin:0px 1px" />
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-2">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.cardHolder, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
-                                @Html.TextBoxFor(m => m.cardHolder, new { @Value = ViewBag.data.guest.namf + " " + ViewBag.data.guest.naml, @class = "form-control", @readonly = "readonly" })
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.cardHolder, new { @class = "control-label" })<span class="required">&#42;</span>
+                                    @Html.TextBoxFor(m => m.cardHolder, new { @Value = ViewBag.data.guest.namf + " " + ViewBag.data.guest.naml, @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.cardNumber, new { @class = "control-label" }) <span id="type" class="example"></span><span class="required">&#42;</span>
+                                    @Html.TextBoxFor(m => m.cardNumber, new { @Value = ViewBag.cardNumber, id = "number", @class = "form-control", maxlength = "19", oninput = "validateCreditCard()", onchange = "creditCardFormat()", @required = "required" })
+                                    <span>
+                                        <img src="~/images/amex.png" width="32" class="separation" />
+                                        <img src="~/images/mastercard.png" width="32" class="separation" />
+                                        <img src="~/images/visa.png" width="32" class="separation" />
+                                        @*<img src="~/images/cartebleue.png" width="32" class="separation" />*@
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 col-md-2">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.cardEndDate, new { @class = "control-label" }) <span class="example">(mm/yy)</span><span class="required">&#42;</span>
+                                    @Html.TextBoxFor(m => m.cardEndDate, new { @Value = ViewBag.data.stay.card.expy, id = "expiry", @class = "form-control", maxlength = "4", oninput = "creditCardDate()", @required = "required" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 col-md-2">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.cardCode, new { @class = "control-label" }) <span class="example">(cvv)</span><span class="required">&#42;</span>
+                                    @Html.TextBoxFor(m => m.cardCode, new { @class = "form-control", maxlength = "4", @required = "required" })
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-xs-12 col-sm-6 col-md-4">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.cardNumber, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
-                                @Html.TextBoxFor(m => m.cardNumber, new { @Value = ViewBag.cardNumber, @class = "form-control", @readonly = "readonly" })
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.total, new { @class = "control-label" })<span class="required">&#42;</span>
+                                    @Html.TextBoxFor(m => m.total, new { @Value = ViewBag.toPay, @class = "form-control", @readonly = "readonly" })
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xs-6 col-sm-4 col-md-2">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.cardEndDate, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
-                                @Html.TextBoxFor(m => m.cardEndDate, new { @Value = ViewBag.data.stay.card.expy, @class = "form-control", @readonly = "readonly" })
+
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-4 col-md-6">
+                                <input type="submit" id="sendpay" value="Send Payment" class="btn btn-success" />
+                                @*<input type="button" id="sendpay" value="Send Payment" onclick="processPayment(this); this.disabled = true;" class="btn btn-success" />*@
+                            </div>
+                            <div class="col-xs-6 col-sm-4 col-md-6" style="text-align:right;">
+                                <div class="form-group">
+                                    <a class="btn btn-danger" href="/">@Resources.Resources.cancel</a>
+                                    @*<input type="button" value="@Resources.Resources.close" onclick="closeWindow();" class="btn btn-danger" />*@
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xs-6 col-sm-4 col-md-2">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.cardCode, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
-                                @Html.TextBoxFor(m => m.cardCode, new { @Value = ViewBag.data.stay.card.auth, @class = "form-control", @readonly = "readonly" })
-                            </div>
-                        </div>
+                    </form>
+                }
+                else
+                {
+                    <div class="white backdiv col-xs-12 col-sm-12 col-md-12" style="margin:25px 0px;padding:10px;">
+                        <h4 style="margin:10px;text-align:left">@Resources.Resources.resvconfirmed</h4>
+                        <h5 style="margin:10px;text-align:left">No balance due.</h5>
+                        <h5 style="margin:10px;text-align:left">@Resources.Resources.endthanks</h5>
+                        <br />
+                        <h5 style="margin:10px;text-align:left">Regards</h5>
+                        <h5 style="margin:10px;text-align:left">Polynesian Hostel Beach Club</h5>
                     </div>
 
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-2">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.total, new { @class = "control-label" })<span style="margin:0px 5px;vertical-align:bottom;font-size:17px;color:#b94a48;">&#42;</span>
-                                @Html.TextBoxFor(m => m.total, new { @Value = ViewBag.data.stay.totl, @class = "form-control", @readonly = "readonly" })
-                            </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
+                        <div class="form-group">
+                            <a class="btn btn-info" href="/">@Resources.Resources.close</a>
+                            @*<input type="button" value="@Resources.Resources.close" onclick="closeWindow()" class="btn btn-info"/>*@
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-4 col-md-6">
-                            <input type="button" value="Send Payment" onclick="processPayment(this); this.disabled = true;" class="btn btn-success" />
-                        </div>
-                        <div class="col-xs-6 col-sm-4 col-md-6" style="text-align:right;">
-                            <div class="form-group">
-                                <a class="btn btn-danger" href="/">@Resources.Resources.close</a>
-                                @*<input type="button" value="@Resources.Resources.close" onclick="closeWindow();" class="btn btn-danger" />*@
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                }
             }
 
             @if (ViewBag.Payed || ViewBag.Error) {
@@ -127,6 +164,10 @@
         form.submit();
     }
 
+    function disableSubmit() {
+        $('#sendpay').prop('disabled', true);
+    }
+
     function openWindow() {
         window.open("/Client/BookingData?pcode=" + ViewBag.pcode + "&indx=" + ViewBag.indx, "", "width=500,height=750");
     }
@@ -135,5 +176,257 @@
         window.open('', '_parent', '');
         window.close();
         console.log("there");
+    }
+</script>
+<script>
+    var creditcard = new CreditCard();
+    $(document).ready(function () {
+        validateCreditCard();
+    });
+
+    function validateCreditCard() {
+        var error = false;
+
+        // Check is numeric
+        var cardregex = /^[0-9]{1,19}$/;
+
+        var number = $('#number').val();
+        if (number == "") {
+            return;
+        }
+        number = number.replace(/\s/g, '');
+
+        if (cardregex.exec(number) == null) {
+            error = true;   
+        }
+
+        //$('#number').val(function (index, value) {
+        //    if (value.length < 19) {
+        //        return value.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ');
+        //    } else {
+        //        return value.trim();
+        //    }
+        //});
+
+        // Luhn algorithm or modulus 10 check digit
+        if (true) {
+            var checksum = 0;                                  // running checksum total
+            var mychar = "";                                   // next char to process
+            var j = 1;                                         // takes value of 1 or 2
+
+            // Process each digit one by one starting at the right
+            var calc;
+            for (i = number.length - 1; i >= 0; i--) {
+
+                // Extract the next digit and multiply by 1 or 2 on alternative digits.
+                calc = Number(number.charAt(i)) * j;
+
+                // If the result is in two digits add 1 to the checksum total
+                if (calc > 9) {
+                    checksum = checksum + 1;
+                    calc = calc - 10;
+                }
+
+                // Add the units element to the checksum total
+                checksum = checksum + calc;
+
+                // Switch the value of j
+                if (j == 1) { j = 2 } else { j = 1 };
+            }
+
+            // All done - if checksum is divisible by 10, it is a valid modulus 10.
+            // If not, report an error.
+            if (checksum % 10 != 0) {
+                error = true;
+            }
+        }
+
+        $('#type').text('(' + creditcard.getCreditCardNameByNumber(number) + ')');
+
+        if (error) {
+            $("#sendpay").attr("disabled", true);
+            $('#number').css('border-color', '#b94a48');
+        } else {
+            $("#sendpay").attr("disabled", false);
+            $('#number').css('border-color', '');
+        }
+    }
+
+    function creditCardFormat() {
+        $('#number').val(function (index, value) {
+            if (value != "") {
+                return value.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ').trim();
+            }
+        });
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        // INITIALIZATION
+        var expiryFieldSelector = "#expiry";
+
+        // Will only accept format: MM/YY
+        var maxDigits = 4;
+
+        // Maintain the credit card number internally.
+        // Display a re-formatted version of it.
+        var storedNumber = '';
+
+        // EXPIRY
+
+        $(expiryFieldSelector).on('click focus', function () {
+            var element = $(expiryFieldSelector)[0];
+            var length = $(expiryFieldSelector).val().length;
+
+            setCursorPosition(element, length);
+        });
+
+        $(expiryFieldSelector).on("keydown", function (e) {
+            var key = e.which; // e.keyCode
+
+            var backspace = (key == 8);
+            var escape = (key == 27);
+            var tab = (key == 9);
+            var fwdslash = (key == 191 || key == 111);
+            var special = ($.inArray(key, [8, 27, 9, 191, 111]) != -1);
+
+            // Do not let the input run over 20 characters
+            if (storedNumber.length >= maxDigits && !special) {
+                e.preventDefault();
+                return;
+            }
+
+            if ((key >= 48 && key <= 57) || (key >= 96 && key <= 105)) // digit
+            {
+                var addition = GetCharacterFromKeyCode(key);
+                storedNumber += addition;
+            }
+            else if (fwdslash) {
+                if (storedNumber.length == 1 && storedNumber == 1) {
+                    storedNumber = "01";
+                }
+                else {
+                    // Just ignore it
+                    e.preventDefault();
+                    return;
+                }
+            }
+            else if (backspace) {
+                if (storedNumber.length > 0)
+                    storedNumber = storedNumber.substr(0, storedNumber.length - 1);
+            }
+            else if (escape) {
+                storedNumber = '';
+                $(expiryFieldSelector).val('');
+                e.preventDefault();
+                return;
+            }
+            else if (tab) {
+                return;
+            }
+            else // any other key
+            {
+                e.preventDefault();
+                return;
+            }
+
+            storedNumber = correctStoredNumber(storedNumber);
+            $(expiryFieldSelector).val(formatNumber(storedNumber));
+            e.preventDefault();
+        });
+    });
+
+    // HELPER FUNCTIONS
+
+    function correctStoredNumber(s) {
+        var corrected = '';
+        var partA = A(s);
+        var partB = B(s);
+
+        if (s.length == 1) // impossible for there to be more than 12 months
+        {
+            if (s > 1) {
+                corrected = "0" + s;
+            }
+            else {
+                corrected = s;
+            }
+        }
+        else if (s.length == 2) {
+            if (partA == "00") { // no months less than 1
+                corrected = partA.substr(0, 1); // ignore entered digit
+            }
+            else if (partA > 12) {
+                corrected = "0" + partA; // no such thing as month 13, so assume it is 013x
+            }
+            else {
+                corrected = s;
+            }
+        }
+        else {
+            corrected = s;
+        }
+
+        return corrected;
+    }
+    function formatNumber(s) {
+        var finalValue = '';
+        var length = s.length;
+        var partA = A(s);
+        var partB = B(s);
+
+        if (length == 1) {
+            if (partA > 1) { // no months greater than 1X
+                partA = "0" + s;
+            }
+        }
+        else if (length == 2) {
+            if (partA > 12 || partA == "00") { // no months greater than 12 or less than 1
+                partA = partA.substr(0, 1); // ignore entered digit
+            }
+        }
+
+        var final = '';
+
+        var combined = partA + partB;
+        if (combined.length == 1) {
+            final = partA;
+        }
+        else if (combined.length == 2) {
+            final = partA + "/";
+        }
+        else if (combined.length >= 3) {
+            final = partA + "/" + partB;
+        }
+
+        return final;
+    }
+    function GetCharacterFromKeyCode(key) {
+        return String.fromCharCode(((key >= 96 && key <= 105) ? key - 48 : key));
+    }
+    function A(s) {
+        return s.substr(0, 2);
+    }
+    function B(s) {
+        return s.substr(2, 2);
+    }
+    function getCursorPosition(element) {
+        var el = $(element).get(0);
+        var pos = 0;
+        if ('selectionStart' in el) {
+            pos = el.selectionStart;
+        }
+        else if ('selection' in document) {
+            el.focus();
+            var Sel = document.selection.createRange();
+            var SelLength = document.selection.createRange().text.length;
+            Sel.moveStart('character', -el.value.length);
+            pos = Sel.text.length - SelLength;
+        }
+        return pos;
+    }
+    function setCursorPosition(element, pos) {
+        element.setSelectionRange(pos, pos);
+        return;
     }
 </script>

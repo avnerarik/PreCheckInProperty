@@ -4,7 +4,10 @@
 
     <div class="container">
         <div class="white backdiv row" style="margin:25px 25px;padding:10px;">
-            <h3 style="text-align:center">@Resources.Resources.paymentdetails</h3>
+            @if (ViewBag.allowPayment)
+            {
+                <h3 style="text-align:center">@Resources.Resources.paymentdetails</h3>
+            }
 
             @if (ViewBag.Error)
             {
@@ -18,98 +21,126 @@
             else if (ViewBag.Payed)
             {
                 <div class="white backdiv col-xs-12 col-sm-12 col-md-12" style="margin:25px 0px;padding:10px;">
+                    <h4 style="margin:10px;text-align:left">@Resources.Resources.resvconfirmed</h4>
                     <h5 style="margin:10px;text-align:left">@ViewBag.Message</h5>
                     <h5 style="margin:10px;text-align:left">Transaction number: @ViewBag.TransId</h5>
+                    <h5 style="margin:10px;text-align:left">Thank you for your Payment. Please proceed directly to the reception to get the keys.</h5>
+                    <h5 style="margin:10px;text-align:left">@Resources.Resources.endthanks</h5>
+                    <br />
+                    <h5 style="margin:10px;text-align:left">Regards</h5>
+                    <h5 style="margin:10px;text-align:left">Polynesian Hostel Beach Club</h5>
                 </div>
             }
             else
             {
-                <form id="paydata" name="data" method="post" action="/Client/PaymentData" class="form" role="form">
-                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                if (ViewBag.allowPayment)
+                {
+                    <form id="paydata" name="data" method="post" action="/Client/PaymentData" onsubmit="disableSubmit()" class="form" role="form">
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
 
-                    @Html.HiddenFor(m => m.index, new { @Value = ViewBag.indx })
-                    @Html.HiddenFor(m => m.property, new { @Value = ViewBag.pcode })
+                        @Html.HiddenFor(m => m.index, new { @Value = ViewBag.indx })
+                        @Html.HiddenFor(m => m.property, new { @Value = ViewBag.pcode })
 
-                    @Html.HiddenFor(m => m.country, new { @Value = ViewBag.country })
-                    @Html.HiddenFor(m => m.email, new { @Value = ViewBag.data.guest.emai })
-                    @Html.HiddenFor(m => m.bookingNumber, new { @Value = ViewBag.data.lbkg })
-                    @Html.HiddenFor(m => m.lastName, new { @Value = ViewBag.data.guest.naml })
-                    @Html.HiddenFor(m => m.city, new { @Value = ViewBag.data.guest.addr.city })
-                    @Html.HiddenFor(m => m.firstName, new { @Value = ViewBag.data.guest.namf })
-                    @Html.HiddenFor(m => m.state, new { @Value = ViewBag.data.guest.addr.stat })
-                    @Html.HiddenFor(m => m.phonenumber, new { @Value = ViewBag.data.guest.phon })
-                    @Html.HiddenFor(m => m.postcode, new { @Value = ViewBag.data.guest.addr.posc })
-                    @Html.HiddenFor(m => m.address1, new { @Value = ViewBag.data.guest.addr.line1 })
+                        @Html.HiddenFor(m => m.country, new { @Value = ViewBag.country })
+                        @Html.HiddenFor(m => m.email, new { @Value = ViewBag.data.guest.emai })
+                        @Html.HiddenFor(m => m.bookingNumber, new { @Value = ViewBag.data.lbkg })
+                        @Html.HiddenFor(m => m.lastName, new { @Value = ViewBag.data.guest.naml })
+                        @Html.HiddenFor(m => m.city, new { @Value = ViewBag.data.guest.addr.city })
+                        @Html.HiddenFor(m => m.firstName, new { @Value = ViewBag.data.guest.namf })
+                        @Html.HiddenFor(m => m.state, new { @Value = ViewBag.data.guest.addr.stat })
+                        @Html.HiddenFor(m => m.phonenumber, new { @Value = ViewBag.data.guest.phon })
+                        @Html.HiddenFor(m => m.postcode, new { @Value = ViewBag.data.guest.addr.posc })
+                        @Html.HiddenFor(m => m.address1, new { @Value = ViewBag.data.guest.addr.line1 })
 
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-2 hide">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.cardType, new { @class = "control-label" })<span class="required">&#42;</span>
-                                @Html.DropDownListFor(m => m.cardType, new SelectList(ViewBag.PayMethods, "value", "text"), new { @Value = ViewBag.data.stay.paym, @class = "form-control", @required = "required" })
-                                @*@Html.TextBoxFor(m => m.cardType, new { @Value = ViewBag.data.stay.paym, @class = "form-control", @required = "required", @readonly = "readonly" })*@
-                                @*@Html.TextBoxFor(m => m.paym, new { @Value = ViewBag.data.stay.paym, @class = "form-control", @readonly = "readonly" })*@
-                                <span>
-                                    <img src="~/images/amex.png" width="32" style="margin:0px 1px" />
-                                    <img src="~/images/mastercard.png" width="32" style="margin:0px 1px" />
-                                    <img src="~/images/visa.png" width="32" style="margin:0px 1px" />
-                                    <img src="~/images/cartebleue.png" width="32" style="margin:0px 1px" />
-                                </span>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-2 hide">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.cardType, new { @class = "control-label" })<span class="required">&#42;</span>
+                                    @Html.DropDownListFor(m => m.cardType, new SelectList(ViewBag.PayMethods, "value", "text"), new { @Value = ViewBag.data.stay.paym, @class = "form-control", @required = "required" })
+                                    @*@Html.TextBoxFor(m => m.cardType, new { @Value = ViewBag.data.stay.paym, @class = "form-control", @required = "required", @readonly = "readonly" })*@
+                                    @*@Html.TextBoxFor(m => m.paym, new { @Value = ViewBag.data.stay.paym, @class = "form-control", @readonly = "readonly" })*@
+                                    <span>
+                                        <img src="~/images/amex.png" width="32" style="margin:0px 1px" />
+                                        <img src="~/images/mastercard.png" width="32" style="margin:0px 1px" />
+                                        <img src="~/images/visa.png" width="32" style="margin:0px 1px" />
+                                        <img src="~/images/cartebleue.png" width="32" style="margin:0px 1px" />
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-4">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.cardHolder, new { @class = "control-label" })<span class="required">&#42;</span>
-                                @Html.TextBoxFor(m => m.cardHolder, new { @Value = ViewBag.data.guest.namf + " " + ViewBag.data.guest.naml, @class = "form-control" })
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.cardHolder, new { @class = "control-label" })<span class="required">&#42;</span>
+                                    @Html.TextBoxFor(m => m.cardHolder, new { @Value = ViewBag.data.guest.namf + " " + ViewBag.data.guest.naml, @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.cardNumber, new { @class = "control-label" }) <span id="type" class="example"></span><span class="required">&#42;</span>
+                                    @Html.TextBoxFor(m => m.cardNumber, new { @Value = ViewBag.cardNumber, id = "number", @class = "form-control", maxlength = "19", oninput = "validateCreditCard()", onchange = "creditCardFormat()", @required = "required" })
+                                    <span>
+                                        <img src="~/images/amex.png" width="32" class="separation" />
+                                        <img src="~/images/mastercard.png" width="32" class="separation" />
+                                        <img src="~/images/visa.png" width="32" class="separation" />
+                                        @*<img src="~/images/cartebleue.png" width="32" class="separation" />*@
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 col-md-2">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.cardEndDate, new { @class = "control-label" }) <span class="example">(mm/yy)</span><span class="required">&#42;</span>
+                                    @Html.TextBoxFor(m => m.cardEndDate, new { @Value = ViewBag.data.stay.card.expy, id = "expiry", @class = "form-control", maxlength = "4", oninput = "creditCardDate()", @required = "required" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 col-md-2">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.cardCode, new { @class = "control-label" }) <span class="example">(cvv)</span><span class="required">&#42;</span>
+                                    @Html.TextBoxFor(m => m.cardCode, new { @class = "form-control", maxlength = "4", @required = "required" })
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-xs-12 col-sm-6 col-md-4">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.cardNumber, new { @class = "control-label" }) <span id="type" class="example"></span><span class="required">&#42;</span>
-                                @Html.TextBoxFor(m => m.cardNumber, new { @Value = ViewBag.cardNumber, id = "number", @class = "form-control", maxlength = "19", oninput = "validateCreditCard()", onchange = "creditCardFormat()" })
-                                <span>
-                                    <img src="~/images/amex.png" width="32" class="separation"/>
-                                    <img src="~/images/mastercard.png" width="32" class="separation" />
-                                    <img src="~/images/visa.png" width="32" class="separation" />
-                                    <img src="~/images/cartebleue.png" width="32" class="separation" />
-                                </span>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-2">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.total, new { @class = "control-label" })<span class="required">&#42;</span>
+                                    @Html.TextBoxFor(m => m.total, new { @Value = ViewBag.toPay, @class = "form-control", @readonly = "readonly" })
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xs-6 col-sm-4 col-md-2">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.cardEndDate, new { @class = "control-label" }) <span class="example">(mm/yy)</span><span class="required">&#42;</span>
-                                @Html.TextBoxFor(m => m.cardEndDate, new { @Value = ViewBag.data.stay.card.expy, id = "expiry", @class = "form-control", maxlength = "4", oninput = "creditCardDate()" })
+
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-4 col-md-6">
+                                <input type="submit" id="sendpay" value="Send Payment" class="btn btn-success" />
+                                @*<input type="button" id="sendpay" value="Send Payment" onclick="processPayment(this); this.disabled = true;" class="btn btn-success" />*@
+                            </div>
+                            <div class="col-xs-6 col-sm-4 col-md-6" style="text-align:right;">
+                                <div class="form-group">
+                                    <a class="btn btn-danger" href="/">@Resources.Resources.cancel</a>
+                                    @*<input type="button" value="@Resources.Resources.close" onclick="closeWindow();" class="btn btn-danger" />*@
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xs-6 col-sm-4 col-md-2">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.cardCode, new { @class = "control-label" }) <span class="example">(cvv)</span><span class="required">&#42;</span>
-                                @Html.TextBoxFor(m => m.cardCode, new { @Value = ViewBag.data.stay.card.auth, @class = "form-control", maxlength = "4" })
-                            </div>
-                        </div>
+                    </form>
+                }
+                else
+                {
+                    <div class="white backdiv col-xs-12 col-sm-12 col-md-12" style="margin:25px 0px;padding:10px;">
+                        <h4 style="margin:10px;text-align:left">@Resources.Resources.resvconfirmed</h4>
+                        <h5 style="margin:10px;text-align:left">No balance due.</h5>
+                        <h5 style="margin:10px;text-align:left">@Resources.Resources.endthanks</h5>
+                        <br />
+                        <h5 style="margin:10px;text-align:left">Regards</h5>
+                        <h5 style="margin:10px;text-align:left">Polynesian Hostel Beach Club</h5>
                     </div>
 
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-2">
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.total, new { @class = "control-label" })<span class="required">&#42;</span>
-                                @Html.TextBoxFor(m => m.total, new { @Value = ViewBag.data.stay.totl, @class = "form-control", @readonly = "readonly" })
-                            </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
+                        <div class="form-group">
+                            <a class="btn btn-info" href="/">@Resources.Resources.close</a>
+                            @*<input type="button" value="@Resources.Resources.close" onclick="closeWindow()" class="btn btn-info"/>*@
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-4 col-md-6">
-                            <input type="button" id="sendpay" value="Send Payment" onclick="processPayment(this); this.disabled = true;" class="btn btn-success" />
-                        </div>
-                        <div class="col-xs-6 col-sm-4 col-md-6" style="text-align:right;">
-                            <div class="form-group">
-                                <a class="btn btn-danger" href="/">@Resources.Resources.close</a>
-                                @*<input type="button" value="@Resources.Resources.close" onclick="closeWindow();" class="btn btn-danger" />*@
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                }
             }
 
             @if (ViewBag.Payed || ViewBag.Error) {
@@ -133,6 +164,10 @@
         form.submit();
     }
 
+    function disableSubmit() {
+        $('#sendpay').prop('disabled', true);
+    }
+
     function openWindow() {
         window.open("/Client/BookingData?pcode=" + ViewBag.pcode + "&indx=" + ViewBag.indx, "", "width=500,height=750");
     }
@@ -154,7 +189,13 @@
 
         // Check is numeric
         var cardregex = /^[0-9]{1,19}$/;
-        var number = $('#number').val().replace(/\s/g, '');
+
+        var number = $('#number').val();
+        if (number == "") {
+            return;
+        }
+        number = number.replace(/\s/g, '');
+
         if (cardregex.exec(number) == null) {
             error = true;   
         }
@@ -213,7 +254,9 @@
 
     function creditCardFormat() {
         $('#number').val(function (index, value) {
-            return value.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ').trim();
+            if (value != "") {
+                return value.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ').trim();
+            }
         });
     }
 </script>

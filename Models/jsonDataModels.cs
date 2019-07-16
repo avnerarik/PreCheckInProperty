@@ -211,6 +211,8 @@ namespace BookingConfirm.Models
     public class stay {
         public string arrt { get; set; }
         public exflds[] exflds { get; set; }
+        public string paym { get; set; }
+        public Card card { get; set; }
     }
 
     public class exflds {
@@ -346,6 +348,8 @@ namespace BookingConfirm.Models
         public string payc { get; set; }
 
         public string name { get; set; }
+
+        public string ctyp { get; set; }
     }
     #endregion
 

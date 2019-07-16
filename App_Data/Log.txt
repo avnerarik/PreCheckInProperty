@@ -76,3 +76,201 @@ Date: 7/2/2019 10:23:06 AM, Property: regtest, Name: Lilivett Ovalle, Reservatio
 -------------------
 Date: 7/2/2019 10:23:07 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909, ChartsPostPay status: True, ChartsPostPay amount: 13;
 -------------------
+Date: 7/3/2019 9:47:33 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191;
+-------------------
+Date: 7/3/2019 9:48:22 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191, ChartsPrePost status: True, ChartsPrePost amount: 54.23, ChartsPrePost commision: 1.36;
+-------------------
+Date: 7/3/2019 9:50:55 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191, AuthNetTrans transaction: 61802194835, AuthNetTrans status: 2, AuthNetTrans message: This transaction has been declined.;
+-------------------
+Date: 7/3/2019 9:53:12 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191;
+-------------------
+Date: 7/3/2019 9:53:24 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191, ChartsPrePost status: True, ChartsPrePost amount: 54.23, ChartsPrePost commision: 1.36;
+-------------------
+Date: 7/3/2019 9:57:49 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191;
+-------------------
+Date: 7/3/2019 9:58:34 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191, ChartsPrePost status: True, ChartsPrePost amount: 54.23, ChartsPrePost commision: 1.36;
+-------------------
+Date: 7/3/2019 9:58:53 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191, AuthNetTrans transaction: 0, AuthNetTrans status: -1, AuthNetTrans message: This transaction has been rejected.;
+-------------------
+Date: 7/3/2019 9:59:32 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191;
+-------------------
+Date: 7/3/2019 9:59:47 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191, ChartsPrePost status: True, ChartsPrePost amount: 54.23, ChartsPrePost commision: 1.36;
+-------------------
+Date: 7/3/2019 9:59:59 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191, AuthNetTrans transaction: 61802197757, AuthNetTrans status: 2, AuthNetTrans message: This transaction has been declined.;
+-------------------
+Date: 7/3/2019 10:11:28 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191;
+-------------------
+Date: 7/3/2019 10:13:41 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191;
+-------------------
+Date: 7/3/2019 10:16:48 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191;
+-------------------
+Date: 7/3/2019 10:21:39 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191;
+-------------------
+Date: 7/3/2019 10:22:47 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191;
+-------------------
+Date: 7/3/2019 11:32:04 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191;
+-------------------
+Date: 7/3/2019 11:33:27 AM, Property: CHRTSHOT, Name: Lilivett Ovalle, Reservation: 4191;
+-------------------
+Date: 7/3/2019 1:46:54 PM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/3/2019 1:50:57 PM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/3/2019 1:51:19 PM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909, ChartsPrePost status: True, ChartsPrePost amount: 152, ChartsPrePost commision: 3.80;
+-------------------
+Date: 7/3/2019 1:51:55 PM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909, AuthNetTrans transaction: 60123882742, AuthNetTrans status: 1, AuthNetTrans message: This transaction has been approved., AuthNetTrans amount: 155.80;
+-------------------
+Date: 7/3/2019 1:51:55 PM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909, ChartsPostPay status: True, ChartsPostPay amount: 152;
+-------------------
+Date: 7/3/2019 2:05:57 PM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/3/2019 2:06:38 PM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/4/2019 9:32:09 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/4/2019 9:33:49 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/4/2019 9:36:23 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/4/2019 9:38:55 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/4/2019 9:52:16 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/4/2019 9:55:01 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/4/2019 9:55:08 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/4/2019 10:01:51 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/4/2019 10:04:02 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/4/2019 10:12:26 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/4/2019 10:14:00 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/7/2019 10:01:12 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/7/2019 10:11:10 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/7/2019 10:12:37 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/7/2019 10:15:31 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/7/2019 10:38:18 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/7/2019 10:41:43 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/7/2019 10:48:28 AM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161897;
+-------------------
+Date: 7/7/2019 10:49:19 AM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161897;
+-------------------
+Date: 7/7/2019 10:49:26 AM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161897, ChartsPrePost status: True, ChartsPrePost amount: 84.60, ChartsPrePost commision: 0;
+-------------------
+Date: 7/7/2019 10:49:28 AM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161897, AuthNetTrans transaction: 60124028776, AuthNetTrans status: 1, AuthNetTrans message: This transaction has been approved., AuthNetTrans amount: 84.60;
+-------------------
+Date: 7/7/2019 10:49:29 AM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161897, ChartsPostPay status: True, ChartsPostPay amount: 84.60;
+-------------------
+Date: 7/7/2019 10:51:03 AM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161897;
+-------------------
+Date: 7/7/2019 10:51:36 AM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161908;
+-------------------
+Date: 7/7/2019 10:52:14 AM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161908;
+-------------------
+Date: 7/7/2019 10:54:09 AM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161908;
+-------------------
+Date: 7/7/2019 10:56:17 AM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161908;
+-------------------
+Date: 7/7/2019 10:57:43 AM, Property: regtest, Name: Avner goldhammer, Reservation: 161906;
+-------------------
+Date: 7/7/2019 10:59:10 AM, Property: regtest, Name: Avner Leon, Reservation: 161891;
+-------------------
+Date: 7/7/2019 10:59:30 AM, Property: regtest, Name: Avner Leon, Reservation: 161891, ChartsPrePost status: True, ChartsPrePost amount: 47, ChartsPrePost commision: 0;
+-------------------
+Date: 7/7/2019 10:59:32 AM, Property: regtest, Name: Avner Leon, Reservation: 161891, AuthNetTrans transaction: 60124029258, AuthNetTrans status: 1, AuthNetTrans message: This transaction has been approved., AuthNetTrans amount: 47;
+-------------------
+Date: 7/7/2019 10:59:33 AM, Property: regtest, Name: Avner Leon, Reservation: 161891, ChartsPostPay status: True, ChartsPostPay amount: 47;
+-------------------
+Date: 7/7/2019 11:04:33 AM, Property: regtest, Name: Avner Leon, Reservation: 161891;
+-------------------
+Date: 7/7/2019 11:05:20 AM, Property: regtest, Name: Avner Leon, Reservation: 161891;
+-------------------
+Date: 7/7/2019 11:06:55 AM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161903;
+-------------------
+Date: 7/7/2019 11:07:38 AM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161903;
+-------------------
+Date: 7/7/2019 11:09:55 AM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161903;
+-------------------
+Date: 7/7/2019 11:10:22 AM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161903, ChartsPrePost status: True, ChartsPrePost amount: 117, ChartsPrePost commision: 0;
+-------------------
+Date: 7/7/2019 11:10:24 AM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161903, AuthNetTrans transaction: 60124029923, AuthNetTrans status: 1, AuthNetTrans message: This transaction has been approved., AuthNetTrans amount: 117;
+-------------------
+Date: 7/7/2019 11:10:24 AM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161903, ChartsPostPay status: True, ChartsPostPay amount: 117;
+-------------------
+Date: 7/7/2019 11:12:36 AM, Property: regtest, Name: Avner goldhammer, Reservation: 161906;
+-------------------
+Date: 7/7/2019 11:13:33 AM, Property: regtest, Name: Avner goldhammer, Reservation: 161906, ChartsPrePost status: True, ChartsPrePost amount: 1564, ChartsPrePost commision: 0;
+-------------------
+Date: 7/7/2019 11:13:35 AM, Property: regtest, Name: Avner goldhammer, Reservation: 161906, AuthNetTrans transaction: 60124030078, AuthNetTrans status: 1, AuthNetTrans message: This transaction has been approved., AuthNetTrans amount: 1564;
+-------------------
+Date: 7/7/2019 11:13:35 AM, Property: regtest, Name: Avner goldhammer, Reservation: 161906, ChartsPostPay status: True, ChartsPostPay amount: 1564;
+-------------------
+Date: 7/7/2019 11:16:56 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909;
+-------------------
+Date: 7/7/2019 11:17:20 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909, ChartsPrePost status: True, ChartsPrePost amount: 152, ChartsPrePost commision: 3.80;
+-------------------
+Date: 7/7/2019 11:17:22 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909, AuthNetTrans transaction: 60124030281, AuthNetTrans status: 1, AuthNetTrans message: This transaction has been approved., AuthNetTrans amount: 155.80;
+-------------------
+Date: 7/7/2019 11:17:22 AM, Property: regtest, Name: Lilivett Ovalle, Reservation: 161909, ChartsPostPay status: True, ChartsPostPay amount: 152;
+-------------------
+Date: 7/9/2019 9:44:32 AM, Property: regtest, Name: ko ko, Reservation: 161942;
+-------------------
+Date: 7/9/2019 9:49:01 AM, Property: regtest, Name: ko ko, Reservation: 161942;
+-------------------
+Date: 7/9/2019 1:06:18 PM, Property: regtest, Name: ko ko, Reservation: 161942;
+-------------------
+Date: 7/9/2019 1:24:37 PM, Property: regtest, Name: ko ko, Reservation: 161942;
+-------------------
+Date: 7/9/2019 1:33:48 PM, Property: regtest, Name: ko ko, Reservation: 161942;
+-------------------
+Date: 7/9/2019 1:38:37 PM, Property: regtest, Name: ko ko, Reservation: 161942;
+-------------------
+Date: 7/9/2019 1:44:09 PM, Property: regtest, Name: ko ko, Reservation: 161942;
+-------------------
+Date: 7/9/2019 1:46:09 PM, Property: regtest, Name: ko ko, Reservation: 161942;
+-------------------
+Date: 7/9/2019 1:46:23 PM, Property: regtest, Name: ko ko, Reservation: 161942, ChartsPrePost status: True, ChartsPrePost amount: 176, ChartsPrePost commision: 0;
+-------------------
+Date: 7/9/2019 1:46:26 PM, Property: regtest, Name: ko ko, Reservation: 161942, AuthNetTrans transaction: 60124116033, AuthNetTrans status: 1, AuthNetTrans message: This transaction has been approved., AuthNetTrans amount: 176;
+-------------------
+Date: 7/9/2019 1:46:26 PM, Property: regtest, Name: ko ko, Reservation: 161942, ChartsPostPay status: True, ChartsPostPay amount: 176;
+-------------------
+Date: 7/9/2019 1:56:22 PM, Property: regtest, Name: y t, Reservation: 161914;
+-------------------
+Date: 7/9/2019 1:56:50 PM, Property: regtest, Name: y t, Reservation: 161914, ChartsPrePost status: True, ChartsPrePost amount: 152, ChartsPrePost commision: 0;
+-------------------
+Date: 7/9/2019 1:56:53 PM, Property: regtest, Name: y t, Reservation: 161914, AuthNetTrans transaction: 60124116480, AuthNetTrans status: 1, AuthNetTrans message: This transaction has been approved., AuthNetTrans amount: 152;
+-------------------
+Date: 7/9/2019 1:57:12 PM, Property: regtest, Name: y t, Reservation: 161914, ChartsPostPay status: True, ChartsPostPay amount: 152;
+-------------------
+Date: 7/9/2019 3:27:47 PM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161935;
+-------------------
+Date: 7/9/2019 3:28:42 PM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161935;
+-------------------
+Date: 7/9/2019 3:29:23 PM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161935, ChartsPrePost status: True, ChartsPrePost amount: 87, ChartsPrePost commision: 0;
+-------------------
+Date: 7/9/2019 3:29:25 PM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161935, AuthNetTrans transaction: 60124122972, AuthNetTrans status: 1, AuthNetTrans message: This transaction has been approved., AuthNetTrans amount: 87;
+-------------------
+Date: 7/9/2019 3:30:06 PM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161935, ChartsPostPay status: True, ChartsPostPay amount: 87;
+-------------------
+Date: 7/9/2019 3:33:03 PM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161935;
+-------------------
+Date: 7/9/2019 3:40:01 PM, Property: regtest, Name: Aaron Goldhammer, Reservation: 161935;
+-------------------
+Date: 7/9/2019 3:43:34 PM, Property: regtest, Name: y y, Reservation: 161915;
+-------------------
+Date: 7/9/2019 3:43:57 PM, Property: regtest, Name: y y, Reservation: 161915, ChartsPrePost status: True, ChartsPrePost amount: 520, ChartsPrePost commision: 0;
+-------------------
+Date: 7/9/2019 3:43:59 PM, Property: regtest, Name: y y, Reservation: 161915, AuthNetTrans transaction: 60124123702, AuthNetTrans status: 1, AuthNetTrans message: This transaction has been approved., AuthNetTrans amount: 520;
+-------------------
+Date: 7/9/2019 3:44:10 PM, Property: regtest, Name: y y, Reservation: 161915, ChartsPostPay status: True, ChartsPostPay amount: 520;
+-------------------

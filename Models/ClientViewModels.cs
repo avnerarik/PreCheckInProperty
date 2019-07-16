@@ -40,10 +40,7 @@ namespace BookingConfirm.Models
 
         [Display(Name = "salu", ResourceType = typeof(Resources.Resources))]
         public string salu { get; set; }
-
-        [Display(Name = "secu", ResourceType = typeof(Resources.Resources))]
-        public string secu { get; set; }
-
+        
         [Display(Name = "gender", ResourceType = typeof(Resources.Resources))]
         public string gender { get; set; }
 
@@ -82,15 +79,18 @@ namespace BookingConfirm.Models
         [Display(Name = "country", ResourceType = typeof(Resources.Resources))]
         public string country { get; set; }
 
-
         [Display(Name = "nationality", ResourceType = typeof(Resources.Resources))]
         public string nationality { get; set; }
 
-        [Display(Name = "idnumber", ResourceType = typeof(Resources.Resources))]
-        public string idnumber { get; set; }
-
         [Display(Name = "document", ResourceType = typeof(Resources.Resources))]
         public string document { get; set; }
+
+        [Display(Name = "idtype", ResourceType = typeof(Resources.Resources))]
+        public string idtype { get; set; }
+
+        [Required]
+        [Display(Name = "secu", ResourceType = typeof(Resources.Resources))]
+        public string secu { get; set; }
 
         [Display(Name = "expdate", ResourceType = typeof(Resources.Resources))]
         public string expdate { get; set; }
@@ -125,6 +125,9 @@ namespace BookingConfirm.Models
 
         [Display(Name = "total", ResourceType = typeof(Resources.Resources))]
         public string total { get; set; }
+
+        [Display(Name = "balance", ResourceType = typeof(Resources.Resources))]
+        public string balance { get; set; }
 
         [Display(Name = "cardType", ResourceType = typeof(Resources.Resources))]
         public string cardType { get; set; }

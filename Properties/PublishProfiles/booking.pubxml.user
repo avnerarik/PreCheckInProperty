@@ -55,7 +55,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/20/2019 10:23:52</publishTime>
     </File>
     <File Include="bin/BookingConfirm.dll">
-      <publishTime>07/01/2019 10:19:09</publishTime>
+      <publishTime>07/09/2019 15:58:30</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>08/08/2018 03:12:38</publishTime>
@@ -64,7 +64,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/08/2018 03:12:38</publishTime>
     </File>
     <File Include="bin/fr/Resources.resources.dll">
-      <publishTime>07/01/2019 10:19:09</publishTime>
+      <publishTime>07/09/2019 15:58:29</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>08/08/2018 03:12:38</publishTime>
@@ -115,7 +115,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/08/2018 03:12:38</publishTime>
     </File>
     <File Include="bin/Resources.dll">
-      <publishTime>07/01/2019 10:19:09</publishTime>
+      <publishTime>07/09/2019 15:58:29</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>10/14/2015 09:31:45</publishTime>
@@ -184,7 +184,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/08/2018 03:12:38</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>08/08/2018 03:12:38</publishTime>
+      <publishTime>07/02/2019 09:30:36</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>08/08/2018 03:12:38</publishTime>
@@ -228,6 +228,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/bootstrap.min.js">
       <publishTime>08/08/2018 03:12:38</publishTime>
     </File>
+    <File Include="Scripts/creditcard.min.js">
+      <publishTime>07/01/2019 11:55:00</publishTime>
+    </File>
     <File Include="Scripts/jquery-1.10.2.js">
       <publishTime>08/08/2018 03:12:38</publishTime>
     </File>
@@ -236,6 +239,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Scripts/jquery-1.10.2.min.map">
       <publishTime>08/08/2018 03:12:38</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.min.js">
+      <publishTime>07/01/2019 11:22:37</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
       <publishTime>08/08/2018 03:12:38</publishTime>
@@ -259,7 +265,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/08/2018 03:12:38</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>08/08/2018 03:12:38</publishTime>
+      <publishTime>07/01/2019 11:55:01</publishTime>
     </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
       <publishTime>01/20/2016 23:58:20</publishTime>
@@ -301,13 +307,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/01/2019 10:17:25</publishTime>
     </File>
     <File Include="Views/Client/BookingData.cshtml">
-      <publishTime>06/26/2019 12:34:15</publishTime>
+      <publishTime>07/09/2019 13:26:21</publishTime>
     </File>
     <File Include="Views/Client/BookingReciept.cshtml">
       <publishTime>06/24/2019 11:27:12</publishTime>
     </File>
     <File Include="Views/Client/PaymentData.cshtml">
-      <publishTime>07/01/2019 10:12:17</publishTime>
+      <publishTime>07/09/2019 15:36:57</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>08/08/2018 03:12:38</publishTime>
@@ -316,7 +322,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/08/2018 03:12:38</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>07/01/2019 10:19:01</publishTime>
+      <publishTime>07/01/2019 11:04:54</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>01/20/2016 23:58:20</publishTime>
@@ -343,7 +349,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/08/2018 03:12:38</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/30/2019 10:43:25</publishTime>
+      <publishTime>07/02/2019 09:12:57</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>08/08/2018 03:12:38</publishTime>
@@ -355,7 +361,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/08/2018 03:12:38</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/01/2019 10:19:09</publishTime>
+      <publishTime>07/03/2019 13:32:16</publishTime>
     </File>
   </ItemGroup>
 </Project>

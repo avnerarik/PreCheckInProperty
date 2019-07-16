@@ -15,7 +15,8 @@ namespace BookingConfirm.Helpers
     {
         private static readonly List<DocumentTypeModel> _doctype = new List<DocumentTypeModel> {
             new DocumentTypeModel() { value = "P", text = "Passport" },
-            new DocumentTypeModel() { value = "I", text = "ID" }
+            new DocumentTypeModel() { value = "DS", text = "Driving License" },
+            new DocumentTypeModel() { value = "I", text = "Other ID (specify)" }
         };
 
         private static readonly List<DocumentTypeModel> _genderlist = new List<DocumentTypeModel> {
@@ -206,10 +207,13 @@ namespace BookingConfirm.Helpers
                 List<DocumentTypeModel> data = new List<DocumentTypeModel>();
                 foreach (var item in fetchresponse.responses[0].payms)
                 {
-                    DocumentTypeModel temp = new DocumentTypeModel();
-                    temp.value = item.payc;
-                    temp.text = item.name;
-                    data.Add(temp);
+                    if (item.ctyp != "NONE" || item.payc == "CSH")
+                    {
+                        DocumentTypeModel temp = new DocumentTypeModel();
+                        temp.value = item.payc;
+                        temp.text = item.name;
+                        data.Add(temp);
+                    }
                 }
 
                 return data;

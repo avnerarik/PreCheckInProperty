@@ -4,6 +4,25 @@
     background-color:transparent;
 }
 
+/******************/
+.hide {
+    display:none;
+}
+.example {
+    font-size:8px;
+}
+
+.required {
+    color:#b94a48;
+    margin:0px 5px;
+    font-size:17px;
+    vertical-align:bottom;
+}
+.separation {
+    margin:0px 1px;
+}
+/******************/
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;

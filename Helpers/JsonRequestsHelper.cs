@@ -99,6 +99,14 @@ namespace BookingConfirm.Helpers
 
             stay s = new stay();
             s.arrt = model.timearrival;
+            s.paym = model.paym;
+            if (model.cardNumber != null)
+            {
+                s.card = new Card();
+                s.card.auth = model.cardHolder;
+                s.card.numb = model.cardNumber;
+                s.card.expy = model.cardEndDate;
+            }
 
             List<exflds> ext = new List<exflds>();
 
@@ -190,7 +198,7 @@ namespace BookingConfirm.Helpers
             tran.paytyp = "A";
             tran.paym = model.stay.paym;
             tran.comt = "PrePost AuthNet advance payment";
-            tran.amnt = model.stay.totl;
+            tran.amnt = model.stay.fcst;
             tran.comm = 0;
             tran.rpid = "MGR";
 
@@ -198,7 +206,7 @@ namespace BookingConfirm.Helpers
             jsonfetch.ident = property;
             jsonfetch.indx = model.indx;
             jsonfetch.obj = "RESV";
-            jsonfetch.amntnd = model.stay.totl;
+            jsonfetch.amntnd = model.stay.fcst;
             jsonfetch.tran = tran;
 
             TranObjPrePost[] sendarray = { jsonfetch };
@@ -225,7 +233,7 @@ namespace BookingConfirm.Helpers
             return data;
         }
 
-        public static TransPostResponses PostTransactionDetails(string propCode, FetchResponse bookingDetails ,TransPrePostResponses model)
+        public static TransPostResponses PostTransactionDetails(string propCode, FetchResponse bookingDetails ,TransPrePostResponses model, Array aunet)
         {
             var webAddr = "https://chartswebintf-fra.chartspms.com.au/json/execute?un=charteuhh&pw=hh246eu";
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
@@ -246,7 +254,7 @@ namespace BookingConfirm.Helpers
             Trans tran = new Trans();
             tran.paytyp = "A";
             tran.paym = bookingDetails.stay.paym;
-            tran.comt = "Advance Payment of booking " + bookingDetails.lbkg;
+            tran.comt = "Payment:" + aunet.GetValue(4).ToString();
             tran.amnt = model.paym.amnt;
             tran.comm = 0;// model.paym.comm;
             tran.rpid = "MGR";

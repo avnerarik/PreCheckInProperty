@@ -29,94 +29,7 @@ namespace BookingConfirm.Controllers
             _repository = repository;
             _propmailsrepository = propmailsrepository;
         }
-
-        //
-        // POST: /Client/CheckBooking
-        // [HttpPost]
-        // [AllowAnonymous]
-        // [ValidateAntiForgeryToken]
-        //public ActionResult BookingCheck()
-        //{
-        //    try
-        //    {
-        //        ClientViewModel model = TempData["model"] as ClientViewModel;
-
-        //        string fname = model.fname;
-        //        string lname = model.lname;
-        //        string resvn = model.reservNumber;
-        //        string pcode = model.propCode;
-
-        //        #region Json Request
-
-        //        var webAddr = "https://chartsintf.chartspms.com.au/json/execute?un=charteuhh&pw=hh246eu";
-        //        var httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
-        //        httpWebRequest.ContentType = "text/json";
-        //        httpWebRequest.Method = "POST";
-
-        //        JavaScriptSerializer js = new JavaScriptSerializer();
-
-        //        propIdent property = new propIdent();
-        //        property.mesg = "ResvSumm";
-        //        property.propcode = pcode;
-
-        //        Requests jsonrequest = new Requests();
-        //        jsonrequest.ident = property;
-        //        jsonrequest.reqn = "10";
-        //        jsonrequest.name = lname;
-        //        jsonrequest.lbkg = resvn;
-
-        //        Requests[] sendarray = { jsonrequest };
-
-        //        jsonRequestModel array = new jsonRequestModel();
-        //        array.requests = sendarray;
-
-        //        string json = JsonConvert.SerializeObject(array);
-
-
-        //        using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-        //        {
-        //            streamWriter.Write(json);
-        //            streamWriter.Flush();
-        //        }
-
-        //        HttpWebResponse httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-        //        StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream());
-
-        //        #endregion
-
-        //        string result = streamReader.ReadToEnd(); //in result is the end data.
-
-        //        jsonResponseModel response = JsonConvert.DeserializeObject<jsonResponseModel>(result);
-
-        //        //if success
-        //        if (response.responses[0].status.success)
-        //        {
-        //            if (response.responses[0].resvs.Length > 0)
-        //            {
-        //                TempData["jsonResponse"] = response;
-        //                return RedirectToAction("BookingData", "Client", new { pcode = pcode, indx = response.responses[0].resvs[0].indx });
-        //            }
-        //            else
-        //            {
-        //                TempData["model"] = model;
-        //                return RedirectToAction("Index", "Home");
-        //            }
-        //        }
-        //        else //if failure
-        //        {
-        //            TempData["model"] = model;
-        //            return RedirectToAction("Index", "Home");
-        //        }
-
-        //    }
-        //    catch (WebException wex)
-        //    {
-        //        ClientViewModel model = TempData["model"] as ClientViewModel;
-        //        TempData["model"] = model;
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //}
-
+        
         public ActionResult BookingData(string pcode, string indx)
         {
             //ViewBag.pict = _repository.getImageByProp(propcode).url;
@@ -135,14 +48,19 @@ namespace BookingConfirm.Controllers
                 ViewBag.DocTypes = FormHelper.GetDocTypesList();
                 ViewBag.ArrvHours = FormHelper.GetArrivalHours();
                 ViewBag.Salutation = FormHelper.RequestSalutation(pcode);
-                ViewBag.PayMethods = FormHelper.RequestPaymentMethod(pcode, bookingDetails.stay.paym);
+                //ViewBag.PayMethods = FormHelper.RequestPaymentMethod(pcode, bookingDetails.stay.paym);
+                ViewBag.PayMethods = FormHelper.RequestPaymentMethod(pcode, "");
 
+                ViewBag.cardHolder = "";
                 ViewBag.cardNumber = "";
+                ViewBag.cardEndDate = "";
                 if (bookingDetails.stay.card != null)
                 {
-                    ViewBag.cardNumber = processCardNumbers(bookingDetails.stay.card.numb);
+                    ViewBag.cardHolder = bookingDetails.guest.namf + " " + bookingDetails.guest.naml;
+                    ViewBag.cardNumber = bookingDetails.stay.card.numb; //processCardNumbers(bookingDetails.stay.card.numb);
+                    ViewBag.cardEndDate = bookingDetails.stay.card.expy;
                 }
-
+                
                 ViewBag.noCountry = false;
                 string country = bookingDetails.guest.addr.cnty;
                 List<DocumentTypeModel> Countries = FormHelper.RequestCountry(pcode);
@@ -153,16 +71,16 @@ namespace BookingConfirm.Controllers
                 ViewBag.country = country;
                 ViewBag.Countries = Countries;
 
-                if (bookingDetails.stay.exflds.Length > 0)
-                {
-                    foreach (var item in bookingDetails.stay.exflds)
-                    {
-                        if (item.numb == 65)
-                        {
-                            ViewBag.gender = item.value != "" ? item.value : "";
-                        }
-                    }
-                }
+                //if (bookingDetails.stay.exflds.Length > 0)
+                //{
+                //    foreach (var item in bookingDetails.stay.exflds)
+                //    {
+                //        if (item.numb == 65)
+                //        {
+                //            ViewBag.gender = item.value != "" ? item.value : "";
+                //        }
+                //    }
+                //}
 
                 //if (pcode.ToUpper() == "MIJE")
                 //{
@@ -198,8 +116,8 @@ namespace BookingConfirm.Controllers
             }
             catch (WebException ex)
             {
-                ClientViewModel model = TempData["model"] as ClientViewModel;
-                TempData["Model"] = model;
+                //BookingViewModel model = TempData["Model"] as BookingViewModel;
+                //TempData["Model"] = model;
                 return RedirectToAction("Index", "Home", new { prop = pcode });
             }
         }
@@ -275,22 +193,23 @@ namespace BookingConfirm.Controllers
                 }
                 else
                 {
-                    TempData["Model"] = model;
+                    FetchResponse bookingDetails = TempData["bookingDetails"] as FetchResponse;
+                    TempData["BookingModel"] = model;
                     return RedirectToAction("BookingConfirm", "Client", new { property = model.property, index = model.index });
                 }
 
             }
             catch (WebException ex)
             {
-                ClientViewModel temp = TempData["model"] as ClientViewModel;
-                TempData["Model"] = temp;
+                //ClientViewModel temp = TempData["model"] as ClientViewModel;
+                //TempData["Model"] = temp;
                 return RedirectToAction("Index", "Home");
             }
         }
 
         public ActionResult BookingConfirm(string property, string index)
         {
-            BookingViewModel model = TempData["Model"] as BookingViewModel;
+            BookingViewModel model = TempData["BookingModel"] as BookingViewModel;
             
             ViewBag.indx = index;
             ViewBag.pcode = property;
@@ -316,7 +235,7 @@ namespace BookingConfirm.Controllers
                     logdata(loginfo);
                     #endregion
 
-                    TempData["Model"] = model;
+                    TempData["BookingModel"] = model;
 
                     #region eMail
                     sendMail();
@@ -325,8 +244,6 @@ namespace BookingConfirm.Controllers
                     if (model.cardNumber!=null && model.cardNumber!="" && (Convert.ToDecimal(model.total)) > 0) { 
                         ViewBag.allowPayment = true;
                     }
-
-                    return View();
                 }
                 else
                 {
@@ -342,10 +259,13 @@ namespace BookingConfirm.Controllers
                     logdata(loginfo);
                     #endregion
 
-                    ClientViewModel m = TempData["Model"] as ClientViewModel;
-                    TempData["Model"] = m;
+                    BookingViewModel m = TempData["BookingModel"] as BookingViewModel;
+                    TempData["BookingModel"] = m;
                     return RedirectToAction("BookingData", "Client", new { pcode = model.property, indx = model.index });
                 }
+                
+                return RedirectToAction("PaymentData", "Client", new { pcode = model.property, indx = model.index });
+                //return View();
             }
             catch (WebException wex)
             {
@@ -361,8 +281,8 @@ namespace BookingConfirm.Controllers
                 logdata(loginfo);
                 #endregion
 
-                ClientViewModel m = TempData["Model"] as ClientViewModel;
-                TempData["Model"] = m;
+                BookingViewModel m = TempData["BookingModel"] as BookingViewModel;
+                TempData["BookingModel"] = m;
                 return RedirectToAction("BookingData", "Client", new { pcode = model.property, indx = model.index });
             }
         }
@@ -373,6 +293,8 @@ namespace BookingConfirm.Controllers
 
             try
             {
+                ViewBag.allowPayment = true;
+
                 var bookingDetails = JsonRequestsHelper.RequestBookingDetails(pcode, indx);
                 TempData["bookingDetails"] = bookingDetails;
                 //FetchResponse bookingDetails = TempData["bookingDetails"] as FetchResponse;
@@ -383,92 +305,171 @@ namespace BookingConfirm.Controllers
                 ViewBag.Payed = false;
                 ViewBag.Error = false;
 
+                ViewBag.toPay = bookingDetails.stay.fcst + bookingDetails.stay.totl;
+                if (ViewBag.toPay <= 0)
+                {
+                    ViewBag.allowPayment = false;
+                }
+
+                ViewBag.cardNumber = "";
+                if (bookingDetails.stay.card != null)
+                {
+                    ViewBag.cardNumber = bookingDetails.stay.card.numb;
+                    //ViewBag.cardNumber = processCardNumbers(bookingDetails.stay.card.numb);
+                }
+                else
+                {
+                    bookingDetails.stay.card = new Card();
+                }
+
                 ViewBag.data = bookingDetails;
                 ViewBag.PayMethods = FormHelper.RequestPaymentMethod(pcode, bookingDetails.stay.paym);
-
-                ViewBag.cardNumber = bookingDetails.stay.card.numb;
-
-                //ViewBag.cardNumber = "";
-                //if (bookingDetails.stay.card != null)
-                //{
-                //    ViewBag.cardNumber = processCardNumbers(bookingDetails.stay.card.numb);
-                //}
-
+                
                 return View();
             }
             catch (WebException ex)
             {
-                ClientViewModel model = TempData["model"] as ClientViewModel;
-                TempData["Model"] = model;
+                //ClientViewModel model = TempData["Model"] as ClientViewModel;
+                //TempData["Model"] = model;
                 return RedirectToAction("Index", "Home", new { prop = pcode });
             }
         }
 
-        [HttpPost]
+        [HttpPost] 
         public ActionResult PaymentData(PaymentViewModel model)
         {
-            ViewBag.Payed = false;
-            ViewBag.Error = false;
-            ViewBag.Message = "";
-
-            //var cardtype = model.cardType;
-            //var holderName = model.cardHolder;
-            //var cardNumber = model.cardNumber;
-            //var cardExpiry = model.cardEndDate;
-            //var cardCode = model.cardCode;
-
-            //ViewBag.Error = true;
-            //ViewBag.Message = "Ok";
-            //ViewBag.TransId = 01;
-            //return View();
-
-            string loginId = System.Configuration.ConfigurationManager.AppSettings["loginId"];
-            string transKey = System.Configuration.ConfigurationManager.AppSettings["transKey"];
-
-            FetchResponse bookingDetails = TempData["bookingDetails"] as FetchResponse;
-            
-            ViewBag.PayMethods = FormHelper.RequestPaymentMethod(model.property, bookingDetails.stay.paym);
-            ViewBag.data = bookingDetails;
-
-            var prepay = JsonRequestsHelper.PrePostTransactionDetails(model.property, bookingDetails);
-            if (prepay.status.error.code == 0)
+            try
             {
-                #region LogFile
-                var dateAsString = System.DateTime.Now.ToString();
-                string loginfo = "Date: " + dateAsString +
-                    ", Property: " + model.property +
-                    ", Name: " + model.firstName + " " + model.lastName +
-                    ", Reservation: " + model.bookingNumber +
-                    ", ChartsPrePost status: " + prepay.status.success +
-                    ", ChartsPrePost amount: " + prepay.paym.amnt +
-                    ", ChartsPrePost commision: " + prepay.paym.comm +
-                ";" + Environment.NewLine
-                + "-------------------" + Environment.NewLine;
-                logdata(loginfo);
-                #endregion
+                ViewBag.Payed = false;
+                ViewBag.Error = false;
+                ViewBag.allowPayment = false;
+                ViewBag.Message = "";
 
-                Array result = ANetHelper.PostPay(loginId, transKey, bookingDetails, model, prepay.paym.amntnd);
-                if (result.GetValue(0).ToString() == "1")
+                //var cardtype = model.cardType;
+                //var holderName = model.cardHolder;
+                //var cardNumber = model.cardNumber;
+                //var cardExpiry = model.cardEndDate;
+                //var cardCode = model.cardCode;
+
+                //ViewBag.Error = true;
+                //ViewBag.Message = "Ok";
+                //ViewBag.TransId = 01;
+                //return View();
+
+                string loginId = System.Configuration.ConfigurationManager.AppSettings["loginId"];
+                string transKey = System.Configuration.ConfigurationManager.AppSettings["transKey"];
+
+                FetchResponse bookingDetails = TempData["bookingDetails"] as FetchResponse;
+
+                if (bookingDetails.stay == null)
+                {
+                    return RedirectToAction("Index", "Home", new { prop = model.property });
+                }
+
+                ViewBag.PayMethods = FormHelper.RequestPaymentMethod(model.property, bookingDetails.stay.paym);
+                ViewBag.data = bookingDetails;
+
+                var prepay = JsonRequestsHelper.PrePostTransactionDetails(model.property, bookingDetails);
+                if (prepay.status.error.code == 0)
                 {
                     #region LogFile
-                    dateAsString = System.DateTime.Now.ToString();
-                    loginfo = "Date: " + dateAsString +
+                    var dateAsString = System.DateTime.Now.ToString();
+                    string loginfo = "Date: " + dateAsString +
                         ", Property: " + model.property +
                         ", Name: " + model.firstName + " " + model.lastName +
                         ", Reservation: " + model.bookingNumber +
-                        ", AuthNetTrans transaction: " + result.GetValue(4).ToString() +
-                        ", AuthNetTrans status: " + result.GetValue(0).ToString() +
-                        ", AuthNetTrans message: " + result.GetValue(2).ToString() +
-                        ", AuthNetTrans amount: " + prepay.paym.amntnd +
+                        ", ChartsPrePost status: " + prepay.status.success +
+                        ", ChartsPrePost amount: " + prepay.paym.amnt +
+                        ", ChartsPrePost commision: " + prepay.paym.comm +
                     ";" + Environment.NewLine
                     + "-------------------" + Environment.NewLine;
                     logdata(loginfo);
                     #endregion
 
-                    var pay = JsonRequestsHelper.PostTransactionDetails(model.property, bookingDetails, prepay);
-                    if (pay.status.error.code == 0)
+                    Array result = ANetHelper.PostPay(loginId, transKey, bookingDetails, model, prepay.paym.amntnd);
+                    if (result.GetValue(0).ToString() == "1")
                     {
-                        ViewBag.Payed = true;
+                        #region LogFile
+                        dateAsString = System.DateTime.Now.ToString();
+                        loginfo = "Date: " + dateAsString +
+                            ", Property: " + model.property +
+                            ", Name: " + model.firstName + " " + model.lastName +
+                            ", Reservation: " + model.bookingNumber +
+                            ", AuthNetTrans transaction: " + result.GetValue(4).ToString() +
+                            ", AuthNetTrans status: " + result.GetValue(0).ToString() +
+                            ", AuthNetTrans message: " + result.GetValue(2).ToString() +
+                            ", AuthNetTrans amount: " + prepay.paym.amntnd +
+                        ";" + Environment.NewLine
+                        + "-------------------" + Environment.NewLine;
+                        logdata(loginfo);
+                        #endregion
+
+                        var pay = JsonRequestsHelper.PostTransactionDetails(model.property, bookingDetails, prepay, result);
+                        if (pay.status.error.code == 0)
+                        {
+                            ViewBag.Payed = true;
+                            ViewBag.Message = result.GetValue(2);
+                            ViewBag.TransId = result.GetValue(4);
+
+                            #region LogFile
+                            dateAsString = System.DateTime.Now.ToString();
+                            loginfo = "Date: " + dateAsString +
+                                ", Property: " + model.property +
+                                ", Name: " + model.firstName + " " + model.lastName +
+                                ", Reservation: " + model.bookingNumber +
+                                ", ChartsPostPay status: " + pay.status.success +
+                                ", ChartsPostPay amount: " + prepay.paym.amnt +
+                            ";" + Environment.NewLine
+                            + "-------------------" + Environment.NewLine;
+                            logdata(loginfo);
+                            #endregion
+                        }
+                        else
+                        {
+                            ViewBag.Error = true;
+                            ViewBag.Message = pay.status.error.shorttext;
+                            ViewBag.TransId = result.GetValue(4);
+                            Array voidResult = ANetHelper.Void(loginId, transKey, bookingDetails, result.GetValue(4).ToString());
+
+                            #region LogFile
+                            dateAsString = System.DateTime.Now.ToString();
+                            loginfo = "Date: " + dateAsString +
+                                ", Property: " + model.property +
+                                ", Name: " + model.firstName + " " + model.lastName +
+                                ", Reservation: " + model.bookingNumber +
+                                ", ChartsPostPay status: " + pay.status.error.shorttext +
+                                ", ChartsPostPay amount: " + prepay.paym.amnt +
+                                ", AuthNetTrans transaction: " + result.GetValue(4).ToString() +
+                                ", AuthNetTrans status: Voided" +
+                            ";" + Environment.NewLine
+                            + "-------------------" + Environment.NewLine;
+                            logdata(loginfo);
+                            #endregion
+                        }
+                    }
+                    else if (result.GetValue(0).ToString() == "-1")
+                    {
+                        ViewBag.Error = true;
+                        ViewBag.Message = "This transaction has been rejected.";
+                        ViewBag.TransId = "0";
+
+                        #region LogFile
+                        dateAsString = System.DateTime.Now.ToString();
+                        loginfo = "Date: " + dateAsString +
+                            ", Property: " + model.property +
+                            ", Name: " + model.firstName + " " + model.lastName +
+                            ", Reservation: " + model.bookingNumber +
+                            ", AuthNetTrans transaction: " + 0 +
+                            ", AuthNetTrans status: " + result.GetValue(0).ToString() +
+                            ", AuthNetTrans message: " + "This transaction has been rejected." +
+                        ";" + Environment.NewLine
+                        + "-------------------" + Environment.NewLine;
+                        logdata(loginfo);
+                        #endregion
+                    }
+                    else
+                    {
+                        ViewBag.Error = true;
                         ViewBag.Message = result.GetValue(2);
                         ViewBag.TransId = result.GetValue(4);
 
@@ -478,30 +479,9 @@ namespace BookingConfirm.Controllers
                             ", Property: " + model.property +
                             ", Name: " + model.firstName + " " + model.lastName +
                             ", Reservation: " + model.bookingNumber +
-                            ", ChartsPostPay status: " + pay.status.success +
-                            ", ChartsPostPay amount: " + prepay.paym.amnt +
-                        ";" + Environment.NewLine
-                        + "-------------------" + Environment.NewLine;
-                        logdata(loginfo);
-                        #endregion
-                    }
-                    else
-                    {
-                        ViewBag.Error = true;
-                        ViewBag.Message = pay.status.error.shorttext;
-                        ViewBag.TransId = result.GetValue(4);
-                        Array voidResult = ANetHelper.Void(loginId, transKey, bookingDetails, result.GetValue(4).ToString());
-
-                        #region LogFile
-                        dateAsString = System.DateTime.Now.ToString();
-                        loginfo = "Date: " + dateAsString +
-                            ", Property: " + model.property +
-                            ", Name: " + model.firstName + " " + model.lastName +
-                            ", Reservation: " + model.bookingNumber +
-                            ", ChartsPostPay status: " + pay.status.error.shorttext +
-                            ", ChartsPostPay amount: " + prepay.paym.amnt +
                             ", AuthNetTrans transaction: " + result.GetValue(4).ToString() +
-                            ", AuthNetTrans status: Voided" +
+                            ", AuthNetTrans status: " + result.GetValue(0).ToString() +
+                            ", AuthNetTrans message: " + result.GetValue(2).ToString() +
                         ";" + Environment.NewLine
                         + "-------------------" + Environment.NewLine;
                         logdata(loginfo);
@@ -511,44 +491,27 @@ namespace BookingConfirm.Controllers
                 else
                 {
                     ViewBag.Error = true;
-                    ViewBag.Message = result.GetValue(2);
-                    ViewBag.TransId = result.GetValue(4);
+                    ViewBag.Message = prepay.status.error.shorttext;
+                    ViewBag.TransId = 0;
 
                     #region LogFile
-                    dateAsString = System.DateTime.Now.ToString();
-                    loginfo = "Date: " + dateAsString +
+                    var dateAsString = System.DateTime.Now.ToString();
+                    string loginfo = "Date: " + dateAsString +
                         ", Property: " + model.property +
                         ", Name: " + model.firstName + " " + model.lastName +
                         ", Reservation: " + model.bookingNumber +
-                        ", AuthNetTrans transaction: " + result.GetValue(4).ToString() +
-                        ", AuthNetTrans status: " + result.GetValue(0).ToString() +
-                        ", AuthNetTrans message: " + result.GetValue(2).ToString() +
+                        ", ChartsPrePost status: " + prepay.status.error.shorttext +
                     ";" + Environment.NewLine
                     + "-------------------" + Environment.NewLine;
                     logdata(loginfo);
                     #endregion
                 }
-            }
-            else
-            {
-                ViewBag.Error = true;
-                ViewBag.Message = prepay.status.error.shorttext;
-                ViewBag.TransId = 0;
 
-                #region LogFile
-                var dateAsString = System.DateTime.Now.ToString();
-                string loginfo = "Date: " + dateAsString +
-                    ", Property: " + model.property +
-                    ", Name: " + model.firstName + " " + model.lastName +
-                    ", Reservation: " + model.bookingNumber +
-                    ", ChartsPrePost status: " + prepay.status.error.shorttext +
-                ";" + Environment.NewLine
-                + "-------------------" + Environment.NewLine;
-                logdata(loginfo);
-                #endregion
+                return View();
             }
-
-            return View();
+            catch (Exception ex) {
+                return RedirectToAction("Index", "Home", new { prop = model.property });
+            }
         }
 
 
@@ -602,7 +565,7 @@ namespace BookingConfirm.Controllers
         {
             try
             {
-                BookingViewModel model = TempData["model"] as BookingViewModel;
+                BookingViewModel model = TempData["BookingModel"] as BookingViewModel;
 
                 string fullName = model.firstName + ' ' + model.lastName;
                 string arrival = model.arrivalDate;

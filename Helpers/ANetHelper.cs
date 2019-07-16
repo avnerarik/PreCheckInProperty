@@ -78,7 +78,7 @@ namespace BookingConfirm.Helpers
 
             // Add line Items
             var lineItems = new lineItemType[1];
-            lineItems[0] = new lineItemType { itemId = "1", name = "PreCheckIn of booking " + bookingDetails.lbkg.ToString(), quantity = 1, unitPrice = bookingDetails.stay.totl, totalAmount = AmountToBeCharged };
+            lineItems[0] = new lineItemType { itemId = "1", name = "PreCheckIn of booking " + bookingDetails.lbkg.ToString(), quantity = 1, unitPrice = bookingDetails.stay.fcst, totalAmount = AmountToBeCharged };
             
             var transactionRequest = new transactionRequestType
             {
