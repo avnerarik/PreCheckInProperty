@@ -38,10 +38,16 @@
     background-repeat:no-repeat;
 }
 
+label {
+    font-weight:normal!important;
+}
 
 /*set the standard use oppacity*/
 .backdiv {
-    background-color:rgba(0,0,0,0.3);
+    /*background-color:rgba(0,0,0,0.3);*/
+    background:#fff;
+    border-radius:8px;
+    box-shadow:0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
 }
 
 /*all centered*/
@@ -51,8 +57,9 @@
 
 /*white letters with black border*/
 .white {
-    color:white;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: black;
+    /*color:white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 

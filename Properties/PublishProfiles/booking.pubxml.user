@@ -55,7 +55,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/20/2019 10:23:52</publishTime>
     </File>
     <File Include="bin/BookingConfirm.dll">
-      <publishTime>07/09/2019 15:58:30</publishTime>
+      <publishTime>07/24/2019 09:13:28</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>08/08/2018 03:12:38</publishTime>
@@ -184,7 +184,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/08/2018 03:12:38</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>07/02/2019 09:30:36</publishTime>
+      <publishTime>07/21/2019 12:12:15</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>08/08/2018 03:12:38</publishTime>
@@ -304,7 +304,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/20/2016 23:58:20</publishTime>
     </File>
     <File Include="Views/Client/BookingConfirm.cshtml">
-      <publishTime>07/01/2019 10:17:25</publishTime>
+      <publishTime>07/21/2019 12:14:02</publishTime>
     </File>
     <File Include="Views/Client/BookingData.cshtml">
       <publishTime>07/09/2019 13:26:21</publishTime>
@@ -322,7 +322,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/08/2018 03:12:38</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>07/01/2019 11:04:54</publishTime>
+      <publishTime>07/21/2019 12:14:02</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>01/20/2016 23:58:20</publishTime>
