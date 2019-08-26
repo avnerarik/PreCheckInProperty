@@ -169,7 +169,7 @@
 <script type="text/javascript">
     function enablePayment(obj) {
         var status = obj.checked;
-
+        console.log("status", obj.checked);
         if(status){
             $('#sendpay').removeAttr("disabled");
         }else{
@@ -265,7 +265,7 @@
             $("#sendpay").attr("disabled", true);
             $('#number').css('border-color', '#b94a48');
         } else {
-            $("#sendpay").attr("disabled", false);
+            //$("#sendpay").attr("disabled", false);
             $('#number').css('border-color', '');
         }
     }

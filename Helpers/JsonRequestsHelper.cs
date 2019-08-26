@@ -118,33 +118,42 @@ namespace BookingConfirm.Helpers
                 ext.Add(e);
             }
 
+            //if (ext.Count > 0)
+            //{
+            //    s.exflds = ext.ToArray();
+            //}
+
+            //if (false) {
+            //List<exflds> ext = new List<exflds>();
+
+            if (model.document != null)
+            {
+                exflds e = new exflds();
+                e.numb = 74;
+                e.value = model.document;
+                ext.Add(e);
+            }
+
+            if (model.idtype != null)
+            {
+                exflds n = new exflds();
+                n.numb = 75;
+                n.value = model.idtype;
+                ext.Add(n);
+            }
+
+            if (model.secu != null)
+            {
+                exflds n = new exflds();
+                n.numb = 76;
+                n.value = model.secu;
+                ext.Add(n);
+            }
+
             if (ext.Count > 0)
             {
                 s.exflds = ext.ToArray();
             }
-
-            //if (false) {
-            //    List<exflds> ext = new List<exflds>();
-
-            //    if (model.idnumber != null)
-            //    {
-            //        exflds e = new exflds();
-            //        e.numb = 77;
-            //        e.value = model.document + "," + model.idnumber + "," + model.expdate;
-            //        ext.Add(e);
-            //    }
-
-            //    if (model.nationality != null)
-            //    {
-            //        exflds n = new exflds();
-            //        n.numb = 83;
-            //        n.value = model.nationality;
-            //        ext.Add(n);
-            //    }
-
-            //    if (ext.Count > 0) {
-            //        s.exflds = ext.ToArray();
-            //    }
             //}
 
             jsonupdate.ident = requestdata;

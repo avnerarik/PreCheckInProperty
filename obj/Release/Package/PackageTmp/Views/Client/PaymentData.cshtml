@@ -110,8 +110,16 @@
                         </div>
 
                         <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <input type="checkbox" onchange="enablePayment(this)" />I agree that I will present all the necessary Travel Document at the time of Check-In.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-xs-6 col-sm-4 col-md-6">
-                                <input type="submit" id="sendpay" value="Send Payment" class="btn btn-success" />
+                                <input type="submit" id="sendpay" value="Send Payment" class="btn btn-success" disabled="disabled" />
                                 @*<input type="button" id="sendpay" value="Send Payment" onclick="processPayment(this); this.disabled = true;" class="btn btn-success" />*@
                             </div>
                             <div class="col-xs-6 col-sm-4 col-md-6" style="text-align:right;">
@@ -159,6 +167,16 @@
 <!--<hr />-->
 
 <script type="text/javascript">
+    function enablePayment(obj) {
+        var status = obj.checked;
+
+        if(status){
+            $('#sendpay').removeAttr("disabled");
+        }else{
+            $('#sendpay').attr("disabled", true);
+        }
+    }
+
     function processPayment(obj) {
         var form = document.getElementById("paydata");
         form.submit();
